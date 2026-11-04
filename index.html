@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ECE7F2">
+<title>Treffpunkt</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕯️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Shantell+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="firebase-config.js"></script>
+<style>
+:root{
+  --bg:#ECE7F2; --bg2:#E2DBEC; --surface:#FBF9FD; --surface2:#F3EFF8; --line:#DCD3E7;
+  --ink:#2E2540; --muted:#76698A; --faint:#B3A8C2;
+  --amber:#F2A43A; --amber-ink:#8A4F06; --moss:#5E8A5C; --moss-soft:#DCEBD6;
+  --rose:#C95B78; --sky:#5B7FB8;
+  --glow:rgba(242,164,58,.55);
+  --shadow:0 1px 2px rgba(46,37,64,.06),0 10px 30px -18px rgba(46,37,64,.45);
+  --r-lg:22px; --r-md:14px; --r-sm:10px;
+  --display:"Shantell Sans","Comic Neue","Segoe Print",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+[data-theme=dark]{
+  --bg:#1C1828; --bg2:#231E33; --surface:#2A2439; --surface2:#332C45; --line:#3E3654;
+  --ink:#F1EAF8; --muted:#AFA3C4; --faint:#6D628A;
+  --amber:#FFB04A; --amber-ink:#FFD49A; --moss:#8EC18A; --moss-soft:#2E4430;
+  --rose:#E9809A; --sky:#8FB0E6;
+  --glow:rgba(255,176,74,.6);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(120% 60% at 50% -10%,var(--bg2),transparent 70%);
+  background-attachment:fixed;
+  color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
+.wrap{max-width:540px;margin:0 auto;padding:12px 16px calc(110px + env(safe-area-inset-bottom))}
+.wrap.has-sheet{padding-bottom:calc(62vh + 70px)}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+h1{font-size:clamp(28px,8vw,36px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:18px;font-weight:700}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:18px}
+.stack>*+*{margin-top:12px}
+.row{display:flex;gap:10px;align-items:center}
+.grow{flex:1;min-width:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Buttons */
+.btn{border:0;border-radius:999px;padding:13px 20px;font-weight:700;background:var(--surface2);display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;transition:transform .12s ease,background .2s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn.amber{background:var(--amber);color:#3A2205}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 2px var(--line)}
+.btn.block{width:100%}
+.btn.sm{min-height:38px;padding:8px 14px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.icon-btn{border:0;background:var(--surface2);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:18px;flex:none}
+
+/* Forms */
+label.f{display:block}
+label.f>span{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+label.f>span em{font-style:normal;font-weight:500;color:var(--muted);font-size:13px;margin-left:4px}
+.in,select.in,textarea.in{width:100%;border:2px solid var(--line);background:var(--surface);border-radius:var(--r-md);padding:12px 14px;min-height:48px;outline:none;transition:border-color .2s}
+.in:focus{border-color:var(--amber)}
+textarea.in{min-height:84px;resize:vertical}
+select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;min-height:38px}
+.chip.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.switch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--surface2);cursor:pointer}
+.switch input{appearance:none;width:46px;height:28px;border-radius:999px;background:var(--faint);position:relative;flex:none;transition:background .2s;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.switch input:checked{background:var(--moss)}
+.switch input:checked::after{transform:translateX(18px)}
+.hint{font-size:13px;color:var(--muted);margin-top:6px}
+.err{color:var(--rose);font-weight:700;font-size:14px}
+
+/* Garland */
+.garland{display:block;width:calc(100% + 36px);margin:-18px -18px 6px;height:auto;overflow:visible}
+.garland .wire{fill:none;stroke:var(--faint);stroke-width:1.6}
+.garland .cap{fill:var(--faint)}
+.garland .bulb{fill:var(--line);transition:fill .6s}
+.garland .bulb.on{animation:twinkle 3.2s ease-in-out infinite}
+.garland .on.c0{fill:#F2A43A}.garland .on.c1{fill:#E9809A}.garland .on.c2{fill:#8EC18A}.garland .on.c3{fill:#FFD27A}.garland .on.c4{fill:#8FB0E6}
+.garland .on{filter:drop-shadow(0 0 4px var(--glow))}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.62}}
+
+/* Header */
+.ev-head h1{margin-top:4px;word-wrap:break-word}
+.ev-desc{margin-top:8px;color:var(--muted);white-space:pre-line}
+.facts{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:6px}
+.facts li{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.facts li span:first-child{width:22px;text-align:center;flex:none}
+.topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:18px;display:flex;gap:6px;align-items:center;text-decoration:none;color:inherit}
+.cup{width:26px;height:26px;color:var(--muted)}
+.cup .steam{stroke:var(--muted);stroke-width:1.6;fill:none;stroke-linecap:round;opacity:0}
+.saving .cup .steam{animation:steam 1.4s ease-in-out infinite}
+.saving .cup .steam:nth-of-type(2){animation-delay:.35s}
+@keyframes steam{0%{opacity:0;transform:translateY(3px)}40%{opacity:.9}100%{opacity:0;transform:translateY(-4px)}}
+.save-txt{font-size:13px;color:var(--muted);font-weight:600}
+.people{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.av{--c:#999;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:color-mix(in srgb,var(--c) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--c);font-size:18px;flex:none;line-height:1}
+.av.sm{width:26px;height:26px;font-size:14px;box-shadow:inset 0 0 0 1.5px var(--c)}
+.av-stack{display:flex}
+.av-stack .av{margin-left:-8px;border:2px solid var(--surface)}
+.av-stack .av:first-child{margin-left:0}
+.me-btn{border:0;background:var(--surface2);border-radius:999px;padding:4px 12px 4px 4px;display:flex;align-items:center;gap:8px;font-weight:700}
+
+/* Banner */
+.banner{border-radius:var(--r-md);padding:12px 14px;font-weight:600;font-size:14px;background:var(--surface2)}
+.banner.demo{background:color-mix(in srgb,var(--amber) 18%,var(--surface))}
+
+/* Final */
+.final{position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--amber) 30%,var(--surface)),var(--surface) 70%)}
+.final .big{font-family:var(--display);font-size:26px;font-weight:800;margin:4px 0 6px}
+.final .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+/* Calendar */
+.cal-tools{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:18px 2px 10px}
+.seg{display:inline-flex;background:var(--surface2);border-radius:999px;padding:4px;gap:2px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--muted);min-height:38px}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin:0 2px 12px;font-weight:600}
+.legend i{font-style:normal;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:11px;margin-right:4px;vertical-align:-3px;font-weight:800}
+.month{margin-bottom:18px}
+.month h3{margin:0 4px 10px}
+.dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.dow span{text-align:center;font-size:12px;font-weight:700;color:var(--muted);padding-bottom:4px}
+.day{--heat:0%;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:color-mix(in srgb,var(--amber) var(--heat),var(--surface));box-shadow:0 0 0 1px var(--line) inset,0 0 calc(var(--heat) * .35) var(--glow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
+.day:active{transform:scale(.92)}
+.day.off{background:transparent;box-shadow:none;color:var(--faint);font-weight:500;cursor:default}
+.day.off:active{transform:none}
+.day.blank{visibility:hidden}
+.day.hot{color:#3A2205}
+.day.today .num{text-decoration:underline 2px var(--amber);text-underline-offset:3px}
+.day.sel{box-shadow:0 0 0 3px var(--ink) inset,0 0 calc(var(--heat) * .35) var(--glow)}
+.day .mark{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 0 2px var(--bg)}
+.day.s-yes .mark{background:var(--moss)}
+.day.s-maybe .mark{background:var(--amber);color:#3A2205}
+.day.s-no .mark{background:var(--faint)}
+.day.s-yes{box-shadow:0 0 0 2.5px var(--moss) inset,0 0 calc(var(--heat) * .35) var(--glow)}
+.day.s-maybe{box-shadow:0 0 0 2.5px var(--amber) inset,0 0 calc(var(--heat) * .35) var(--glow)}
+.day.s-no .num{opacity:.45}
+.day.s-yes.sel,.day.s-maybe.sel,.day.s-no.sel{outline:3px solid var(--ink);outline-offset:1px}
+.day .dots{display:flex;gap:2px;height:6px;margin-top:3px}
+.day .dots b{width:6px;height:6px;border-radius:50%;background:var(--c)}
+.day .house{position:absolute;bottom:1px;left:3px;font-size:10px}
+.day .cat{position:absolute;bottom:-4px;right:-3px;width:26px;color:var(--ink);pointer-events:none}
+.cat .z{font-family:var(--display);font-size:9px;fill:var(--muted);animation:zz 2.4s ease-in-out infinite}
+@keyframes zz{0%{opacity:0;transform:translate(0,2px)}50%{opacity:1}100%{opacity:0;transform:translate(3px,-5px)}}
+
+/* Sheet */
+.sheet{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:30;display:flex;justify-content:center;pointer-events:none}
+.sheet>div{pointer-events:auto;width:min(540px,100%);margin:0 8px;max-height:58vh;overflow:auto;background:var(--surface);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);box-shadow:0 -8px 40px -10px rgba(20,10,40,.45);padding:16px;animation:up .22s ease-out;overscroll-behavior:contain}
+@keyframes up{from{transform:translateY(24px);opacity:0}}
+.sheet .grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:-6px auto 10px}
+.status4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.status4 button{border:2px solid var(--line);background:var(--surface);border-radius:var(--r-md);padding:8px 4px;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:58px}
+.status4 button b{font-size:18px}
+.status4 button.on.yes{border-color:var(--moss);background:var(--moss-soft)}
+.status4 button.on.maybe{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 20%,var(--surface))}
+.status4 button.on.no{border-color:var(--faint);background:var(--surface2)}
+.status4 button.on.none{border-color:var(--ink)}
+.who{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.who li{display:flex;gap:10px;align-items:flex-start}
+.who .st{font-weight:800;margin-left:auto;flex:none}
+.who .note{display:block;font-size:13px;color:var(--muted);font-style:italic}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--surface2);margin:2px 4px 0 0}
+.tag.host{background:color-mix(in srgb,var(--sky) 20%,var(--surface))}
+
+/* Overview */
+.best{position:relative;overflow:hidden}
+.best .date{font-family:var(--display);font-size:28px;font-weight:800;margin:6px 0 2px}
+.best .cat-big{position:absolute;right:10px;top:8px;width:70px;color:var(--ink);opacity:.9}
+.meter{height:8px;border-radius:9px;background:var(--surface2);overflow:hidden;display:flex}
+.meter i{display:block;height:100%}
+.meter .y{background:var(--moss)}.meter .m{background:var(--amber)}
+.rank{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.rank li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--surface);border-radius:var(--r-md);padding:12px 14px;box-shadow:var(--shadow)}
+.rank .pos{font-family:var(--display);font-weight:800;font-size:20px;color:var(--muted);width:22px;text-align:center}
+.rank .d{font-weight:800}
+.matrix-wrap{overflow-x:auto;border-radius:var(--r-md);background:var(--surface);box-shadow:var(--shadow)}
+table.matrix{border-collapse:collapse;width:100%;font-size:14px}
+.matrix th,.matrix td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+.matrix th:first-child,.matrix td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);font-weight:700;white-space:nowrap;padding-left:12px}
+.matrix td.y{color:var(--moss);font-weight:900}.matrix td.m{color:var(--amber-ink);font-weight:900}.matrix td.n{color:var(--faint)}
+.matrix tr.top td{background:color-mix(in srgb,var(--amber) 14%,var(--surface))}
+.section-title{margin:26px 4px 12px}
+.empty{text-align:center;padding:28px 18px}
+.empty svg{width:96px;color:var(--muted);margin-bottom:8px}
+
+/* Bring */
+.list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.list li{display:flex;align-items:center;gap:10px;background:var(--surface2);border-radius:var(--r-md);padding:10px 12px}
+.x{border:0;background:transparent;font-size:18px;color:var(--muted);width:32px;height:32px;border-radius:50%}
+
+/* Nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.nav>div{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+.nav button{border:0;background:transparent;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:700;color:var(--muted)}
+.nav button b{font-size:20px;line-height:1;filter:grayscale(.7);opacity:.75;transition:transform .2s}
+.nav button.on{color:var(--ink)}
+.nav button.on b{filter:none;opacity:1;transform:translateY(-2px)}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(20,14,32,.45);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
+.modal>div{width:min(540px,100%);max-height:92vh;overflow:auto;background:var(--bg);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom));animation:up .25s ease-out}
+@media(min-width:600px){.modal{align-items:center}.modal>div{border-radius:var(--r-lg)}}
+@keyframes fade{from{opacity:0}}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);z-index:80;background:var(--ink);color:var(--surface);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:var(--shadow);animation:drop .25s ease-out;max-width:calc(100% - 32px);text-align:center}
+@keyframes drop{from{transform:translate(-50%,-12px);opacity:0}}
+.linkbox{display:flex;gap:8px;align-items:center;background:var(--surface2);border-radius:var(--r-md);padding:10px 12px;font-size:14px;word-break:break-all;font-weight:600}
+.pop{position:fixed;pointer-events:none;z-index:90;font-size:16px;animation:pop .8s ease-out forwards}
+@keyframes pop{to{transform:translate(var(--dx),-46px) scale(.6);opacity:0}}
+canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:95}
+
+/* Home */
+.hero{text-align:left;padding:8px 2px 4px}
+.hero h1{font-size:clamp(34px,10vw,46px)}
+.hero p{font-size:18px;color:var(--muted);margin-top:10px;max-width:30ch}
+.window-art{display:block;width:100%;height:auto;margin:6px 0 4px}
+.recent{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.recent a{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;background:var(--surface);border-radius:var(--r-md);padding:12px 14px;box-shadow:var(--shadow);font-weight:700}
+.emoji-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.emoji-grid button{border:2px solid transparent;background:var(--surface2);border-radius:12px;aspect-ratio:1;font-size:20px;padding:0}
+.emoji-grid button.on{border-color:var(--ink);background:var(--surface)}
+.colors{display:flex;gap:8px;flex-wrap:wrap}
+.colors button{width:32px;height:32px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 2px var(--line);padding:0}
+.colors button.on{box-shadow:0 0 0 3px var(--ink)}
+.skeleton{height:120px;border-radius:var(--r-lg);background:var(--surface);opacity:.6;animation:twinkle 1.4s infinite}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal-root"></div>
+<script type="module">
+/* ================= Utilities ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ALPH = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+const rid = n => [...crypto.getRandomValues(new Uint8Array(n))].map(x => ALPH[x % ALPH.length]).join('');
+const pad = n => String(n).padStart(2, '0');
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseYmd = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d, 12); };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const todayStr = () => ymd(new Date());
+const dowMon = d => (d.getDay()+6) % 7;
+const DOW = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+const fmtTime = m => m == null ? 'Open End' : (m === 1440 ? '24:00' : `${pad(Math.floor(m/60)%24)}:${pad(m%60)}`);
+const fmtRange = (a, b) => b == null ? `ab ${fmtTime(a)}, open end` : `${fmtTime(a)} bis ${fmtTime(b)}`;
+const fmtDay = (s, o) => new Intl.DateTimeFormat('de-DE', o || {weekday:'short', day:'numeric', month:'short'}).format(parseYmd(s));
+const fmtLong = s => fmtDay(s, {weekday:'long', day:'numeric', month:'long'});
+const ls = { get(k, d=null){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+             set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐢','🐙','🦄','🐝','🍄','🌻','🍩','🍕','☕','🎲','🌙','🔥','🧁','🪴'];
+const COLORS = ['#E07A3E','#5E8A5C','#C95B78','#5B7FB8','#D9A22E','#8E6CB0','#3E9C9C','#B5794A'];
+const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
+const CYCLE = [undefined, 'yes', 'maybe', 'no'];
+
+const CAT = (cls='cat') => `<svg class="${cls}" viewBox="0 0 44 32" aria-hidden="true"><text class="z" x="33" y="7">z</text><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`;
+const CUP = `<svg class="cup" viewBox="0 0 26 26" aria-hidden="true"><path class="steam" d="M10 7c-1.5-1.5 1.5-2.5 0-4"/><path class="steam" d="M15 7c-1.5-1.5 1.5-2.5 0-4"/><path d="M5 10h15v6a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M20 12h1.5a2.5 2.5 0 0 1 0 5H20" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>`;
+
+function garland(n) {
+  const total = Math.min(18, Math.max(10, n + 4)), W = 360, H = 46;
+  let s = `<svg class="garland" viewBox="0 0 ${W} ${H}" aria-label="${n} ${n===1?'Person':'Personen'} dabei" role="img"><path class="wire" d="M-4 4 Q ${W/2} 40 ${W+4} 4"/>`;
+  for (let i = 0; i < total; i++) {
+    const t = (i + .5) / total, x = t * W, y = (1-t)*(1-t)*4 + 2*(1-t)*t*40 + t*t*4;
+    const lit = n > 0 && Math.floor((i+1)*n/total) > Math.floor(i*n/total);
+    s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><rect class="cap" x="-2.2" y="-1" width="4.4" height="4" rx="1"/><ellipse class="bulb ${lit?'on c'+(i%5):''}" style="animation-delay:${(i*0.37%3).toFixed(2)}s" cx="0" cy="8" rx="3.6" ry="5.4"/></g>`;
+  }
+  return s + '</svg>';
+}
+
+/* ================= Backends ================= */
+function localBackend() {
+  let uid = ls.get('tp:uid'); if (!uid) { uid = rid(20); ls.set('tp:uid', uid); }
+  const subs = new Set();
+  const K = (...a) => 'tp:db:' + a.join(':');
+  const notify = key => subs.forEach(s => key.startsWith(s.prefix) && s.fire());
+  const write = (key, v) => { ls.set(key, v); notify(key); };
+  addEventListener('storage', e => e.key && notify(e.key));
+  const sub = (prefix, fire) => { const s = {prefix, fire}; subs.add(s); setTimeout(fire); return () => subs.delete(s); };
+  return {
+    uid, mode: 'local',
+    async createEvent(eid, data, key) { ls.set(K('secret', eid), key); write(K('ev', eid), {...data, ownerUid: uid, createdAt: Date.now()}); },
+    subscribeEvent(eid, cb) { return sub(K('ev', eid), () => cb(ls.get(K('ev', eid)))); },
+    subscribeParticipants(eid, cb) {
+      const pre = K('p', eid) + ':';
+      return sub(pre, () => { const out = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith(pre)) out.push({...ls.get(k), uid: k.slice(pre.length)}); } cb(out); });
+    },
+    async saveMe(eid, data) { write(K('p', eid) + ':' + uid, data); },
+    async updateEvent(eid, patch) { write(K('ev', eid), {...ls.get(K('ev', eid)), ...patch}); },
+    async claimAdmin(eid, key) { if (ls.get(K('secret', eid)) === key) { ls.set(K('adm', eid, uid), 1); return true; } return false; },
+    async checkAdmin(eid, ev) { return ev?.ownerUid === uid || !!ls.get(K('adm', eid, uid)); },
+  };
+}
+
+async function firebaseBackend(cfg) {
+  const V = '10.12.2', base = `https://www.gstatic.com/firebasejs/${V}/`;
+  const [{initializeApp}, A, F] = await Promise.all([import(base+'firebase-app.js'), import(base+'firebase-auth.js'), import(base+'firebase-firestore.js')]);
+  const app = initializeApp(cfg), auth = A.getAuth(app), db = F.getFirestore(app);
+  const uid = await new Promise((res, rej) => {
+    let tried = false;
+    const off = A.onAuthStateChanged(auth, u => {
+      if (u) { off(); res(u.uid); }
+      else if (!tried) { tried = true; A.signInAnonymously(auth).catch(rej); }
+    }, rej);
+  });
+  const evRef = eid => F.doc(db, 'events', eid);
+  return {
+    uid, mode: 'firebase',
+    async createEvent(eid, data, key) {
+      const b = F.writeBatch(db);
+      b.set(evRef(eid), {...data, ownerUid: uid, createdAt: Date.now()});
+      b.set(F.doc(db, 'events', eid, 'secret', 'admin'), {key});
+      await b.commit();
+    },
+    subscribeEvent(eid, cb) { return F.onSnapshot(evRef(eid), s => cb(s.exists() ? s.data() : null), e => { console.error(e); cb(null); }); },
+    subscribeParticipants(eid, cb) {
+      return F.onSnapshot(F.collection(db, 'events', eid, 'participants'), q => cb(q.docs.map(d => ({...d.data(), uid: d.id}))), e => console.error(e));
+    },
+    async saveMe(eid, data) { await F.setDoc(F.doc(db, 'events', eid, 'participants', uid), data); },
+    async updateEvent(eid, patch) { await F.updateDoc(evRef(eid), patch); },
+    async claimAdmin(eid, key) { try { await F.setDoc(F.doc(db, 'events', eid, 'admins', uid), {key}); return true; } catch { return false; } },
+    async checkAdmin(eid, ev) {
+      if (ev?.ownerUid === uid) return true;
+      try { return (await F.getDoc(F.doc(db, 'events', eid, 'admins', uid))).exists(); } catch { return false; }
+    },
+  };
+}
+
+/* ================= State ================= */
+let B;
+const S = { view:'home', eid:null, ev:null, parts:[], me:null, admin:false, tab:'cal', mode:'mark', sel:null,
+            loaded:{ev:false, parts:false}, unsub:[], form:{wishes:[]}, pending:false };
+const app = $('#app'), modalRoot = $('#modal-root');
+
+/* ================= Theme ================= */
+function applyTheme() {
+  const pref = ls.get('tp:theme', 'auto'), h = new Date().getHours();
+  const dark = pref === 'dark' || (pref === 'auto' && (h >= 19 || h < 7));
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  $('meta[name=theme-color]').content = dark ? '#1C1828' : '#ECE7F2';
+}
+const themeIcon = () => ({auto:'🌗', light:'☀️', dark:'🔥'})[ls.get('tp:theme','auto')];
+const themeLabel = () => ({auto:'Automatisch: abends Kaminabend', light:'Hell', dark:'Kaminabend'})[ls.get('tp:theme','auto')];
+
+/* ================= Feedback ================= */
+function toast(msg) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; t.setAttribute('role','status');
+  document.body.append(t); setTimeout(() => t.remove(), 2600);
+}
+function pop(el, ch) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const r = el.getBoundingClientRect();
+  for (let i = 0; i < 3; i++) {
+    const p = document.createElement('span'); p.className = 'pop'; p.textContent = ch;
+    p.style.left = (r.left + r.width/2 - 8) + 'px'; p.style.top = (r.top + 4) + 'px';
+    p.style.setProperty('--dx', ((i-1)*18) + 'px'); p.style.animationDelay = (i*60) + 'ms';
+    document.body.append(p); setTimeout(() => p.remove(), 1000);
+  }
+}
+function confetti(amount = 140) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = document.createElement('canvas'); c.className = 'confetti'; document.body.append(c);
+  const x = c.getContext('2d'), dpr = devicePixelRatio || 1;
+  c.width = innerWidth*dpr; c.height = innerHeight*dpr; x.scale(dpr, dpr);
+  const cols = ['#F2A43A','#E9809A','#8EC18A','#FFD27A','#8FB0E6','#C95B78'];
+  const ps = Array.from({length: amount}, () => ({x: innerWidth/2 + (Math.random()-.5)*80, y: innerHeight*.35, vx:(Math.random()-.5)*11, vy:-Math.random()*11-4, r:Math.random()*6+3, c:cols[Math.random()*cols.length|0], a:Math.random()*6, s:Math.random()<.2}));
+  let f = 0;
+  (function tick() {
+    x.clearRect(0, 0, innerWidth, innerHeight);
+    ps.forEach(p => { p.vy += .32; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.a += .15;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c;
+      if (p.s) { x.font = `${p.r*3}px serif`; x.fillText('♥', 0, 0); } else x.fillRect(-p.r/2, -p.r/4, p.r, p.r/2);
+      x.restore(); });
+    if (++f < 170) requestAnimationFrame(tick); else c.remove();
+  })();
+}
+let saveTimer, savedTimer;
+function setSaving(state) {
+  const el = $('#savestate'); if (!el) return;
+  el.classList.toggle('saving', state === 'saving');
+  $('.save-txt', el).textContent = state === 'saving' ? 'speichert' : state === 'ok' ? 'gespeichert' : state === 'err' ? 'nicht gespeichert' : '';
+  clearTimeout(savedTimer); if (state === 'ok') savedTimer = setTimeout(() => setSaving(''), 2000);
+}
+
+/* ================= Routing ================= */
+function cleanup() { S.unsub.forEach(f => { try { f(); } catch {} }); S.unsub = []; closeModal(); }
+const evLink = eid => `${location.origin}${location.pathname}#/e/${eid}`;
+const adminLink = (eid, key) => `${location.origin}${location.pathname}#/e/${eid}/admin/${key}`;
+
+async function onRoute() {
+  cleanup(); applyTheme();
+  const h = location.hash.slice(1);
+  let m;
+  if ((m = h.match(/^\/e\/([A-Za-z0-9]{12,40})\/admin\/([A-Za-z0-9]{12,60})$/))) {
+    const [, eid, key] = m;
+    const ok = await B.claimAdmin(eid, key);
+    if (ok) { ls.set('tp:key:'+eid, key); toast('Du bist jetzt Organisator dieser Runde'); }
+    else toast('Der Organisator-Link passt nicht');
+    location.replace('#/e/' + eid); return;
+  }
+  if ((m = h.match(/^\/e\/([A-Za-z0-9]{12,40})$/))) return openEvent(m[1]);
+  if ((m = h.match(/^\/fertig\/([A-Za-z0-9]{12,40})$/))) return renderCreated(m[1]);
+  if (h === '/neu') return renderCreate();
+  renderHome();
+}
+
+/* ================= Home & Create ================= */
+function topbar(extra = '') {
+  return `<div class="topbar"><a class="brand" href="#/">🕯️ Treffpunkt</a><div class="grow"></div>${extra}<button class="icon-btn" data-act="theme" aria-label="Farbmodus: ${themeLabel()}" title="${themeLabel()}">${themeIcon()}</button></div>`;
+}
+const demoBanner = () => B.mode === 'local' ? `<div class="banner demo">Testmodus: Alles bleibt nur in diesem Browser.</div>` : '';
+
+function windowArt() {
+  return `<svg class="window-art" viewBox="0 0 340 120" aria-hidden="true">
+    <rect x="0" y="96" width="340" height="24" rx="6" fill="var(--bg2)"/>
+    ${[0,1,2,3].map(i => `<g transform="translate(${30+i*74} 18)"><rect width="56" height="72" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><rect x="6" y="6" width="20" height="28" rx="3" fill="${i===1||i===2?'var(--amber)':'var(--surface2)'}" opacity="${i===2?.55:1}"/><rect x="30" y="6" width="20" height="28" rx="3" fill="${i===1?'var(--amber)':'var(--surface2)'}" opacity="${i===1?.8:1}"/><rect x="6" y="38" width="20" height="28" rx="3" fill="var(--surface2)"/><rect x="30" y="38" width="20" height="28" rx="3" fill="${i===2?'var(--amber)':'var(--surface2)'}" opacity=".7"/></g>`).join('')}
+    <g transform="translate(250 64)" color="var(--ink)">${CAT().replace('class="cat"','width="44" height="32"')}</g></svg>`;
+}
+
+function renderHome() {
+  S.view = 'home';
+  const recent = ls.get('tp:recent', []);
+  app.innerHTML = `<div class="wrap stack">${topbar()}
+    <section class="hero">${windowArt()}<h1>Wann habt ihr alle Zeit?</h1><p>Leg eine Runde an, schick den Link rum, und jeder tippt seine freien Abende an. Der beste Abend leuchtet von selbst.</p></section>
+    <a class="btn primary block" href="#/neu">Neue Runde planen</a>
+    ${demoBanner()}
+    ${recent.length ? `<h2 class="section-title">Deine Runden</h2><ul class="recent">${recent.map(r => `<li><a href="#/e/${esc(r.eid)}"><span>${r.final ? '🎉' : '🕯️'}</span><span class="grow">${esc(r.title)}</span>${r.admin ? '<span class="tag">Organisator</span>' : ''}</a></li>`).join('')}</ul>` : ''}
+  </div>`;
+}
+
+function timeOptions(from, to, sel, extra = '') {
+  let o = extra;
+  for (let m = from; m <= to; m += 30) o += `<option value="${m}" ${m === sel ? 'selected' : ''}>${fmtTime(m)}${m > 1440 ? ' (nachts)' : ''}</option>`;
+  return o;
+}
+
+function eventForm(ev) {
+  const t = todayStr(), e = ev || {};
+  const start = e.start ?? 1170, end = e.end === undefined ? 1380 : e.end;
+  const hide = e.hideDow || [];
+  return `
+  <label class="f"><span>Wie heißt die Runde?</span><input class="in" name="title" maxlength="80" required placeholder="Raclette-Abend, Spieleabend, Filmnacht" value="${esc(e.title)}"></label>
+  <label class="f"><span>Beschreibung <em>optional</em></span><textarea class="in" name="desc" maxlength="500" placeholder="Was habt ihr vor?">${esc(e.desc)}</textarea></label>
+  <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Leer lassen, wenn noch offen" value="${esc(e.location)}"></label>
+  <label class="switch"><input type="checkbox" name="allowHosts" ${e.allowHosts === false ? '' : 'checked'}><span class="grow"><b>Freunde dürfen Gastgeber sein</b><br><span class="small muted">Jeder kann pro Tag seine Wohnung anbieten.</span></span></label>
+  <div><div class="two">
+    <label class="f"><span>Beginn</span><select class="in" name="start">${timeOptions(600, 1410, start)}</select></label>
+    <label class="f"><span>Ende</span><select class="in" name="end"><option value="" ${end === null ? 'selected' : ''}>Open End 🌙</option>${timeOptions(630, 1680, end)}</select></label>
+  </div><p class="hint">Ungefähr reicht. Jeder kann pro Tag trotzdem eigene Zeiten angeben.</p></div>
+  <div class="two">
+    <label class="f"><span>Zeitraum ab</span><input class="in" type="date" name="rangeStart" value="${e.rangeStart || t}" ${ev ? '' : `min="${t}"`}></label>
+    <label class="f"><span>bis</span><input class="in" type="date" name="rangeEnd" value="${e.rangeEnd || ymd(addDays(new Date(), 42))}"></label>
+  </div>
+  <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Welche Wochentage kommen infrage?</span>
+    <div class="chips" role="group">${DOW.map((d, i) => `<button type="button" class="chip ${hide.includes(i) ? '' : 'on'}" data-act="dow" data-i="${i}" aria-pressed="${!hide.includes(i)}">${d}</button>`).join('')}</div></div>
+  <label class="f"><span>Abstimmen bis <em>optional</em></span><input class="in" type="date" name="deadline" value="${e.deadline || ''}"><p class="hint">Danach sind keine Änderungen mehr möglich.</p></label>`;
+}
+
+function readEventForm(root) {
+  const g = n => root.querySelector(`[name=${n}]`);
+  const title = g('title').value.trim();
+  if (!title) return {err: 'Gib der Runde einen Namen.'};
+  const start = +g('start').value, endV = g('end').value, end = endV === '' ? null : +endV;
+  if (end !== null && end <= start) return {err: 'Das Ende muss nach dem Beginn liegen.'};
+  const rs = g('rangeStart').value, re = g('rangeEnd').value;
+  if (!rs || !re || re < rs) return {err: 'Der Zeitraum ist ungültig: Das Enddatum liegt vor dem Startdatum.'};
+  if ((parseYmd(re) - parseYmd(rs)) / 864e5 > 120) return {err: 'Der Zeitraum darf höchstens 4 Monate lang sein.'};
+  const hideDow = [...root.querySelectorAll('[data-act=dow]')].filter(b => !b.classList.contains('on')).map(b => +b.dataset.i);
+  if (hideDow.length === 7) return {err: 'Wähle mindestens einen Wochentag.'};
+  return {data: {title, desc: g('desc').value.trim(), location: g('location').value.trim(), allowHosts: g('allowHosts').checked,
+                 start, end, rangeStart: rs, rangeEnd: re, hideDow, deadline: g('deadline').value || null}};
+}
+
+function renderCreate() {
+  S.view = 'create'; S.form = {wishes: []};
+  app.innerHTML = `<div class="wrap">${topbar()}
+    <form id="createForm" class="stack" novalidate>
+      <h1>Neue Runde</h1>
+      <div class="card stack">${eventForm()}</div>
+      <div class="card stack">
+        <div><h3>Mitbring-Wünsche <span class="small muted" style="font-family:var(--body);font-weight:500">optional</span></h3><p class="small muted" style="margin-top:4px">Freunde können sich einen Punkt schnappen.</p></div>
+        <div class="row"><input class="in grow" id="wishIn" maxlength="60" placeholder="Getränke, Brot, Käse"><button type="button" class="btn sm" data-act="wish-form-add">Hinzufügen</button></div>
+        <div class="chips" id="wishChips"></div>
+      </div>
+      <p class="err" id="formErr" role="alert"></p>
+      <button class="btn amber block" type="submit">Runde erstellen</button>
+    </form></div>`;
+}
+
+function renderWishChips() {
+  $('#wishChips').innerHTML = S.form.wishes.map((w, i) => `<button type="button" class="chip" data-act="wish-form-del" data-i="${i}" aria-label="${esc(w.text)} entfernen">${esc(w.text)} ✕</button>`).join('');
+}
+
+async function submitCreate(form) {
+  const r = readEventForm(form);
+  if (r.err) { $('#formErr').textContent = r.err; return; }
+  const btn = form.querySelector('[type=submit]'); btn.disabled = true; btn.textContent = 'Wird erstellt';
+  const eid = rid(20), key = rid(28);
+  try {
+    await B.createEvent(eid, {...r.data, wishes: S.form.wishes, final: null}, key);
+    ls.set('tp:key:'+eid, key);
+    addRecent(eid, r.data.title, true);
+    location.hash = '#/fertig/' + eid;
+  } catch (e) {
+    console.error(e); btn.disabled = false; btn.textContent = 'Runde erstellen';
+    $('#formErr').textContent = 'Die Runde konnte nicht gespeichert werden. Prüfe die Verbindung und die Firebase-Einrichtung.';
+  }
+}
+
+function addRecent(eid, title, admin, final) {
+  const list = ls.get('tp:recent', []).filter(r => r.eid !== eid);
+  const old = ls.get('tp:recent', []).find(r => r.eid === eid);
+  list.unshift({eid, title, admin: admin || old?.admin || false, final: !!final});
+  ls.set('tp:recent', list.slice(0, 12));
+}
+
+function shareButtons(url, text) {
+  return `<div class="row" style="flex-wrap:wrap">
+    <button class="btn sm" data-act="copy" data-url="${esc(url)}">📋 Link kopieren</button>
+    <button class="btn sm" data-act="wa" data-url="${esc(url)}" data-text="${esc(text)}">💬 WhatsApp</button>
+    ${navigator.share ? `<button class="btn sm" data-act="share" data-url="${esc(url)}" data-text="${esc(text)}">📤 Teilen</button>` : ''}
+  </div>`;
+}
+
+function renderCreated(eid) {
+  S.view = 'created';
+  const key = ls.get('tp:key:'+eid), title = ls.get('tp:recent', []).find(r => r.eid === eid)?.title || 'Unsere Runde';
+  const url = evLink(eid);
+  app.innerHTML = `<div class="wrap stack">${topbar()}
+    <div class="card stack" style="text-align:center">${garland(6)}<h1>Die Runde steht bereit</h1><p class="muted">Schick diesen Link an alle, die mitmachen sollen. Nur wer ihn hat, kann die Runde sehen.</p></div>
+    <div class="card stack"><h3>Link für deine Freunde</h3><div class="linkbox"><span class="grow">${esc(url)}</span></div>${shareButtons(url, `Wann hast du Zeit für „${title}“? Trag dich hier ein:`)}</div>
+    ${key ? `<div class="card stack"><h3>Dein Organisator-Link</h3><p class="small muted">Nur für dich. Damit kannst du die Runde auch auf einem anderen Gerät bearbeiten und den Termin festlegen. Gut aufheben, nicht weitergeben.</p><div class="linkbox"><span class="grow">${esc(adminLink(eid, key))}</span></div><button class="btn sm" data-act="copy" data-url="${esc(adminLink(eid, key))}">📋 Organisator-Link kopieren</button></div>` : ''}
+    <a class="btn primary block" href="#/e/${eid}">Zur Runde und eigene Tage eintragen</a>
+  </div>`;
+  confetti(90);
+}
+
+/* ================= Event ================= */
+function openEvent(eid) {
+  S.view = 'event'; S.eid = eid; S.ev = null; S.parts = []; S.me = null; S.admin = false; S.sel = null;
+  S.loaded = {ev: false, parts: false}; S.tab = ls.get('tp:tab', 'cal');
+  app.innerHTML = `<div class="wrap"><div class="skeleton"></div></div>`;
+  S.unsub.push(B.subscribeEvent(eid, async ev => {
+    const first = !S.loaded.ev; S.loaded.ev = true;
+    const wasFinal = S.ev?.final; S.ev = ev;
+    if (ev) {
+      S.admin = await B.checkAdmin(eid, ev);
+      addRecent(eid, ev.title, S.admin, !!ev.final);
+      if (ev.final && !wasFinal && !first) confetti();
+      if (ev.final && first && !ls.get('tp:seenfinal:'+eid)) { ls.set('tp:seenfinal:'+eid, 1); setTimeout(() => confetti(), 400); }
+    }
+    scheduleRender();
+  }));
+  S.unsub.push(B.subscribeParticipants(eid, parts => {
+    S.loaded.parts = true;
+    const mine = parts.find(p => p.uid === B.uid);
+    if (!S.me && mine) S.me = {...mine, days: {...(mine.days || {})}, brings: mine.brings || [], claims: mine.claims || []};
+    S.parts = parts.filter(p => p.uid !== B.uid);
+    if (S.me) S.parts.push({...S.me, uid: B.uid});
+    scheduleRender();
+  }));
+}
+
+function scheduleRender() {
+  if (S.view !== 'event' || !S.loaded.ev || !S.loaded.parts) return;
+  const a = document.activeElement;
+  if (a && app.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) { S.pending = true; return; }
+  renderEvent();
+}
+document.addEventListener('focusout', () => setTimeout(() => { if (S.pending) { S.pending = false; scheduleRender(); } }, 50));
+
+const isLocked = () => !!S.ev.final || (!!S.ev.deadline && todayStr() > S.ev.deadline);
+
+function candidateDays() {
+  const ev = S.ev, out = [], hide = ev.hideDow || [];
+  for (let d = parseYmd(ev.rangeStart), end = parseYmd(ev.rangeEnd); d <= end; d = addDays(d, 1)) if (!hide.includes(dowMon(d))) out.push(ymd(d));
+  return out;
+}
+
+function analyze() {
+  const ev = S.ev, map = {}, allowed = new Set(candidateDays()), t = todayStr();
+  for (const p of S.parts) for (const [d, v] of Object.entries(p.days || {})) {
+    if (!allowed.has(d) || !STATUS[v?.s]) continue;
+    const e = map[d] ??= {d, yes: [], maybe: [], no: [], hosts: []};
+    e[v.s].push(p); if (v.host && v.s !== 'no' && ev.allowHosts !== false) e.hosts.push(p);
+  }
+  const ranked = Object.values(map).filter(e => e.d >= t && (e.yes.length || e.maybe.length));
+  for (const e of ranked) {
+    e.score = e.yes.length + e.maybe.length * .5;
+    e.place = !!ev.location || e.hosts.length > 0;
+    let a = ev.start, b = ev.end ?? null;
+    for (const p of e.yes) { const v = p.days[e.d]; if (v.from != null) a = Math.max(a, v.from); if (v.to != null) b = b == null ? v.to : Math.min(b, v.to); }
+    e.win = {a, b, tight: b != null && b - a < 90};
+  }
+  ranked.sort((x, y) => y.score - x.score || y.yes.length - x.yes.length || (y.place - x.place) || x.no.length - y.no.length || x.d.localeCompare(y.d));
+  return {map, ranked};
+}
+
+function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(p.color || COLORS[0])}" title="${esc(p.name)}">${esc(p.emoji || '🙂')}</span>`; }
+
+function renderEvent() {
+  const ev = S.ev;
+  if (!ev) {
+    app.innerHTML = `<div class="wrap stack">${topbar()}<div class="card empty">${CAT()}<h2>Diese Runde gibt es nicht</h2><p class="muted" style="margin-top:8px">Prüfe, ob der Link vollständig kopiert wurde.</p><a class="btn block" style="margin-top:16px" href="#/">Zur Startseite</a></div></div>`;
+    return;
+  }
+  document.title = ev.title + ' · Treffpunkt';
+  if (!S.me) return renderJoin();
+  const A = analyze();
+  app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
+    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">⚙️</button>` : ''}`)}
+    <div class="stack">
+      ${demoBanner()}
+      ${ev.final ? finalCard() : ''}
+      ${header(A)}
+      <div id="tab">${S.tab === 'cal' ? calView(A) : S.tab === 'sum' ? sumView(A) : bringView()}</div>
+    </div></div>
+    <div class="sheet" id="sheet">${S.tab === 'cal' && S.sel ? sheetHtml(A) : ''}</div>
+    <nav class="nav" aria-label="Bereiche"><div>
+      ${[['cal','📅','Meine Tage'],['sum','✨','Auswertung'],['bring','🧺','Mitbringen']].map(([k, i, t]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-tab="${k}" aria-current="${S.tab === k ? 'page' : 'false'}"><b>${i}</b>${t}</button>`).join('')}
+    </div></nav>`;
+}
+
+function header(A) {
+  const ev = S.ev, n = S.parts.length;
+  const dl = ev.deadline ? Math.round((parseYmd(ev.deadline) - parseYmd(todayStr())) / 864e5) : null;
+  const place = ev.location ? esc(ev.location) : (ev.allowHosts !== false ? 'Noch offen: Gastgeber gesucht' : 'Noch offen');
+  return `<header class="card ev-head">${garland(n)}
+    <h1>${esc(ev.title)}</h1>
+    ${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
+    <ul class="facts">
+      <li><span>🕯️</span><span>Abends, ${fmtRange(ev.start, ev.end)}</span></li>
+      <li><span>${ev.location ? '📍' : '🏠'}</span><span>${place}</span></li>
+      <li><span>🗓️</span><span>Zwischen ${fmtDay(ev.rangeStart, {day:'numeric', month:'short'})} und ${fmtDay(ev.rangeEnd, {day:'numeric', month:'short'})}</span></li>
+      ${dl != null && !ev.final ? `<li><span>⏳</span><span>${dl > 1 ? `Noch ${dl} Tage abstimmen` : dl === 1 ? 'Nur noch bis morgen abstimmen' : dl === 0 ? 'Heute ist der letzte Abstimmungstag' : 'Abstimmung beendet'}</span></li>` : ''}
+    </ul>
+    <div class="people">
+      <div class="av-stack">${S.parts.slice(0, 9).map(p => avatar(p)).join('')}</div>
+      <span class="small muted grow">${n} ${n === 1 ? 'Person' : 'Personen'} dabei</span>
+      <button class="me-btn" data-act="profile" aria-label="Dein Profil bearbeiten">${avatar(S.me, 'sm')}${esc(S.me.name)}</button>
+    </div>
+  </header>`;
+}
+
+function finalCard() {
+  const f = S.ev.final;
+  return `<section class="card final">
+    <h2>Es steht! 🎉</h2>
+    <p class="big">${fmtLong(f.date)}</p>
+    <ul class="facts" style="margin-top:4px">
+      <li><span>🕯️</span><span>${fmtRange(f.start, f.end)}</span></li>
+      ${f.place ? `<li><span>📍</span><span>${esc(f.place)}</span></li>` : ''}
+    </ul>
+    <div class="actions">
+      <button class="btn sm amber" data-act="ics">📅 In meinen Kalender</button>
+      <button class="btn sm" data-act="gcal">Google Kalender</button>
+      <button class="btn sm" data-act="share-final">💬 Weitersagen</button>
+      ${S.admin ? `<button class="btn sm ghost" data-act="reopen">Wieder öffnen</button>` : ''}
+    </div></section>`;
+}
+
+/* ----- Calendar ----- */
+function calView(A) {
+  const ev = S.ev, locked = isLocked();
+  const allowed = new Set(candidateDays()), t = todayStr(), n = Math.max(1, S.parts.length);
+  const best = A.ranked[0]?.d;
+  const start = parseYmd(ev.rangeStart), end = parseYmd(ev.rangeEnd);
+  let html = `<div class="cal-tools">
+      <div class="seg" role="group" aria-label="Tippen bedeutet">
+        <button class="${S.mode === 'mark' && !locked ? 'on' : ''}" data-act="mode" data-m="mark" ${locked ? 'disabled' : ''}>✏️ Eintragen</button>
+        <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
+      </div></div>
+    <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i style="background:var(--moss);color:#fff">✓</i>kann</span><span><i style="background:var(--amber);color:#3A2205">?</i>vielleicht</span><span><i style="background:var(--faint);color:#fff">✕</i>kann nicht</span>` :
+      'Tippe einen Tag an, um zu sehen, wer kann.'}</p>`;
+  for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
+    const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
+    html += `<section class="month"><h3>${new Intl.DateTimeFormat('de-DE', {month:'long', year:'numeric'}).format(m)}</h3>
+      <div class="dow">${DOW.map(d => `<span>${d}</span>`).join('')}</div><div class="grid">`;
+    for (let i = 0; i < first; i++) html += `<span class="day blank"></span>`;
+    for (let d = 1; d <= daysIn; d++) {
+      const s = `${m.getFullYear()}-${pad(m.getMonth()+1)}-${pad(d)}`;
+      if (!allowed.has(s) || s < t) { html += `<span class="day off" aria-hidden="true"><span class="num">${d}</span></span>`; continue; }
+      const e = A.map[s], my = S.me.days[s]?.s;
+      const heat = e ? Math.round(Math.min(1, (e.yes.length + e.maybe.length * .5) / n) * 88) : 0;
+      const dots = e ? e.yes.slice(0, 5).map(p => `<b style="--c:${esc(p.color)}"></b>`).join('') : '';
+      const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
+      html += `<button class="day ${my ? 's-' + my : ''} ${heat > 50 ? 'hot' : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%" data-act="day" data-d="${s}" aria-label="${esc(label)}">
+        <span class="num">${d}</span><span class="dots">${dots}</span>
+        ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
+        ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
+        ${s === best ? CAT() : ''}
+      </button>`;
+    }
+    html += `</div></section>`;
+  }
+  return html;
+}
+
+function whoList(d) {
+  const e = analyze().map[d];
+  if (!e) return `<p class="small muted" style="margin-top:10px">Für diesen Abend hat noch niemand etwas eingetragen.</p>`;
+  const row = (p, s) => { const v = p.days[d];
+    const time = v.from != null || v.to != null ? `<span class="tag">${v.from != null ? 'ab ' + fmtTime(v.from) : ''}${v.from != null && v.to != null ? ' ' : ''}${v.to != null ? 'bis ' + fmtTime(v.to) : ''}</span>` : '';
+    return `<li>${avatar(p, 'sm')}<span class="grow"><b>${esc(p.name)}${p.uid === B.uid ? ' (du)' : ''}</b><br>${v.host && s !== 'no' ? '<span class="tag host">🏠 bietet Wohnung an</span>' : ''}${time}${v.note ? `<span class="note">„${esc(v.note)}“</span>` : ''}</span><span class="st" style="color:${s === 'yes' ? 'var(--moss)' : s === 'maybe' ? 'var(--amber-ink)' : 'var(--faint)'}">${STATUS[s].i}</span></li>`; };
+  return `<ul class="who">${['yes','maybe','no'].flatMap(s => e[s].map(p => row(p, s))).join('')}</ul>`;
+}
+
+function sheetHtml() {
+  const d = S.sel, v = S.me.days[d] || {}, my = v.s, locked = isLocked();
+  const ev = S.ev;
+  return `<div role="dialog" aria-label="Details für ${esc(fmtLong(d))}">
+    <div class="grab"></div>
+    <div class="row"><h3 class="grow">${fmtLong(d)}</h3><button class="icon-btn" data-act="sheet-close" aria-label="Schließen">✕</button></div>
+    ${locked ? '' : `<div class="status4" role="group" aria-label="Deine Antwort">
+      ${['yes','maybe','no'].map(s => `<button class="${s} ${my === s ? 'on' : ''}" data-act="set" data-s="${s}" aria-pressed="${my === s}"><b>${STATUS[s].i}</b>${STATUS[s].t}</button>`).join('')}
+      <button class="none ${!my ? 'on' : ''}" data-act="set" data-s="" aria-pressed="${!my}"><b>·</b>Offen</button>
+    </div>
+    ${my === 'yes' || my === 'maybe' ? `<div class="stack">
+      ${ev.allowHosts !== false ? `<label class="switch"><input type="checkbox" data-field="host" ${v.host ? 'checked' : ''}><span class="grow"><b>🏠 Ich kann Gastgeber sein</b><br><span class="small muted">Treffen an diesem Abend bei mir</span></span></label>` : ''}
+      <div class="two">
+        <label class="f"><span>Ich kann ab <em>optional</em></span><select class="in" data-field="from"><option value="">egal</option>${timeOptions(720, 1410, v.from ?? -1)}</select></label>
+        <label class="f"><span>bis <em>optional</em></span><select class="in" data-field="to"><option value="">egal</option>${timeOptions(1080, 1680, v.to ?? -1)}</select></label>
+      </div>
+      <label class="f"><span>Notiz <em>optional</em></span><input class="in" data-field="note" maxlength="80" placeholder="z.B. komme etwas später" value="${esc(v.note)}"></label>
+    </div>` : ''}`}
+    <h3 style="margin-top:16px;font-size:16px">Wer an diesem Abend kann</h3>
+    ${whoList(d)}
+  </div>`;
+}
+
+function refreshSheet() {
+  const sh = $('#sheet'); if (!sh) return;
+  sh.innerHTML = S.sel ? sheetHtml() : '';
+}
+
+function setDay(d, s, cell) {
+  if (s) S.me.days[d] = {...(S.me.days[d] || {}), s};
+  else delete S.me.days[d];
+  if (s === 'no' && S.me.days[d]) delete S.me.days[d].host;
+  saveMe();
+  const idx = S.parts.findIndex(p => p.uid === B.uid); if (idx >= 0) S.parts[idx] = {...S.me, uid: B.uid};
+  renderEvent();
+  if (cell && s === 'yes') { const el = document.querySelector(`[data-d="${d}"]`); el && pop(el, '♥'); }
+}
+
+function saveMe() {
+  S.me.updatedAt = Date.now();
+  setSaving('saving');
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try { await B.saveMe(S.eid, cleanMe()); setSaving('ok'); }
+    catch (e) { console.error(e); setSaving('err'); toast('Speichern hat nicht geklappt. Prüfe deine Verbindung.'); }
+  }, 450);
+}
+function cleanMe() {
+  const {uid, ...rest} = S.me;
+  return JSON.parse(JSON.stringify(rest));
+}
+
+/* ----- Overview ----- */
+function placeText(e) {
+  if (S.ev.location) return esc(S.ev.location);
+  if (e.hosts.length) return 'bei ' + e.hosts.map(p => esc(p.name)).join(' oder ');
+  return 'Ort noch offen';
+}
+
+function sumView(A) {
+  const n = S.parts.length;
+  if (!A.ranked.length) return `<div class="card empty" style="margin-top:16px">${CAT()}<h2>Noch ist alles ruhig</h2><p class="muted" style="margin-top:8px">Sobald jemand Abende einträgt, siehst du hier den besten Termin.</p><button class="btn amber" style="margin-top:16px" data-act="tab" data-tab="cal">Eigene Tage eintragen</button></div>`;
+  const b = A.ranked[0];
+  const missing = S.parts.filter(p => !Object.keys(p.days || {}).length);
+  const meter = e => `<div class="meter" aria-hidden="true"><i class="y" style="width:${e.yes.length / Math.max(1, n) * 100}%"></i><i class="m" style="width:${e.maybe.length / Math.max(1, n) * 100}%"></i></div>`;
+  const rows = A.ranked.filter(e => e.score > 0).sort((x, y) => x.d.localeCompare(y.d));
+  return `
+  <section class="card best" style="margin-top:16px">
+    ${CAT('cat-big')}
+    <h2>${S.ev.final ? 'Bester Abend laut Abstimmung' : 'Bester Abend bisher'}</h2>
+    <p class="date">${fmtLong(b.d)}</p>
+    <p class="muted" style="font-weight:600">${b.yes.length} von ${n} können${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</p>
+    <div style="margin:12px 0">${meter(b)}</div>
+    <ul class="facts">
+      <li><span>🕯️</span><span>${fmtRange(b.win.a, b.win.b)}${b.win.tight ? ' (knapp)' : ''}</span></li>
+      <li><span>${S.ev.location ? '📍' : '🏠'}</span><span>${placeText(b)}</span></li>
+    </ul>
+    <div class="av-stack" style="margin-top:12px">${b.yes.concat(b.maybe).map(p => avatar(p, 'sm')).join('')}</div>
+    ${S.admin && !S.ev.final ? `<button class="btn amber block" style="margin-top:16px" data-act="finalize" data-d="${b.d}">Diesen Abend festlegen</button>` : ''}
+  </section>
+  ${A.ranked.length > 1 ? `<h2 class="section-title">Weitere gute Abende</h2>
+  <ol class="rank">${A.ranked.slice(1, 6).map((e, i) => `<li>
+    <span class="pos">${i + 2}</span>
+    <span><span class="d">${fmtDay(e.d)}</span><br><span class="small muted">${e.yes.length} können${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}${e.hosts.length ? ', 🏠 ' + e.hosts.length : ''}</span><span style="display:block;margin-top:6px">${meter(e)}</span></span>
+    ${S.admin && !S.ev.final ? `<button class="btn sm ghost" data-act="finalize" data-d="${e.d}">Festlegen</button>` : `<span class="av-stack">${e.yes.slice(0, 3).map(p => avatar(p, 'sm')).join('')}</span>`}
+  </li>`).join('')}</ol>` : ''}
+  <h2 class="section-title">Wer kann wann</h2>
+  <div class="matrix-wrap"><table class="matrix">
+    <thead><tr><th scope="col">Abend</th>${S.parts.map(p => `<th scope="col" title="${esc(p.name)}">${avatar(p, 'sm')}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(e => `<tr class="${e.d === b.d ? 'top' : ''}"><td>${fmtDay(e.d)}</td>${S.parts.map(p => { const s = p.days?.[e.d]?.s; return `<td class="${s === 'yes' ? 'y' : s === 'maybe' ? 'm' : 'n'}">${s ? STATUS[s].i : '·'}${p.days?.[e.d]?.host && s !== 'no' ? '🏠' : ''}</td>`; }).join('')}</tr>`).join('')}</tbody>
+  </table></div>
+  ${missing.length ? `<p class="small muted" style="margin:12px 4px">Noch ohne Eintrag: ${missing.map(p => esc(p.name)).join(', ')}</p>` : ''}`;
+}
+
+/* ----- Bring list ----- */
+function bringView() {
+  const wishes = S.ev.wishes || [];
+  const claimers = id => S.parts.filter(p => (p.claims || []).includes(id));
+  const others = S.parts.filter(p => (p.brings || []).length);
+  return `
+  <section class="card stack" style="margin-top:16px">
+    <div><h2>Was gebraucht wird</h2><p class="small muted" style="margin-top:4px">${wishes.length ? 'Schnapp dir einen Punkt, damit nichts doppelt kommt.' : S.admin ? 'Füge hinzu, was gebraucht wird.' : 'Der Organisator hat noch keine Wünsche eingetragen.'}</p></div>
+    ${wishes.length ? `<ul class="list">${wishes.map(w => { const cs = claimers(w.id), mine = (S.me.claims || []).includes(w.id);
+      return `<li><span class="grow"><b>${esc(w.text)}</b>${cs.length ? `<br><span class="small muted">übernimmt ${cs.map(p => esc(p.name)).join(', ')}</span>` : ''}</span>
+      <span class="av-stack">${cs.map(p => avatar(p, 'sm')).join('')}</span>
+      <button class="btn sm ${mine ? 'ghost' : 'amber'}" data-act="claim" data-id="${esc(w.id)}">${mine ? 'Doch nicht' : 'Übernehme ich'}</button>
+      ${S.admin ? `<button class="x" data-act="wish-del" data-id="${esc(w.id)}" aria-label="${esc(w.text)} löschen">✕</button>` : ''}</li>`; }).join('')}</ul>` : ''}
+    ${S.admin ? `<div class="row"><input class="in grow" id="wishAdd" maxlength="60" placeholder="z.B. Getränke"><button class="btn sm" data-act="wish-add">Hinzufügen</button></div>` : ''}
+  </section>
+  <section class="card stack" style="margin-top:14px">
+    <h2>Ich bringe mit</h2>
+    ${(S.me.brings || []).length ? `<ul class="list">${S.me.brings.map((b, i) => `<li><span class="grow">${esc(b)}</span><button class="x" data-act="bring-del" data-i="${i}" aria-label="${esc(b)} entfernen">✕</button></li>`).join('')}</ul>` : ''}
+    <div class="row"><input class="in grow" id="bringIn" maxlength="60" placeholder="Brettspiel, Kuchen, Playlist"><button class="btn sm" data-act="bring-add">Hinzufügen</button></div>
+  </section>
+  ${others.length ? `<h2 class="section-title">Alle Mitbringsel</h2><ul class="list">${others.map(p => `<li>${avatar(p, 'sm')}<span class="grow"><b>${esc(p.name)}</b><br><span class="small">${p.brings.map(esc).join(', ')}</span></span></li>`).join('')}</ul>` : ''}`;
+}
+
+/* ----- Join / profile ----- */
+function profileFields(p = {}) {
+  const used = S.parts.filter(x => x.uid !== B.uid).map(x => x.emoji);
+  const emoji = p.emoji || EMOJIS.find(e => !used.includes(e)) || EMOJIS[0];
+  const color = p.color || COLORS[S.parts.length % COLORS.length];
+  return `<label class="f"><span>Wie heißt du?</span><input class="in" id="pName" maxlength="30" autocomplete="given-name" placeholder="Dein Vorname" value="${esc(p.name)}"></label>
+    <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Dein Zeichen</span>
+      <div class="emoji-grid" role="radiogroup">${EMOJIS.map(e => `<button type="button" class="${e === emoji ? 'on' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}">${e}</button>`).join('')}</div></div>
+    <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Deine Farbe</span>
+      <div class="colors" role="radiogroup">${COLORS.map(c => `<button type="button" class="${c === color ? 'on' : ''}" style="background:${c}" data-act="pick-color" data-c="${c}" role="radio" aria-checked="${c === color}" aria-label="Farbe ${c}"></button>`).join('')}</div></div>
+    <p class="err" id="pErr" role="alert"></p>`;
+}
+function readProfile(root) {
+  const name = $('#pName', root).value.trim().replace(/\s+/g, ' ');
+  if (!name) return {err: 'Bitte gib deinen Namen ein, damit die anderen wissen, wer du bist.'};
+  return {name, emoji: $('.emoji-grid .on', root).dataset.e, color: $('.colors .on', root).dataset.c};
+}
+
+function renderJoin() {
+  const ev = S.ev;
+  app.innerHTML = `<div class="wrap stack">${topbar()}
+    ${demoBanner()}
+    ${header0()}
+    <form class="card stack" id="joinForm" novalidate>
+      <h2>Mach mit</h2>
+      ${profileFields()}
+      <button class="btn amber block" type="submit">Weiter zu meinen Tagen</button>
+    </form>
+    ${S.parts.length ? `<p class="small muted" style="padding:0 4px">Schon dabei: ${S.parts.map(p => `${esc(p.emoji)} ${esc(p.name)}`).join(', ')}</p>` : ''}
+  </div>`;
+  function header0() {
+    return `<header class="card ev-head">${garland(S.parts.length)}<h1>${esc(ev.title)}</h1>${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
+    <ul class="facts"><li><span>🕯️</span><span>Abends, ${fmtRange(ev.start, ev.end)}</span></li><li><span>${ev.location ? '📍' : '🏠'}</span><span>${ev.location ? esc(ev.location) : 'Ort noch offen'}</span></li></ul></header>`;
+  }
+}
+
+async function submitJoin(form) {
+  const p = readProfile(form);
+  if (p.err) { $('#pErr').textContent = p.err; return; }
+  if (S.parts.some(x => x.name.toLowerCase() === p.name.toLowerCase())) {
+    $('#pErr').textContent = `„${p.name}“ ist schon dabei. Wenn du das auf einem anderen Gerät warst, nimm hier bitte einen leicht anderen Namen, z.B. mit Initial.`;
+    return;
+  }
+  S.me = {...p, days: {}, brings: [], claims: [], joinedAt: Date.now()};
+  S.parts.push({...S.me, uid: B.uid});
+  saveMe(); S.tab = 'cal'; S.mode = 'mark';
+  renderEvent(); confetti(60);
+}
+
+/* ----- Modals ----- */
+function openModal(html) {
+  modalRoot.innerHTML = `<div class="modal" data-act="modal-bg"><div role="dialog" aria-modal="true">${html}</div></div>`;
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => modalRoot.querySelector('input,select,button')?.focus({preventScroll: true}), 60);
+}
+function closeModal() { modalRoot.innerHTML = ''; document.body.style.overflow = ''; }
+
+function openProfile() {
+  openModal(`<form id="profileForm" class="stack" novalidate><div class="row"><h2 class="grow">Dein Profil</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
+    <div class="card stack">${profileFields(S.me)}</div><button class="btn amber block" type="submit">Profil speichern</button></form>`);
+}
+
+function openSettings() {
+  const key = ls.get('tp:key:' + S.eid);
+  openModal(`<form id="settingsForm" class="stack" novalidate>
+    <div class="row"><h2 class="grow">Runde bearbeiten</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
+    <div class="card stack">${eventForm(S.ev)}</div>
+    <p class="err" id="formErr" role="alert"></p>
+    <button class="btn amber block" type="submit">Änderungen speichern</button>
+    <div class="card stack"><h3>Links</h3>
+      <div class="linkbox"><span class="grow">${esc(evLink(S.eid))}</span></div>${shareButtons(evLink(S.eid), `Wann hast du Zeit für „${S.ev.title}“?`)}
+      ${key ? `<p class="small muted">Dein Organisator-Link, nicht weitergeben:</p><button type="button" class="btn sm" data-act="copy" data-url="${esc(adminLink(S.eid, key))}">📋 Organisator-Link kopieren</button>` : ''}
+    </div></form>`);
+}
+
+function openFinalize(d) {
+  const e = analyze().map[d];
+  const opts = [];
+  if (S.ev.location) opts.push(S.ev.location);
+  e.hosts.forEach(p => opts.push('bei ' + p.name));
+  const a = e ? (e.yes.length ? analyze().ranked.find(r => r.d === d)?.win : null) : null;
+  const start = a?.a ?? S.ev.start, end = a ? a.b : S.ev.end;
+  openModal(`<form id="finalForm" class="stack" data-d="${d}" novalidate>
+    <div class="row"><h2 class="grow">Termin festlegen</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
+    <div class="card stack">
+      <p class="big" style="font-family:var(--display);font-size:24px;font-weight:800">${fmtLong(d)}</p>
+      <p class="muted">${e.yes.length} können${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}</p>
+      <div class="two">
+        <label class="f"><span>Beginn</span><select class="in" name="start">${timeOptions(600, 1410, start)}</select></label>
+        <label class="f"><span>Ende</span><select class="in" name="end"><option value="" ${end == null ? 'selected' : ''}>Open End 🌙</option>${timeOptions(630, 1680, end)}</select></label>
+      </div>
+      <label class="f"><span>Wo?</span><select class="in" name="placeSel">${opts.map(o => `<option>${esc(o)}</option>`).join('')}<option value="__other">Anderer Ort</option></select></label>
+      <input class="in" name="placeOther" maxlength="120" placeholder="Ort eingeben" ${opts.length ? 'hidden' : ''}>
+    </div>
+    <p class="small muted">Danach sehen alle den festen Termin und können ihn in den Kalender übernehmen. Du kannst ihn wieder öffnen.</p>
+    <button class="btn amber block" type="submit">Abend festlegen 🎉</button></form>`);
+}
+
+/* ----- Calendar export ----- */
+function finalDates() {
+  const f = S.ev.final, base = parseYmd(f.date); base.setHours(0, 0, 0, 0);
+  const s = new Date(base.getTime() + f.start * 6e4), e = new Date(base.getTime() + (f.end ?? f.start + 180) * 6e4);
+  const z = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  return {s: z(s), e: z(e)};
+}
+function icsText(t) { return String(t || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/[,;]/g, m => '\\' + m); }
+function downloadIcs() {
+  const f = S.ev.final, {s, e} = finalDates();
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Treffpunkt//DE','BEGIN:VEVENT',`UID:${S.eid}@treffpunkt`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}`,
+    `DTSTART:${s}`,`DTEND:${e}`,`SUMMARY:${icsText(S.ev.title)}`, f.place ? `LOCATION:${icsText(f.place)}` : '', `DESCRIPTION:${icsText((S.ev.desc ? S.ev.desc + '\n\n' : '') + evLink(S.eid))}`,'END:VEVENT','END:VCALENDAR'].filter(Boolean).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics], {type: 'text/calendar'}));
+  a.download = S.ev.title.replace(/[^\wäöüÄÖÜß -]/g, '').trim().slice(0, 40) + '.ics';
+  document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+function gcalUrl() {
+  const f = S.ev.final, {s, e} = finalDates();
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(S.ev.title)}&dates=${s}/${e}&location=${encodeURIComponent(f.place || '')}&details=${encodeURIComponent((S.ev.desc || '') + '\n' + evLink(S.eid))}`;
+}
+
+/* ================= Event handling ================= */
+async function copy(url) {
+  try { await navigator.clipboard.writeText(url); toast('Link kopiert'); }
+  catch { prompt('Link kopieren:', url); }
+}
+async function updateEv(patch, okMsg) {
+  try { await B.updateEvent(S.eid, patch); okMsg && toast(okMsg); }
+  catch (e) { console.error(e); toast('Änderung konnte nicht gespeichert werden.'); }
+}
+
+const ACT = {
+  theme() { const o = ['auto','light','dark'], c = ls.get('tp:theme', 'auto'); ls.set('tp:theme', o[(o.indexOf(c) + 1) % 3]); applyTheme(); toast('Farbmodus: ' + themeLabel());
+    document.querySelectorAll('[data-act=theme]').forEach(b => { b.textContent = themeIcon(); b.setAttribute('aria-label', 'Farbmodus: ' + themeLabel()); }); },
+  dow(b) { b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on')); },
+  'wish-form-add'() { const i = $('#wishIn'), t = i.value.trim(); if (!t) return; S.form.wishes.push({id: rid(8), text: t}); i.value = ''; i.focus(); renderWishChips(); },
+  'wish-form-del'(b) { S.form.wishes.splice(+b.dataset.i, 1); renderWishChips(); },
+  copy(b) { copy(b.dataset.url); },
+  share(b) { navigator.share({title: 'Treffpunkt', text: b.dataset.text, url: b.dataset.url}).catch(() => {}); },
+  wa(b) { open(`https://wa.me/?text=${encodeURIComponent(b.dataset.text + ' ' + b.dataset.url)}`, '_blank', 'noopener'); },
+  tab(b) { S.tab = b.dataset.tab; ls.set('tp:tab', S.tab); S.sel = null; renderEvent(); scrollTo({top: 0}); },
+  mode(b) { S.mode = b.dataset.m; renderEvent(); },
+  day(b) {
+    const d = b.dataset.d;
+    if (S.mode === 'view' || isLocked()) { S.sel = S.sel === d ? null : d; renderEvent(); return; }
+    const cur = S.me.days[d]?.s, next = CYCLE[(CYCLE.indexOf(cur) + 1) % CYCLE.length];
+    S.sel = d; setDay(d, next, true);
+  },
+  set(b) { setDay(S.sel, b.dataset.s || undefined, b.dataset.s === 'yes'); },
+  'sheet-close'() { S.sel = null; renderEvent(); },
+  profile() { openProfile(); },
+  settings() { openSettings(); },
+  close() { closeModal(); },
+  'modal-bg'(b, e) { if (e.target === b) closeModal(); },
+  'pick-emoji'(b) { b.parentElement.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); },
+  'pick-color'(b) { b.parentElement.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); },
+  finalize(b) { openFinalize(b.dataset.d); },
+  reopen() { if (confirm('Termin wieder öffnen? Alle können dann wieder abstimmen.')) updateEv({final: null}, 'Abstimmung ist wieder offen'); },
+  ics() { downloadIcs(); },
+  gcal() { open(gcalUrl(), '_blank', 'noopener'); },
+  'share-final'() {
+    const f = S.ev.final, text = `${S.ev.title}: ${fmtLong(f.date)}, ${fmtRange(f.start, f.end)}${f.place ? ', ' + f.place : ''}.`;
+    if (navigator.share) navigator.share({title: S.ev.title, text, url: evLink(S.eid)}).catch(() => {});
+    else open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + evLink(S.eid))}`, '_blank', 'noopener');
+  },
+  claim(b) { const id = b.dataset.id, c = S.me.claims || (S.me.claims = []); const i = c.indexOf(id); i >= 0 ? c.splice(i, 1) : c.push(id); syncMeAndRender(); },
+  'bring-add'() { const i = $('#bringIn'), t = i.value.trim(); if (!t) return; (S.me.brings ||= []).push(t); syncMeAndRender(); setTimeout(() => $('#bringIn')?.focus(), 30); },
+  'bring-del'(b) { S.me.brings.splice(+b.dataset.i, 1); syncMeAndRender(); },
+  'wish-add'() { const i = $('#wishAdd'), t = i.value.trim(); if (!t) return; updateEv({wishes: [...(S.ev.wishes || []), {id: rid(8), text: t}]}); i.value = ''; },
+  'wish-del'(b) { updateEv({wishes: (S.ev.wishes || []).filter(w => w.id !== b.dataset.id)}); },
+};
+function syncMeAndRender() {
+  const idx = S.parts.findIndex(p => p.uid === B.uid); if (idx >= 0) S.parts[idx] = {...S.me, uid: B.uid};
+  saveMe(); renderEvent();
+}
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-act]'); if (!a) return;
+  const fn = ACT[a.dataset.act]; if (!fn) return;
+  if (a.tagName === 'BUTTON' && a.type !== 'submit') e.preventDefault();
+  fn(a, e);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { if (modalRoot.innerHTML) closeModal(); else if (S.sel) { S.sel = null; renderEvent(); } }
+  if (e.key === 'Enter' && e.target.id === 'wishIn') { e.preventDefault(); ACT['wish-form-add'](); }
+  if (e.key === 'Enter' && e.target.id === 'bringIn') { e.preventDefault(); ACT['bring-add'](); }
+  if (e.key === 'Enter' && e.target.id === 'wishAdd') { e.preventDefault(); ACT['wish-add'](); }
+});
+document.addEventListener('change', e => {
+  const f = e.target.dataset?.field;
+  if (f && S.sel && S.me.days[S.sel]) {
+    const v = S.me.days[S.sel];
+    if (f === 'host') v.host = e.target.checked || undefined;
+    if (f === 'from' || f === 'to') v[f] = e.target.value === '' ? undefined : +e.target.value;
+    if (f === 'note') v.note = e.target.value.trim().slice(0, 80) || undefined;
+    if (f === 'host') { syncMeAndRender(); return; }
+    const idx = S.parts.findIndex(p => p.uid === B.uid); if (idx >= 0) S.parts[idx] = {...S.me, uid: B.uid};
+    saveMe();
+  }
+  if (e.target.name === 'placeSel') { const o = e.target.form.placeOther; o.hidden = e.target.value !== '__other'; if (!o.hidden) o.focus(); }
+});
+document.addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target;
+  if (f.id === 'createForm') return submitCreate(f);
+  if (f.id === 'joinForm') return submitJoin(f);
+  if (f.id === 'profileForm') {
+    const p = readProfile(f); if (p.err) { $('#pErr', f).textContent = p.err; return; }
+    Object.assign(S.me, p); closeModal(); syncMeAndRender(); toast('Profil gespeichert'); return;
+  }
+  if (f.id === 'settingsForm') {
+    const r = readEventForm(f); if (r.err) { $('#formErr', f).textContent = r.err; return; }
+    closeModal(); return updateEv(r.data, 'Änderungen gespeichert');
+  }
+  if (f.id === 'finalForm') {
+    const sel = f.placeSel.value, place = sel === '__other' ? f.placeOther.value.trim() : sel;
+    const endV = f.end.value, final = {date: f.dataset.d, start: +f.start.value, end: endV === '' ? null : +endV, place: place || ''};
+    if (final.end !== null && final.end <= final.start) { toast('Das Ende muss nach dem Beginn liegen.'); return; }
+    closeModal(); S.tab = 'sum'; ls.set('tp:seenfinal:' + S.eid, 1); await updateEv({final}, 'Termin festgelegt'); return;
+  }
+});
+
+/* ================= Boot ================= */
+(async function boot() {
+  applyTheme();
+  setInterval(applyTheme, 5 * 60e3);
+  const cfg = window.TREFFPUNKT_FIREBASE;
+  const demo = new URLSearchParams(location.search).has('demo');
+  if (!demo && !(cfg && cfg.apiKey)) {
+    app.innerHTML = `<div class="wrap"><div class="card empty">${CAT()}<h2>Noch nicht eingerichtet</h2><p class="muted" style="margin-top:8px">Die Datenbank-Verbindung fehlt. Organisator: Trag die Firebase-Daten in <b>firebase-config.js</b> ein (siehe README).</p></div></div>`;
+    return;
+  }
+  try { B = demo ? localBackend() : await firebaseBackend(cfg); }
+  catch (e) {
+    console.error(e);
+    app.innerHTML = `<div class="wrap"><div class="card empty">${CAT()}<h2>Verbindung fehlgeschlagen</h2><p class="muted" style="margin-top:8px">Die Datenbank ist nicht erreichbar. Prüfe deine Internetverbindung und lade die Seite neu. Organisator: Anonyme Anmeldung in Firebase aktiviert?</p><button class="btn block" style="margin-top:16px" onclick="location.reload()">Neu laden</button></div></div>`;
+    return;
+  }
+  addEventListener('hashchange', onRoute);
+  onRoute();
+})();
+</script>
+</body>
+</html>

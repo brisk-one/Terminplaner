@@ -1,0 +1,52 @@
+# Treffpunkt
+
+Terminplaner für den Freundeskreis: Runde anlegen, Link verschicken, jeder tippt seine freien Abende an, der beste Abend wird automatisch ermittelt.
+
+Stand: 04.11.2026
+
+## Dateien
+
+| Datei | Zweck |
+|---|---|
+| `index.html` | Die komplette App |
+| `firebase-config.js` | Verbindung zur Datenbank (einmalig ausfüllen) |
+| `firestore.rules` | Zugriffsregeln, kommen in die Firebase Console |
+
+## Einrichtung Firebase (einmalig, ca. 10 Minuten)
+
+1. **Projekt anlegen:** [console.firebase.google.com](https://console.firebase.google.com) öffnen, "Projekt hinzufügen", Name z.B. `terminplaner`. Google Analytics kann aus bleiben.
+2. **Anonyme Anmeldung aktivieren:** Linkes Menü "Authentication", "Jetzt starten", Reiter "Sign-in method", Anbieter "Anonym" aktivieren, speichern.
+   Damit bekommt jedes Gerät still eine Kennung. So darf jeder nur seine eigenen Einträge ändern, ohne Passwort.
+3. **Datenbank anlegen:** Linkes Menü "Firestore Database", "Datenbank erstellen", Standort `europe-west3 (Frankfurt)`, im **Produktionsmodus** starten.
+4. **Regeln eintragen:** In Firestore den Reiter "Regeln" öffnen, den Inhalt komplett durch `firestore.rules` ersetzen, "Veröffentlichen".
+5. **Web-App registrieren:** Zahnrad oben links, "Projekteinstellungen", unten bei "Meine Apps" das Symbol `</>` wählen, Name `terminplaner`, Hosting nicht ankreuzen. Die angezeigten Werte (`apiKey`, `authDomain`, `projectId`, ...) in `firebase-config.js` eintragen.
+6. **Domain freigeben:** "Authentication", Reiter "Einstellungen", "Autorisierte Domains", `brisk-one.github.io` hinzufügen.
+
+Die Werte in `firebase-config.js` sind nicht geheim, sie stehen ohnehin im Browser. Geschützt wird alles über die Regeln aus Schritt 4.
+
+## GitHub Pages
+
+Repo: [brisk-one/Terminplaner](https://github.com/brisk-one/Terminplaner). Einschalten: "Settings", "Pages", Source "Deploy from a branch", Branch `main`, Ordner `/ (root)`. Nach ca. 1 Minute erreichbar unter `https://brisk-one.github.io/Terminplaner/`.
+
+## Wie der Zugriff geschützt ist
+
+- Jede Runde hat eine zufällige ID mit 20 Zeichen im Link. Raten ist praktisch ausgeschlossen.
+- Die Regeln verbieten das Auflisten aller Runden. Ohne Link kommt niemand an eine Runde.
+- Jeder Teilnehmer kann nur seinen eigenen Eintrag schreiben (gebunden an sein Gerät).
+- Der Organisator-Link enthält einen zweiten geheimen Schlüssel. Wer ihn öffnet, darf die Runde bearbeiten und den Termin festlegen.
+- Die Seite ist für Suchmaschinen gesperrt (`noindex`).
+
+Grenze: Wer den Link hat, kann mitmachen. Wird er weitergeleitet, kommen auch Dritte rein.
+
+## Bekannte Einschränkungen
+
+- Die Identität hängt am Gerät und Browser. Wer auf Handy und Laptop abstimmt, erscheint zweimal. Einfach ein Gerät nutzen.
+- Wer die Browserdaten löscht, kann seinen alten Eintrag nicht mehr ändern. Der Organisator kann neu anfangen lassen (Eintrag bleibt aber stehen, Löschen ist in der Oberfläche noch nicht eingebaut).
+
+## Testmodus
+
+`index.html?demo=1` läuft ohne Firebase, alle Daten bleiben im Browser. Nur zum Ausprobieren.
+
+## Kosten
+
+Firebase-Gratistarif (Spark). Für einen Freundeskreis reichen die Tageslimits um Größenordnungen.

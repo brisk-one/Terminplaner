@@ -1,0 +1,54 @@
+rules_version = '2';
+// Treffpunkt: Zugriff nur mit bekanntem Link (Event-ID), keine Auflistung.
+// Jeder schreibt nur seinen eigenen Teilnehmer-Eintrag. Organisatoren bearbeiten die Runde.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function eventDoc(eid) { return get(/databases/$(database)/documents/events/$(eid)); }
+    function isAdmin(eid) {
+      return signedIn() && (
+        eventDoc(eid).data.ownerUid == request.auth.uid ||
+        exists(/databases/$(database)/documents/events/$(eid)/admins/$(request.auth.uid))
+      );
+    }
+
+    match /events/{eid} {
+      // Einzelnes Lesen nur mit exakter ID; Auflisten aller Runden ist verboten.
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if signedIn()
+        && eid.size() >= 16
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.title is string
+        && request.resource.data.title.size() <= 80;
+      allow update: if isAdmin(eid)
+        && request.resource.data.ownerUid == resource.data.ownerUid;
+      allow delete: if signedIn() && resource.data.ownerUid == request.auth.uid;
+
+      // Geheimer Organisator-Schlüssel: von niemandem lesbar, nur bei Erstellung schreibbar.
+      match /secret/{doc} {
+        allow read, update, delete: if false;
+        allow create: if signedIn()
+          && getAfter(/databases/$(database)/documents/events/$(eid)).data.ownerUid == request.auth.uid;
+      }
+
+      // Organisator-Link einlösen: nur mit passendem Schlüssel.
+      match /admins/{uid} {
+        allow get: if signedIn() && uid == request.auth.uid;
+        allow create, update: if signedIn() && uid == request.auth.uid
+          && request.resource.data.key == get(/databases/$(database)/documents/events/$(eid)/secret/admin).data.key;
+        allow list, delete: if false;
+      }
+
+      match /participants/{uid} {
+        allow read: if signedIn();
+        allow create, update: if signedIn() && uid == request.auth.uid
+          && request.resource.data.name is string
+          && request.resource.data.name.size() > 0
+          && request.resource.data.name.size() <= 30;
+        allow delete: if signedIn() && (uid == request.auth.uid || isAdmin(eid));
+      }
+    }
+  }
+}
