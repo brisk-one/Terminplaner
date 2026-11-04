@@ -180,11 +180,11 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day.s-no{background:var(--surface2);box-shadow:none}
 .day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
-.day.topday::before{content:"";position:absolute;inset:-5px;border:2.5px solid var(--amber);border-radius:14px;pointer-events:none;animation:bestpulse 2.6s ease-in-out infinite}
-@keyframes bestpulse{50%{opacity:.4;inset:-7px}}
+.day.topday::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 2.5px var(--amber),0 0 8px 1px color-mix(in srgb,var(--amber) 70%,transparent);animation:bestpulse 3s ease-in-out infinite}
+@keyframes bestpulse{50%{box-shadow:inset 0 0 0 2.5px color-mix(in srgb,var(--amber) 55%,transparent),0 0 3px 0 color-mix(in srgb,var(--amber) 25%,transparent)}}
 .day.sel{outline:3px solid var(--ink);outline-offset:2px;animation:none}
 .best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:0 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
-.best-bar svg{width:40px;flex:none;color:var(--ink)}
+.best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
 .best-bar b{font-size:15px;display:block}
 .best-bar>span{display:block;min-width:0}
 .best-who{margin-top:8px}
@@ -202,9 +202,13 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day .dots b{width:7px;height:7px;border-radius:50%;background:var(--c)}
 .day .dots b.m{background:transparent;box-shadow:inset 0 0 0 1.6px var(--c)}
 .day .house{position:absolute;bottom:1px;left:3px;font-size:10px}
-.day .cat{position:absolute;top:-11px;left:-8px;width:26px;color:var(--ink);pointer-events:none;z-index:5;filter:drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg))}
-.cat .z{font-family:var(--display);font-size:9px;fill:var(--muted);animation:zz 2.4s ease-in-out infinite}
-@keyframes zz{0%{opacity:0;transform:translate(0,2px)}50%{opacity:1}100%{opacity:0;transform:translate(3px,-5px)}}
+.day .cat{position:absolute;top:-19px;left:-8px;width:26px;color:var(--ink);pointer-events:none;z-index:5;filter:drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg))}
+.sleepcat{overflow:visible}
+.sleepcat .z{font-family:var(--body);font-weight:800;font-size:8px;fill:var(--muted);opacity:0;animation:zz 3.6s ease-in-out infinite}
+.sleepcat .z2{animation-delay:1.2s}.sleepcat .z3{animation-delay:2.4s;font-size:10px}
+@keyframes zz{0%{opacity:0;transform:translate(0,4px) scale(.7)}25%{opacity:1}100%{opacity:0;transform:translate(7px,-12px) scale(1.15)}}
+.sleepcat .body{transform-box:fill-box;transform-origin:50% 100%;animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.03,1.07)}}
 
 /* Sheet */
 .sheet{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:30;display:flex;justify-content:center;pointer-events:none}
@@ -229,7 +233,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 /* Overview */
 .best{position:relative;overflow:hidden}
 .best .date{font-family:var(--display);font-size:28px;font-weight:800;margin:6px 0 2px}
-.best .cat-big{position:absolute;right:10px;top:8px;width:70px;color:var(--ink);opacity:.9}
+.best .cat-big{position:absolute;right:14px;top:-2px;width:54px;color:var(--ink);opacity:.9}
 .meter{height:8px;border-radius:9px;background:var(--surface2);overflow:hidden;display:flex}
 .meter i{display:block;height:100%}
 .meter .y{background:var(--moss)}.meter .m{background:var(--amber)}
@@ -343,7 +347,7 @@ const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLOR
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
 const CYCLE = [undefined, 'yes', 'maybe'];
 
-const CAT = (cls='cat') => `<svg class="${cls}" viewBox="0 0 44 32" aria-hidden="true"><text class="z" x="33" y="7">z</text><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`;
+const CAT = (cls = 'cat') => `<svg class="${cls} sleepcat" viewBox="0 -14 46 46" overflow="visible" aria-hidden="true"><g class="zs"><text class="z z1" x="31" y="4">z</text><text class="z z2" x="31" y="4">z</text><text class="z z3" x="31" y="4">Z</text></g><g class="body"><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path class="tail" d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></g></svg>`;
 const CUP = `<svg class="cup" viewBox="0 0 26 26" aria-hidden="true"><path class="steam" d="M10 7c-1.5-1.5 1.5-2.5 0-4"/><path class="steam" d="M15 7c-1.5-1.5 1.5-2.5 0-4"/><path d="M5 10h15v6a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M20 12h1.5a2.5 2.5 0 0 1 0 5H20" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>`;
 
 function garland(people) {

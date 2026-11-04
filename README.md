@@ -20,6 +20,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 02:35: Leuchtrand repariert (lief vorher wegen ungültiger CSS-Einheit nie), bester Abend zusätzlich mit pulsierendem gelbem Rahmen und Leiste über dem Kalender (Tippen öffnet den Tag), Übersicht heißt „Meine Veranstaltungen“
 - [x] 04.11.2026, 02:40: Leuchten dezenter und auf ca. 12 Personen skaliert, Katze und Haken nicht mehr abgeschnitten (Klassen-Kollision behoben), Leiste „Bester Abend“ zeigt Anzahl und wer kann
 - [x] 04.11.2026, 02:45: In der App überall „Veranstaltung“ statt „Runde“. Terminsuche ohne „kann nicht“ (Tippen: kann, vielleicht, leer). Vielleicht einfarbig orange statt gestreift. Fester Termin: „Nicht dabei“ rosarot. „Meine Veranstaltungen“-Knopf auch beim Erstellen.
+- [x] 04.11.2026, 02:50: Bester Tag: Rahmen liegt direkt am Tag an und pulsiert nur im Leuchten (keine Ausdehnung mehr). Schlafende Katze animiert (atmet, drei z steigen auf), z wird nicht mehr abgeschnitten.
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
