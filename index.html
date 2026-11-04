@@ -194,6 +194,9 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:4px 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
 .best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
 .best-bar b{font-size:15px;display:block}
+.best-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;width:100%;border:0;background:none;padding:8px 0 4px;text-align:left;color:inherit;font:inherit;cursor:pointer;border-top:1px solid color-mix(in srgb,var(--amber) 35%,transparent)}
+.best-row b{flex:1 1 auto}
+.best-row.single{padding:0;border-top:0}
 .best-bar>span{display:block;min-width:0}
 .best-who{margin-top:8px}
 .best-who .pchip{font-size:13px;padding:2px 10px 2px 2px}
@@ -241,6 +244,8 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 /* Overview */
 .best{position:relative;overflow:hidden}
 .best .date{font-family:var(--display);font-size:28px;font-weight:800;margin:6px 0 2px}
+.tie-list{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.tie-list li{background:var(--surface2);border-radius:var(--r-md);padding:10px 12px}
 .best .cat-big{position:absolute;right:14px;top:-2px;width:54px;color:var(--ink);opacity:.9}
 .meter{height:8px;border-radius:9px;background:var(--surface2);overflow:hidden;display:flex}
 .meter i{display:block;height:100%}
@@ -572,8 +577,9 @@ function evCard({r, ev, parts, err}) {
   else {
     const sc = {};
     for (const p of parts) for (const [d, v] of Object.entries(p.days || {})) if (d >= todayStr() && (v?.s === 'yes' || v?.s === 'maybe')) { sc[d] ??= {s: 0, y: 0}; sc[d].s += v.s === 'yes' ? 1 : .5; sc[d].y += v.s === 'yes' ? 1 : 0; }
-    const best = Object.entries(sc).sort((a, b) => b[1].s - a[1].s || a[0].localeCompare(b[0]))[0];
-    when = `Zwischen ${fmtDay(ev.rangeStart, {day: 'numeric', month: 'short'})} bis ${fmtDay(ev.rangeEnd, {day: 'numeric', month: 'short'})}${best ? `<br><span class="muted">Bester Abend bisher: ${fmtDay(best[0])} (${best[1].y} ${best[1].y === 1 ? 'kann' : 'können'})</span>` : ''}`;
+    const srt = Object.entries(sc).sort((a, b) => b[1].y - a[1].y || b[1].s - a[1].s || a[0].localeCompare(b[0]));
+    const best = srt[0], ties = best ? srt.filter(x => x[1].y === best[1].y && x[1].s === best[1].s).length : 0;
+    when = `Zwischen ${fmtDay(ev.rangeStart, {day: 'numeric', month: 'short'})} und ${fmtDay(ev.rangeEnd, {day: 'numeric', month: 'short'})}${best ? `<br><span class="muted">${ties > 1 ? 'Beste Abende bisher' : 'Bester Abend bisher'}: ${fmtDay(best[0])}${ties > 1 ? ` und ${weitere(ties - 1)}` : ''} (${ties > 1 ? 'je ' : ''}${best[1].y} ${best[1].y === 1 ? 'kann' : 'können'})</span>` : ''}`;
   }
   const place = ev.final?.place || ev.location || (fixed ? 'Ort folgt' : 'Ort noch offen');
   if (!me) { status = 'Du bist noch nicht beigetreten'; todo = true; }
@@ -755,6 +761,7 @@ function scheduleRender() {
 }
 document.addEventListener('focusout', () => setTimeout(() => { if (S.pending) { S.pending = false; scheduleRender(); } }, 50));
 
+const weitere = n => n === 1 ? 'ein weiterer' : `${n} weitere`;
 const isFixed = (ev = S.ev) => ev.type === 'fixed';
 const rsvpTarget = (ev = S.ev) => isFixed(ev) ? ev.date : ev.final?.date || null;
 const rsvpOf = p => { const t = rsvpTarget(); return t && p.rsvp && p.rsvp.d === t ? p.rsvp : null; };
@@ -788,8 +795,10 @@ function analyze() {
     for (const p of e.yes) { const v = p.days[e.d]; if (v.from != null) a = Math.max(a, v.from); if (v.to != null) b = b == null ? v.to : Math.min(b, v.to); }
     e.win = {a, b, tight: b != null && b - a < 90};
   }
-  ranked.sort((x, y) => y.score - x.score || y.yes.length - x.yes.length || (y.place - x.place) || x.no.length - y.no.length || x.d.localeCompare(y.d));
-  return {map, ranked};
+  ranked.sort((x, y) => y.yes.length - x.yes.length || y.maybe.length - x.maybe.length || x.d.localeCompare(y.d));
+  const tiers = [];
+  for (const e of ranked) { const k = e.yes.length + '|' + e.maybe.length; if (!tiers.length || tiers[tiers.length - 1].k !== k) { const g = []; g.k = k; tiers.push(g); } tiers[tiers.length - 1].push(e); }
+  return {map, ranked, tiers};
 }
 
 function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji || '🙂')}</span>`; }
@@ -871,7 +880,9 @@ function finalCard() {
 function calView(A) {
   const ev = S.ev, locked = isLocked();
   const allowed = new Set(candidateDays()), t = todayStr(), n = Math.max(1, S.parts.length);
-  const best = A.ranked[0]?.d, second = A.ranked[1]?.d;
+  const T = A.tiers || [], MIN = 3;
+  const bestSet = new Set(T[0] && T[0][0].yes.length >= MIN ? T[0].map(e => e.d) : []);
+  const secondSet = new Set(T[1] && T[1][0].yes.length >= MIN ? T[1].map(e => e.d) : []);
   const start = parseYmd(ev.rangeStart), end = parseYmd(ev.rangeEnd);
   let html = `<div class="cal-tools">
       <div class="seg" role="group" aria-label="Tippen bedeutet">
@@ -896,16 +907,16 @@ function calView(A) {
       const vis = others.length > 3 ? 2 : 3;
       const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
-      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''} ${s === best ? 'topday' : s === second ? 'second' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
+      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''} ${bestSet.has(s) ? 'topday' : secondSet.has(s) ? 'second' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="mini">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
-        ${s === best ? CAT() : ''}
+        ${bestSet.has(s) ? CAT() : ''}
       </button>`;
     }
     html += `</div></section>`;
   }
-  html += best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>${A.ranked[1] ? `<span class="second-line">Zweitbester: ${fmtLong(A.ranked[1].d)} (${A.ranked[1].yes.length} ${A.ranked[1].yes.length === 1 ? 'kann' : 'können'})</span>` : ''}</span></button>`; })() : '';
+  html += bestBar(A);
   return html;
 }
 
@@ -978,6 +989,21 @@ function cleanMe() {
   return JSON.parse(JSON.stringify(rest));
 }
 
+function bestBar(A) {
+  const T = A.tiers || []; if (!T.length) return '';
+  const top = T[0], multi = top.length > 1;
+  const cnt = e => `${e.yes.length} ${e.yes.length === 1 ? 'kann' : 'können'}${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}`;
+  const chips = e => `<span class="pchips best-who">${e.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${e.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>`;
+  const body = multi
+    ? `<b>${top.length} gleich gute Abende bisher</b><span class="small muted">je ${cnt(top[0])}</span>
+       ${top.slice(0, 5).map(e => `<button class="best-row" data-act="goto-best" data-d="${e.d}"><b>${fmtLong(e.d)}</b><span class="av-stack">${e.yes.concat(e.maybe).slice(0, 8).map(p => avatar(p, 'sm')).join('')}</span></button>`).join('')}
+       ${top.length > 5 ? `<span class="small muted">und ${weitere(top.length - 5)}</span>` : ''}`
+    : `<button class="best-row single" data-act="goto-best" data-d="${top[0].d}"><b>Bester Abend bisher: ${fmtLong(top[0].d)}</b></button><span class="small muted">${cnt(top[0])}</span>${chips(top[0])}`;
+  const s2 = T[1];
+  const sec = s2 ? `<span class="second-line">${s2.length > 1 ? 'Zweitbeste' : 'Zweitbester'}: ${s2.slice(0, 3).map(e => fmtDay(e.d)).join(', ')}${s2.length > 3 ? ` und ${weitere(s2.length - 3)}` : ''} (${s2.length > 1 ? 'je ' : ''}${cnt(s2[0])})</span>` : '';
+  return `<div class="best-bar">${CAT('')}<span>${body}${sec}</span></div>`;
+}
+
 /* ----- Overview ----- */
 function placeText(e) {
   if (S.ev.location) return esc(S.ev.location);
@@ -988,11 +1014,13 @@ function placeText(e) {
 function sumView(A) {
   const n = S.parts.length;
   if (!A.ranked.length) return `<div class="card empty" style="margin-top:16px">${CAT()}<h2>Noch ist alles ruhig</h2><p class="muted" style="margin-top:8px">Sobald jemand Abende einträgt, siehst du hier den besten Termin.</p><button class="btn amber" style="margin-top:16px" data-act="tab" data-tab="cal">Eigene Tage eintragen</button></div>`;
-  const b = A.ranked[0];
+  const T = A.tiers, top = T[0], b = top[0], topSet = new Set(top.map(e => e.d));
+  const posOf = new Map(); T.forEach((g, i) => g.forEach(e => posOf.set(e.d, i + 1)));
   const missing = S.parts.filter(p => !Object.keys(p.days || {}).length);
   const meter = e => `<div class="meter" aria-hidden="true"><i class="y" style="width:${e.yes.length / Math.max(1, n) * 100}%"></i><i class="m" style="width:${e.maybe.length / Math.max(1, n) * 100}%"></i></div>`;
   const rows = A.ranked.filter(e => e.score > 0).sort((x, y) => x.d.localeCompare(y.d));
-  return `
+  const canFix = S.admin && !S.ev.final;
+  const hero = top.length === 1 ? `
   <section class="card best" style="margin-top:16px">
     ${CAT('cat-big')}
     <h2>${S.ev.final ? 'Bester Abend laut Abstimmung' : 'Bester Abend bisher'}</h2>
@@ -1004,18 +1032,30 @@ function sumView(A) {
       <li><span>${S.ev.location ? '📍' : '🏠'}</span><span>${placeText(b)}</span></li>
     </ul>
     <div class="av-stack" style="margin-top:12px">${b.yes.concat(b.maybe).map(p => avatar(p, 'sm')).join('')}</div>
-    ${S.admin && !S.ev.final ? `<button class="btn amber block" style="margin-top:16px" data-act="finalize" data-d="${b.d}">Diesen Abend festlegen</button>` : ''}
-  </section>
-  ${A.ranked.length > 1 ? `<h2 class="section-title">Weitere gute Abende</h2>
-  <ol class="rank">${A.ranked.slice(1, 6).map((e, i) => `<li>
-    <span class="pos">${i + 2}</span>
+    ${canFix ? `<button class="btn amber block" style="margin-top:16px" data-act="finalize" data-d="${b.d}">Diesen Abend festlegen</button>` : ''}
+  </section>` : `
+  <section class="card best" style="margin-top:16px">
+    ${CAT('cat-big')}
+    <h2>${top.length} gleich gute Abende</h2>
+    <p class="muted" style="font-weight:600;margin-top:6px">Je ${b.yes.length} von ${n} können${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</p>
+    <ul class="tie-list">${top.map(e => `<li>
+      <div class="row"><b class="grow">${fmtLong(e.d)}</b>${canFix ? `<button class="btn sm amber" data-act="finalize" data-d="${e.d}">Festlegen</button>` : ''}</div>
+      <p class="small muted">${fmtRange(e.win.a, e.win.b)}${e.win.tight ? ' (knapp)' : ''}, ${placeText(e)}</p>
+      <div class="av-stack" style="margin-top:6px">${e.yes.concat(e.maybe).map(p => avatar(p, 'sm')).join('')}</div>
+    </li>`).join('')}</ul>
+  </section>`;
+  const rest = A.ranked.filter(e => !topSet.has(e.d)).slice(0, 6);
+  return `${hero}
+  ${rest.length ? `<h2 class="section-title">Weitere gute Abende</h2>
+  <ol class="rank">${rest.map(e => `<li>
+    <span class="pos">${posOf.get(e.d)}</span>
     <span><span class="d">${fmtDay(e.d)}</span><br><span class="small muted">${e.yes.length} können${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}${e.hosts.length ? ', 🏠 ' + e.hosts.length : ''}</span><span style="display:block;margin-top:6px">${meter(e)}</span></span>
-    ${S.admin && !S.ev.final ? `<button class="btn sm ghost" data-act="finalize" data-d="${e.d}">Festlegen</button>` : `<span class="av-stack">${e.yes.slice(0, 3).map(p => avatar(p, 'sm')).join('')}</span>`}
+    ${canFix ? `<button class="btn sm ghost" data-act="finalize" data-d="${e.d}">Festlegen</button>` : `<span class="av-stack">${e.yes.slice(0, 3).map(p => avatar(p, 'sm')).join('')}</span>`}
   </li>`).join('')}</ol>` : ''}
   <h2 class="section-title">Wer kann wann</h2>
   <div class="matrix-wrap"><table class="matrix">
     <thead><tr><th scope="col">Abend</th>${S.parts.map(p => `<th scope="col" title="${esc(p.name)}">${avatar(p, 'sm')}</th>`).join('')}</tr></thead>
-    <tbody>${rows.map(e => `<tr class="${e.d === b.d ? 'top' : ''}"><td>${fmtDay(e.d)}</td>${S.parts.map(p => { const s = p.days?.[e.d]?.s; return `<td class="${s === 'yes' ? 'y' : s === 'maybe' ? 'm' : 'n'}">${s ? STATUS[s].i : '·'}${p.days?.[e.d]?.host && s !== 'no' && hostsOn() ? '🏠' : ''}</td>`; }).join('')}</tr>`).join('')}</tbody>
+    <tbody>${rows.map(e => `<tr class="${topSet.has(e.d) ? 'top' : ''}"><td>${fmtDay(e.d)}</td>${S.parts.map(p => { const s = p.days?.[e.d]?.s; return `<td class="${s === 'yes' ? 'y' : s === 'maybe' ? 'm' : 'n'}">${s ? STATUS[s].i : '·'}${p.days?.[e.d]?.host && s !== 'no' && hostsOn() ? '🏠' : ''}</td>`; }).join('')}</tr>`).join('')}</tbody>
   </table></div>
   ${missing.length ? `<p class="small muted" style="margin:12px 4px">Noch ohne Eintrag: ${missing.map(p => esc(p.name)).join(', ')}</p>` : ''}`;
 }
