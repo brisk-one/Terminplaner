@@ -15,6 +15,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] Regeltest live: ohne Anmeldung alles 403; fremde Identität darf Runde lesen und eigenen Eintrag schreiben, aber nicht Runden auflisten, Schlüssel lesen, fremde Einträge ändern, Runde bearbeiten oder Organisator werden
 - [x] 04.11.2026, 02:10: Zwei Arten von Runden: „Termin finden“ (Kalender) und „Fester Termin“ (Zusage: Bin dabei / Vielleicht / Nicht dabei mit Kommentar). Nach dem Festlegen startet bei der Terminsuche automatisch die Zusagerunde. Keine Begleitpersonen (+1).
 - [x] 04.11.2026, 02:10: Gastgeber-Option nur ohne festen Ort, eigene Farben für Kann/Vielleicht/Nein, kleine Avatare im Kalendertag, Lichterkette mit einer Birne pro Person (in Personenfarbe, ab 16 Personen mehrreihig), Titelschrift Fraunces, Panel-Einblendung nur einmal
+- [x] 04.11.2026, 02:15: Eigener Avatar erscheint im Kalendertag, Farbwahl entfernt (Farbe folgt dem Avatar), Name und Avatar über Zahnrad-Knopf änderbar, vergebene Avatare blass und gesperrt, 48 Avatare nur Tiere und Fabelwesen, ausstehende Änderungen werden beim Verlassen der Seite sofort gespeichert
 - [ ] Erste echte Runde mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
