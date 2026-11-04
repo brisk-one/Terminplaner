@@ -13,9 +13,11 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] Firebase-Projekt `terminplaner-809c6`: anonyme Anmeldung an (ohne automatische Bereinigung), Firestore `europe-west3`, Regeln veröffentlicht, Domain `brisk-one.github.io` freigegeben
 - [x] Live-Test 04.11.2026: Runde anlegen, beitreten, Tage speichern, Reload, Live-Sync mit zweiter Identität
 - [x] Regeltest live: ohne Anmeldung alles 403; fremde Identität darf Runde lesen und eigenen Eintrag schreiben, aber nicht Runden auflisten, Schlüssel lesen, fremde Einträge ändern, Runde bearbeiten oder Organisator werden
+- [x] 04.11.2026, 02:10: Zwei Arten von Runden: „Termin finden“ (Kalender) und „Fester Termin“ (Zusage: Bin dabei / Vielleicht / Nicht dabei mit Kommentar). Nach dem Festlegen startet bei der Terminsuche automatisch die Zusagerunde. Keine Begleitpersonen (+1).
+- [x] 04.11.2026, 02:10: Gastgeber-Option nur ohne festen Ort, eigene Farben für Kann/Vielleicht/Nein, kleine Avatare im Kalendertag, Lichterkette mit einer Birne pro Person (in Personenfarbe, ab 16 Personen mehrreihig), Titelschrift Fraunces, Panel-Einblendung nur einmal
 - [ ] Erste echte Runde mit Freunden
 
-Hinweis: In der Datenbank liegt eine Test-Runde „Testlauf (Claude)“ mit zwei Testteilnehmern. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
+Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
 
 ## Dateien
 
