@@ -6,6 +6,8 @@ Stand: 04.11.2026, 01:45
 
 Live: https://brisk-one.github.io/Terminplaner/
 
+Retrospektive, Entscheidungen und offene Punkte: [RETRO.md](RETRO.md)
+
 ## Status
 
 - [x] App gebaut und auf Handy-Breite getestet (Testmodus, drei Teilnehmer)
