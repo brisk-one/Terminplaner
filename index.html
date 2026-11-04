@@ -131,6 +131,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .saving .cup .steam:nth-of-type(2){animation-delay:.35s}
 @keyframes steam{0%{opacity:0;transform:translateY(3px)}40%{opacity:.9}100%{opacity:0;transform:translateY(-4px)}}
 .save-txt{font-size:13px;color:var(--muted);font-weight:600}
+@media (max-width:430px){.save-txt{display:none}}
 .people{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
 .av{--c:#999;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:color-mix(in srgb,var(--c) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--c);font-size:18px;flex:none;line-height:1}
 .av.sm{width:26px;height:26px;font-size:14px;box-shadow:inset 0 0 0 1.5px var(--c)}
@@ -163,21 +164,26 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .month h3{margin:0 4px 10px}
 .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .dow span{text-align:center;font-size:12px;font-weight:700;color:var(--muted);padding-bottom:4px}
-.day{--heat:0%;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:var(--surface);box-shadow:inset 0 0 0 var(--bw,1.5px) color-mix(in srgb,var(--amber) calc(var(--heat) * 1.1),var(--line)),0 0 calc(var(--heat) * .5) var(--glow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
+.day{--h:0;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:var(--surface);box-shadow:inset 0 0 0 calc(1.5px + var(--h) * 2.5px) color-mix(in srgb,var(--amber) calc(var(--h) * 100%),var(--line)),0 0 calc(var(--h) * 22px) calc(var(--h) * 3px) var(--glow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
 .day:active{transform:scale(.92)}
 .day.off{background:transparent;box-shadow:none;color:var(--faint);font-weight:500;cursor:default}
 .day.off:active{transform:none}
 .day.blank{visibility:hidden}
 .day.today .num{text-decoration:underline 2px var(--amber);text-underline-offset:3px}
 .day .mark{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 0 2px var(--bg)}
-.day.s-yes{background:var(--moss);color:#fff;box-shadow:0 0 calc(var(--heat) * .35) var(--glow)}
+.day.s-yes{background:var(--moss);color:#fff;box-shadow:0 0 0 calc(var(--h) * 3.5px) var(--amber),0 0 calc(var(--h) * 22px) calc(var(--h) * 3px) var(--glow)}
 .day.s-yes .mark{background:#fff;color:var(--moss)}
-.day.s-maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);box-shadow:inset 0 0 0 2px var(--amber),0 0 calc(var(--heat) * .35) var(--glow)}
+.day.s-maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);box-shadow:inset 0 0 0 2px var(--amber),0 0 calc(var(--h) * 22px) calc(var(--h) * 3px) var(--glow)}
 .day.s-maybe .mark{background:var(--amber);color:#3A2205}
 .day.s-no{background:var(--surface2);box-shadow:none}
 .day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
-.day.sel{outline:3px solid var(--ink);outline-offset:2px}
+.day.best{outline:3px solid var(--amber);outline-offset:3px;animation:bestpulse 2.6s ease-in-out infinite}
+@keyframes bestpulse{50%{outline-color:color-mix(in srgb,var(--amber) 35%,transparent);outline-offset:5px}}
+.day.sel{outline:3px solid var(--ink);outline-offset:2px;animation:none}
+.best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:0 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
+.best-bar svg{width:40px;flex:none;color:var(--ink)}
+.best-bar b{font-size:15px}
 .day .mini{display:flex;align-items:center;height:16px;margin-top:2px}
 .day .mini i{font-style:normal;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font-size:10px;line-height:1;background:color-mix(in srgb,var(--c) 25%,var(--surface));box-shadow:0 0 0 1.5px var(--c);margin-left:-4px}
 .day .mini i:first-child{margin-left:0}
@@ -492,7 +498,7 @@ async function onRoute() {
 
 /* ================= Home & Create ================= */
 function topbar(extra = '', back = false) {
-  return `<div class="topbar">${back ? `<a class="back-pill" href="#/" aria-label="Zur Übersicht aller Runden">🗂️ Meine Runden</a>` : `<a class="brand" href="#/">🕯️ Treffpunkt</a>`}<div class="grow"></div>${extra}<button class="icon-btn" data-act="theme" aria-label="Farbmodus: ${themeLabel()}" title="${themeLabel()}">${themeIcon()}</button></div>`;
+  return `<div class="topbar">${back ? `<a class="back-pill" href="#/" aria-label="Zur Übersicht aller Veranstaltungen">🗂️ Meine Veranstaltungen</a>` : `<a class="brand" href="#/">🕯️ Treffpunkt</a>`}<div class="grow"></div>${extra}<button class="icon-btn" data-act="theme" aria-label="Farbmodus: ${themeLabel()}" title="${themeLabel()}">${themeIcon()}</button></div>`;
 }
 const demoBanner = () => B.mode === 'local' ? `<div class="banner demo">Testmodus: Alles bleibt nur in diesem Browser.</div>` : '';
 
@@ -514,7 +520,7 @@ function renderHome() {
     return;
   }
   app.innerHTML = `<div class="wrap stack">${topbar()}
-    <div><h1>Meine Runden</h1><p class="muted" style="margin-top:6px">Alle Runden, die du auf diesem Gerät geöffnet hast.</p></div>
+    <div><h1>Meine Veranstaltungen</h1><p class="muted" style="margin-top:6px">Alle Veranstaltungen, die du auf diesem Gerät geöffnet hast.</p></div>
     <a class="btn primary block" href="#/neu">Neue Runde planen</a>
     ${demoBanner()}
     <ul class="evlist" id="evlist">${recent.map(() => '<li><div class="skeleton" style="height:150px"></div></li>').join('')}</ul>
@@ -854,7 +860,8 @@ function calView(A) {
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
       S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
-      'Tippe einen Tag an, um zu sehen, wer kann.'}</p>`;
+      'Tippe einen Tag an, um zu sehen, wer kann.'}</p>
+    ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><br><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}. Im Kalender gelb umrandet, die Katze schläft dort.</span></span></button>`; })() : ''}`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
     html += `<section class="month"><h3>${new Intl.DateTimeFormat('de-DE', {month:'long', year:'numeric'}).format(m)}</h3>
@@ -870,7 +877,7 @@ function calView(A) {
       const vis = others.length > 3 ? 2 : 3;
       const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
-      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%;${heat ? '--bw:2.5px' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
+      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''} ${s === best ? 'best' : ''}" style="--h:${(heat / 100).toFixed(2)}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="mini">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
@@ -1199,6 +1206,7 @@ const ACT = {
   finalize(b) { openFinalize(b.dataset.d); },
   reopen() { if (confirm('Termin wieder öffnen? Alle können dann wieder abstimmen.')) updateEv({final: null}, 'Abstimmung ist wieder offen'); },
   ics() { downloadIcs(); },
+  'goto-best'(b) { S.sel = b.dataset.d; renderEvent(); document.querySelector(`.day[data-d="${b.dataset.d}"]`)?.scrollIntoView({block: 'center', behavior: 'smooth'}); },
   forget(b, e) { e.preventDefault(); e.stopPropagation(); ls.set('tp:recent', ls.get('tp:recent', []).filter(r => r.eid !== b.dataset.eid)); b.closest('li')?.remove(); toast('Aus deiner Liste entfernt'); if (!ls.get('tp:recent', []).length) renderHome(); },
   type(b) { const w = b.closest('.evform'); w.dataset.type = b.dataset.t; w.querySelector('[name=type]').value = b.dataset.t; b.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); },
   rsvp(b) {
