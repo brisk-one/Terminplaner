@@ -191,7 +191,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .best-bar .second-line i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--sky) 70%,transparent),0 0 6px 1px color-mix(in srgb,var(--sky) 50%,transparent)}
 .day.sel{outline:3px solid var(--ink);outline-offset:2px;animation:none}
 .quick-chip{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:var(--r-md);padding:10px 12px;margin:0 0 14px;box-shadow:inset 0 0 0 1.5px var(--line)}
-.best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:0 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
+.best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:4px 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
 .best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
 .best-bar b{font-size:15px;display:block}
 .best-bar>span{display:block;min-width:0}
@@ -210,7 +210,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day .dots b{width:7px;height:7px;border-radius:50%;background:var(--c)}
 .day .dots b.m{background:transparent;box-shadow:inset 0 0 0 1.6px var(--c)}
 .day .house{position:absolute;bottom:1px;left:3px;font-size:10px}
-.day .cat{position:absolute;top:-19px;left:-8px;width:26px;color:var(--ink);pointer-events:none;z-index:5;filter:drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg))}
+.day .cat{position:absolute;top:-17px;left:3px;width:26px;color:var(--ink);pointer-events:none;z-index:5;filter:drop-shadow(0 0 1.5px var(--bg)) drop-shadow(0 0 1.5px var(--bg))}
 .sleepcat{overflow:visible}
 .sleepcat .z{font-family:var(--body);font-weight:800;font-size:8px;fill:var(--muted);opacity:0;animation:zz 3.6s ease-in-out infinite}
 .sleepcat .z2{animation-delay:1.2s}.sleepcat .z3{animation-delay:2.4s;font-size:10px}
@@ -355,7 +355,7 @@ const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLOR
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
 const CYCLE = [undefined, 'yes', 'maybe'];
 
-const CAT = (cls = 'cat') => `<svg class="${cls} sleepcat" viewBox="0 -14 46 46" overflow="visible" aria-hidden="true"><g class="zs"><text class="z z1" x="31" y="4">z</text><text class="z z2" x="31" y="4">z</text><text class="z z3" x="31" y="4">Z</text></g><g class="body"><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path class="tail" d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></g></svg>`;
+const CAT = (cls = 'cat') => `<svg class="${cls} sleepcat" viewBox="0 -14 46 46" overflow="visible" aria-hidden="true"><g class="zs"><text class="z z1" x="31" y="4">z</text><text class="z z2" x="31" y="4">z</text><text class="z z3" x="31" y="4">Z</text></g><g class="body"><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M30 14.2L31 8.6 34.4 12.4zM34.6 12.2L37.9 7.6 38.7 14.4z" fill="currentColor" stroke="currentColor" stroke-width=".9" stroke-linejoin="round"/><path class="tail" d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></g></svg>`;
 const CUP = `<svg class="cup" viewBox="0 0 26 26" aria-hidden="true"><path class="steam" d="M10 7c-1.5-1.5 1.5-2.5 0-4"/><path class="steam" d="M15 7c-1.5-1.5 1.5-2.5 0-4"/><path d="M5 10h15v6a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M20 12h1.5a2.5 2.5 0 0 1 0 5H20" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>`;
 
 function garland(people) {
@@ -880,7 +880,7 @@ function calView(A) {
       </div></div>
     ${!locked && S.mode === 'mark' && quickDef() ? `<div class="quick-chip"><span class="grow"><b>⚡ Schnell-Eintragen an</b><br><span class="small muted">${quickDesc(quickDef())}. Einzelne Tage ändern: über 👀 Ansehen.</span></span><button class="btn sm ghost" data-act="quick-off">Aus</button></div>` : ''}
     ${locked ? `<p class="legend">${ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.'}</p>` : S.mode === 'view' ? '<p class="legend">Tippe einen Tag an, um zu sehen, wer kann.</p>' : ''}
-    ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>${A.ranked[1] ? `<span class="second-line">Zweitbester: ${fmtLong(A.ranked[1].d)} (${A.ranked[1].yes.length} ${A.ranked[1].yes.length === 1 ? 'kann' : 'können'})</span>` : ''}</span></button>`; })() : ''}`;
+`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
     html += `<section class="month"><h3>${new Intl.DateTimeFormat('de-DE', {month:'long', year:'numeric'}).format(m)}</h3>
@@ -905,6 +905,7 @@ function calView(A) {
     }
     html += `</div></section>`;
   }
+  html += best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>${A.ranked[1] ? `<span class="second-line">Zweitbester: ${fmtLong(A.ranked[1].d)} (${A.ranked[1].yes.length} ${A.ranked[1].yes.length === 1 ? 'kann' : 'können'})</span>` : ''}</span></button>`; })() : '';
   return html;
 }
 
