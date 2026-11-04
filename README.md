@@ -32,6 +32,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 03:55: Katzenstufen neu: ab 7 Herzchen statt z, ab 9 Partyhütchen, ab 11 schläft ein rotgetigertes Kätzchen auf ihrem Rücken, ab 13 Krone und Funkeln.
 - [x] 04.11.2026, 03:50: Katzenstufen final: ab 5 schläft, ab 7 Herzchen, ab 9 Kätzchen auf dem Rücken, ab 11 Partyhütchen, ab 13 zusätzlich Sternchen und kleine Diskokugel (keine Krone).
 - [x] 04.11.2026, 03:55: Katzenstufe ab 15: Katze wacht auf (fröhliche Augen, Lächeln), Herzchen und zusätzlich Musiknoten, bunte Disko-Lichtpunkte, wippt im Takt.
+- [x] 04.11.2026, 04:00: Leiste „Bester Abend“ kompakt (Datum in einer Zeile, „1 Person“ / „4 Personen“).
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.

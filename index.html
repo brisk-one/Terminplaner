@@ -193,7 +193,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .quick-chip{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:var(--r-md);padding:10px 12px;margin:0 0 14px;box-shadow:inset 0 0 0 1.5px var(--line)}
 .best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:4px 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
 .best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
-.best-bar b{font-size:15px;display:block}
+.best-bar b{font-size:15px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .best-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;width:100%;border:0;background:none;padding:8px 0 4px;text-align:left;color:inherit;font:inherit;cursor:pointer;border-top:1px solid color-mix(in srgb,var(--amber) 35%,transparent)}
 .best-row b{flex:1 1 auto}
 .best-row.single{padding:0;border-top:0}
@@ -1023,15 +1023,16 @@ function cleanMe() {
 function bestBar(A) {
   const T = A.tiers || []; if (!T.length) return '';
   const top = T[0], multi = top.length > 1;
-  const cnt = e => `${e.yes.length} ${e.yes.length === 1 ? 'kann' : 'können'}${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}`;
+  const cnt = e => `${e.yes.length} ${e.yes.length === 1 ? 'Person' : 'Personen'}${e.maybe.length ? `, ${e.maybe.length} vielleicht` : ''}`;
+  const short = d => fmtDay(d, {weekday: 'short', day: 'numeric', month: 'short'});
   const chips = e => `<span class="pchips best-who">${e.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${e.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>`;
   const body = multi
-    ? `<b>${top.length} gleich gute Abende bisher</b><span class="small muted">je ${cnt(top[0])}</span>
-       ${top.slice(0, 5).map(e => `<button class="best-row" data-act="goto-best" data-d="${e.d}"><b>${fmtLong(e.d)}${!S.ev.location && e.hosts.length ? `<span class="small muted" style="display:block;font-weight:600">🏠 ${placeText(e)}</span>` : ''}</b><span class="av-stack">${e.yes.concat(e.maybe).slice(0, 8).map(p => avatar(p, 'sm')).join('')}</span></button>`).join('')}
+    ? `<b>${top.length} gleich gute Abende</b><span class="small muted">je ${cnt(top[0])}</span>
+       ${top.slice(0, 5).map(e => `<button class="best-row" data-act="goto-best" data-d="${e.d}"><b>${short(e.d)}${!S.ev.location && e.hosts.length ? `<span class="small muted" style="display:block;font-weight:600">🏠 ${placeText(e)}</span>` : ''}</b><span class="av-stack">${e.yes.concat(e.maybe).slice(0, 8).map(p => avatar(p, 'sm')).join('')}</span></button>`).join('')}
        ${top.length > 5 ? `<span class="small muted">und ${weitere(top.length - 5)}</span>` : ''}`
-    : `<button class="best-row single" data-act="goto-best" data-d="${top[0].d}"><b>Bester Abend bisher: ${fmtLong(top[0].d)}</b></button><span class="small muted">${cnt(top[0])}</span>${!S.ev.location && top[0].hosts.length ? `<span class="small" style="display:block;font-weight:700;margin-top:4px">🏠 ${placeText(top[0])}</span>` : ''}${chips(top[0])}`;
+    : `<button class="best-row single" data-act="goto-best" data-d="${top[0].d}"><b>Bester Abend: ${short(top[0].d)}</b></button><span class="small muted">${cnt(top[0])}</span>${!S.ev.location && top[0].hosts.length ? `<span class="small" style="display:block;font-weight:700;margin-top:4px">🏠 ${placeText(top[0])}</span>` : ''}${chips(top[0])}`;
   const s2 = T[1];
-  const sec = s2 ? `<span class="second-line">${s2.length > 1 ? 'Zweitbeste' : 'Zweitbester'}: ${s2.slice(0, 3).map(e => fmtDay(e.d)).join(', ')}${s2.length > 3 ? ` und ${weitere(s2.length - 3)}` : ''} (${s2.length > 1 ? 'je ' : ''}${cnt(s2[0])})</span>` : '';
+  const sec = s2 ? `<span class="second-line">${s2.length > 1 ? 'Zweitbeste' : 'Zweitbester'}: ${s2.slice(0, 3).map(e => short(e.d)).join(', ')}${s2.length > 3 ? ` und ${weitere(s2.length - 3)}` : ''} (${s2.length > 1 ? 'je ' : ''}${cnt(s2[0])})</span>` : '';
   return `<div class="best-bar">${top[0].yes.length >= CAT_MIN ? CAT('', catLevel(top[0].yes.length)) : ''}<span>${body}${sec}</span></div>`;
 }
 
