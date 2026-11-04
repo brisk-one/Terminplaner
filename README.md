@@ -22,6 +22,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 02:45: In der App überall „Veranstaltung“ statt „Runde“. Terminsuche ohne „kann nicht“ (Tippen: kann, vielleicht, leer). Vielleicht einfarbig orange statt gestreift. Fester Termin: „Nicht dabei“ rosarot. „Meine Veranstaltungen“-Knopf auch beim Erstellen.
 - [x] 04.11.2026, 02:50: Bester Tag: Rahmen liegt direkt am Tag an und pulsiert nur im Leuchten (keine Ausdehnung mehr). Schlafende Katze animiert (atmet, drei z steigen auf), z wird nicht mehr abgeschnitten.
 - [x] 04.11.2026, 02:55: Kein mengenabhängiges Leuchten mehr. Nur der beste Abend leuchtet golden (weicher Glow, pulsiert), der zweitbeste hat einen kühlen Schimmer und ✨, auch in der Leiste genannt.
+- [x] 04.11.2026, 03:00: Standardzeitraum Terminsuche 3 Wochen, Legenden im Eintragemodus entfernt, zweitbester Abend nur mit kühlem Schimmer (ohne Sternchen)
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
