@@ -83,7 +83,7 @@
 - **Scope-Risiko (6 → 10):** Plattform auf einen ersten Schnitt begrenzt (Einstiegsseite plus Treffpunkt), weitere Apps erst danach.
 - **Workflow-Reife (8 → 10):** Namenskriterien vor der ersten Runde festgelegt (Länge, Aussprache, Branche, Domain-Endungen), dann gezielt statt breit suchen.
 - **Realistische Wahrnehmung (7.5 → 10):** Wohnort und Buchstabenzahlen geprüft statt angenommen.
-- **Implementations-Tempo (5 → 10):** Parallel zur Namensfindung etwas Nutzbares bewegt, z.B. die erste echte Veranstaltung auf der aktuellen Adresse.
+- **Implementations-Tempo (5 → 10):** Parallel zur Namensfindung den Umzug technisch vorbereitet (Firebase-Hosting-Site, Deploy-Skript, Testlauf auf der Firebase-Standardadresse), sodass Domainkauf, Umzug und erste Veranstaltung am selben Tag möglich sind. Korrigiert 04.11.2026, 14:58: Die ursprüngliche Formulierung („erste Veranstaltung auf der aktuellen Adresse“) widersprach P3 und dem Grund für die Pause, Hinweis von Dennis.
 - **Deployment-/Infrastruktur-Reife (7 → 10):** Privates Repo, Firebase Hosting, eigene Domain, API-Schlüssel beschränkt, Zwei-Faktor aktiv.
 - **Cross-System-Konsistenz (7.5 → 10):** README und Hub bei jeder Strategieentscheidung gemeinsam aktualisieren.
 - **Burnout-Risiko (6 → 10):** Nach dem Namensentscheid einen echten Schnitt machen, Plattform-Planung frisch starten.
