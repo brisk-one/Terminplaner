@@ -962,7 +962,7 @@ function profileFields(p = {}) {
     <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Dein Avatar</span>
       <div class="emoji-grid" role="radiogroup">${EMOJIS.map(e => { const by = usedBy.get(e);
         return `<button type="button" class="${e === emoji ? 'on' : ''} ${by ? 'used' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}" ${by ? `disabled title="schon vergeben an ${esc(by)}" aria-label="${e} schon vergeben an ${esc(by)}"` : ''}>${e}</button>`; }).join('')}</div>
-      ${usedBy.size ? '<p class="hint">Blasse Avatare sind schon vergeben.</p>' : ''}</div>
+      ${usedBy.size ? '<p class="hint">Ausgeblendete Avatare sind schon vergeben.</p>' : ''}</div>
     <p class="err" id="pErr" role="alert"></p>`;
 }
 function readProfile(root) {
