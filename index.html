@@ -84,6 +84,20 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;min-height:38px}
 .chip.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .switch[hidden]{display:none}
+.evform[data-type=find] .only-fixed,.evform[data-type=fixed] .only-find{display:none!important}
+.typesel{display:grid;grid-template-columns:1fr 1fr;width:100%}
+.rsvp3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 10px}
+.rsvp3 button{border:2px solid var(--line);background:var(--surface);border-radius:var(--r-md);padding:10px 4px;font-weight:800;font-size:14px;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:74px;transition:transform .12s}
+.rsvp3 button:active{transform:scale(.95)}
+.rsvp3 button b{font-size:24px;line-height:1}
+.rsvp3 button.on.yes{background:var(--moss);border-color:var(--moss);color:#fff}
+.rsvp3 button.on.maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);border-color:var(--amber)}
+.rsvp3 button.on.no{background:var(--surface2);border-color:var(--faint)}
+.rgroup{margin-top:14px}
+.rgroup h4{margin:0 0 8px;font-size:15px;font-weight:800}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border-radius:999px;padding:3px 12px 3px 3px;font-weight:700;font-size:14px;box-shadow:inset 0 0 0 1px var(--line)}
+.pchip .note{font-weight:500;color:var(--muted);font-style:italic}
 .switch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--surface2);cursor:pointer}
 .switch input{appearance:none;width:46px;height:28px;border-radius:999px;background:var(--faint);position:relative;flex:none;transition:background .2s;margin:0}
 .switch input::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
@@ -160,7 +174,13 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
 .day.sel{outline:3px solid var(--ink);outline-offset:2px}
-.day .dots{display:flex;gap:2px;height:6px;margin-top:3px}
+.day .mini{display:flex;align-items:center;height:16px;margin-top:2px}
+.day .mini i{font-style:normal;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font-size:10px;line-height:1;background:color-mix(in srgb,var(--c) 25%,var(--surface));box-shadow:0 0 0 1.5px var(--c);margin-left:-4px}
+.day .mini i:first-child{margin-left:0}
+.day .mini i.m{opacity:.5}
+.day .mini em{font-style:normal;font-size:10px;font-weight:800;margin-left:2px;color:var(--muted)}
+.day.s-yes .mini em{color:#fff}
+.day.s-yes .mini i{box-shadow:0 0 0 1.5px #fff}
 .day.s-yes .dots b{box-shadow:0 0 0 1.4px #fff}
 .day.s-yes .dots b.m{box-shadow:inset 0 0 0 1.6px #fff}
 .day .dots b{width:7px;height:7px;border-radius:50%;background:var(--c)}
@@ -283,13 +303,17 @@ const CYCLE = [undefined, 'yes', 'maybe', 'no'];
 const CAT = (cls='cat') => `<svg class="${cls}" viewBox="0 0 44 32" aria-hidden="true"><text class="z" x="33" y="7">z</text><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`;
 const CUP = `<svg class="cup" viewBox="0 0 26 26" aria-hidden="true"><path class="steam" d="M10 7c-1.5-1.5 1.5-2.5 0-4"/><path class="steam" d="M15 7c-1.5-1.5 1.5-2.5 0-4"/><path d="M5 10h15v6a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M20 12h1.5a2.5 2.5 0 0 1 0 5H20" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>`;
 
-function garland(n) {
-  const total = Math.min(18, Math.max(10, n + 4)), W = 360, H = 46;
-  let s = `<svg class="garland" viewBox="0 0 ${W} ${H}" aria-label="${n} ${n===1?'Person':'Personen'} dabei" role="img"><path class="wire" d="M-4 4 Q ${W/2} 40 ${W+4} 4"/>`;
-  for (let i = 0; i < total; i++) {
-    const t = (i + .5) / total, x = t * W, y = (1-t)*(1-t)*4 + 2*(1-t)*t*40 + t*t*4;
-    const lit = n > 0 && Math.floor((i+1)*n/total) > Math.floor(i*n/total);
-    s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><rect class="cap" x="-2.2" y="-1" width="4.4" height="4" rx="1"/><ellipse class="bulb ${lit?'on c'+(i%5):''}" style="animation-delay:${(i*0.37%3).toFixed(2)}s" cx="0" cy="8" rx="3.6" ry="5.4"/></g>`;
+function garland(people) {
+  const n = people.length, total = Math.max(10, n + 2), perRow = 16;
+  const rows = Math.ceil(total / perRow), per = Math.ceil(total / rows), W = 360, rowH = 30, sag = 18;
+  let s = `<svg class="garland" viewBox="0 0 ${W} ${18 + rows * rowH}" role="img" aria-label="${n} ${n === 1 ? 'Person hat' : 'Personen haben'} abgestimmt">`, idx = 0;
+  for (let r = 0; r < rows; r++) {
+    const y0 = 4 + r * rowH, yc = y0 + sag * 2;
+    s += `<path class="wire" d="M-4 ${y0} Q ${W/2} ${yc} ${W+4} ${y0}"/>`;
+    for (let i = 0; i < per && idx < total; i++, idx++) {
+      const tt = (i + .5) / per, x = tt * W, y = (1-tt)*(1-tt)*y0 + 2*(1-tt)*tt*yc + tt*tt*y0, p = people[idx];
+      s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">${p ? `<title>${esc(p.name)}</title>` : ''}<rect class="cap" x="-2.2" y="-1" width="4.4" height="4" rx="1"/><ellipse class="bulb ${p ? 'on' : ''}" style="${p ? `fill:${esc(p.color || COLORS[0])};animation-delay:${(idx*0.37%3).toFixed(2)}s` : ''}" cx="0" cy="8" rx="3.6" ry="5.4"/></g>`;
+    }
   }
   return s + '</svg>';
 }
@@ -464,23 +488,34 @@ function timeOptions(from, to, sel, extra = '') {
 function eventForm(ev) {
   const t = todayStr(), e = ev || {};
   const start = e.start ?? 1170, end = e.end === undefined ? 1380 : e.end;
-  const hide = e.hideDow || [];
-  return `
+  const hide = e.hideDow || [], type = e.type || 'find';
+  return `<div class="evform stack" data-type="${type}">
+  <input type="hidden" name="type" value="${type}">
+  ${ev ? '' : `<div class="seg typesel" role="group" aria-label="Art der Runde">
+    <button type="button" class="on" data-act="type" data-t="find">🗓️ Termin finden</button>
+    <button type="button" data-act="type" data-t="fixed">🎟️ Fester Termin</button>
+  </div>
+  <p class="hint only-find" style="margin-top:-4px">Alle tragen ein, wann sie können. Der beste Abend wird ermittelt.</p>
+  <p class="hint only-fixed" style="margin-top:-4px">Datum steht schon, z.B. Clubabend. Alle sagen zu oder ab.</p>`}
   <label class="f"><span>Wie heißt die Runde?</span><input class="in" name="title" maxlength="80" required placeholder="Raclette-Abend, Spieleabend, Filmnacht" value="${esc(e.title)}"></label>
   <label class="f"><span>Beschreibung <em>optional</em></span><textarea class="in" name="desc" maxlength="500" placeholder="Was habt ihr vor?">${esc(e.desc)}</textarea></label>
-  <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Club, Bar, Adresse" value="${esc(e.location)}"><p class="hint">Leer lassen, wenn ihr euch bei jemandem zuhause trefft.</p></label>
-  <label class="switch" id="hostWrap" ${e.location ? 'hidden' : ''}><input type="checkbox" name="allowHosts" ${e.allowHosts === false ? '' : 'checked'}><span class="grow"><b>Freunde dürfen Gastgeber sein</b><br><span class="small muted">Jeder kann pro Tag seine Wohnung anbieten.</span></span></label>
+  <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Club, Bar, Adresse" value="${esc(e.location)}"><p class="hint only-find">Leer lassen, wenn ihr euch bei jemandem zuhause trefft.</p></label>
+  <label class="f only-fixed"><span>Datum</span><input class="in" type="date" name="date" value="${e.date || ''}" ${ev ? '' : `min="${t}"`}></label>
+  <label class="switch only-find" id="hostWrap" ${e.location ? 'hidden' : ''}><input type="checkbox" name="allowHosts" ${e.allowHosts === false ? '' : 'checked'}><span class="grow"><b>Freunde dürfen Gastgeber sein</b><br><span class="small muted">Jeder kann pro Tag seine Wohnung anbieten.</span></span></label>
   <div><div class="two">
     <label class="f"><span>Beginn</span><select class="in" name="start">${timeOptions(600, 1410, start)}</select></label>
     <label class="f"><span>Ende</span><select class="in" name="end"><option value="" ${end === null ? 'selected' : ''}>Open End 🌙</option>${timeOptions(630, 1680, end)}</select></label>
-  </div><p class="hint">Ungefähr reicht. Jeder kann pro Tag trotzdem eigene Zeiten angeben.</p></div>
+  </div><p class="hint only-find">Ungefähr reicht. Jeder kann pro Tag trotzdem eigene Zeiten angeben.</p></div>
+  <div class="only-find stack">
   <div class="two">
     <label class="f"><span>Zeitraum ab</span><input class="in" type="date" name="rangeStart" value="${e.rangeStart || t}" ${ev ? '' : `min="${t}"`}></label>
     <label class="f"><span>bis</span><input class="in" type="date" name="rangeEnd" value="${e.rangeEnd || ymd(addDays(new Date(), 42))}"></label>
   </div>
   <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Welche Wochentage kommen infrage?</span>
     <div class="chips" role="group">${DOW.map((d, i) => `<button type="button" class="chip ${hide.includes(i) ? '' : 'on'}" data-act="dow" data-i="${i}" aria-pressed="${!hide.includes(i)}">${d}</button>`).join('')}</div></div>
-  <label class="f"><span>Abstimmen bis <em>optional</em></span><input class="in" type="date" name="deadline" value="${e.deadline || ''}"><p class="hint">Danach sind keine Änderungen mehr möglich.</p></label>`;
+  </div>
+  <label class="f"><span>Antworten bis <em>optional</em></span><input class="in" type="date" name="deadline" value="${e.deadline || ''}"><p class="hint">Danach sind keine Änderungen mehr möglich.</p></label>
+  </div>`;
 }
 
 function readEventForm(root) {
@@ -489,12 +524,17 @@ function readEventForm(root) {
   if (!title) return {err: 'Gib der Runde einen Namen.'};
   const start = +g('start').value, endV = g('end').value, end = endV === '' ? null : +endV;
   if (end !== null && end <= start) return {err: 'Das Ende muss nach dem Beginn liegen.'};
+  if (g('type').value === 'fixed') {
+    const date = g('date').value;
+    if (!date) return {err: 'Wähle das Datum der Veranstaltung.'};
+    return {data: {type: 'fixed', title, desc: g('desc').value.trim(), location: g('location').value.trim(), allowHosts: false, start, end, date, deadline: g('deadline').value || null}};
+  }
   const rs = g('rangeStart').value, re = g('rangeEnd').value;
   if (!rs || !re || re < rs) return {err: 'Der Zeitraum ist ungültig: Das Enddatum liegt vor dem Startdatum.'};
   if ((parseYmd(re) - parseYmd(rs)) / 864e5 > 120) return {err: 'Der Zeitraum darf höchstens 4 Monate lang sein.'};
   const hideDow = [...root.querySelectorAll('[data-act=dow]')].filter(b => !b.classList.contains('on')).map(b => +b.dataset.i);
   if (hideDow.length === 7) return {err: 'Wähle mindestens einen Wochentag.'};
-  return {data: {title, desc: g('desc').value.trim(), location: g('location').value.trim(), allowHosts: g('allowHosts').checked,
+  return {data: {type: 'find', title, desc: g('desc').value.trim(), location: g('location').value.trim(), allowHosts: g('allowHosts').checked,
                  start, end, rangeStart: rs, rangeEnd: re, hideDow, deadline: g('deadline').value || null}};
 }
 
@@ -554,7 +594,7 @@ function renderCreated(eid) {
   const key = ls.get('tp:key:'+eid), title = ls.get('tp:recent', []).find(r => r.eid === eid)?.title || 'Unsere Runde';
   const url = evLink(eid);
   app.innerHTML = `<div class="wrap stack">${topbar()}
-    <div class="card stack" style="text-align:center">${garland(6)}<h1>Die Runde steht bereit</h1><p class="muted">Schick diesen Link an alle, die mitmachen sollen. Nur wer ihn hat, kann die Runde sehen.</p></div>
+    <div class="card stack" style="text-align:center">${garland(COLORS.slice(0, 6).map(c => ({name: '', color: c})))}<h1>Die Runde steht bereit</h1><p class="muted">Schick diesen Link an alle, die mitmachen sollen. Nur wer ihn hat, kann die Runde sehen.</p></div>
     <div class="card stack"><h3>Link für deine Freunde</h3><div class="linkbox"><span class="grow">${esc(url)}</span></div>${shareButtons(url, `Wann hast du Zeit für „${title}“? Trag dich hier ein:`)}</div>
     ${key ? `<div class="card stack"><h3>Dein Organisator-Link</h3><p class="small muted">Nur für dich. Damit kannst du die Runde auch auf einem anderen Gerät bearbeiten und den Termin festlegen. Gut aufheben, nicht weitergeben.</p><div class="linkbox"><span class="grow">${esc(adminLink(eid, key))}</span></div><button class="btn sm" data-act="copy" data-url="${esc(adminLink(eid, key))}">📋 Organisator-Link kopieren</button></div>` : ''}
     <a class="btn primary block" href="#/e/${eid}">Zur Runde und eigene Tage eintragen</a>
@@ -599,7 +639,14 @@ function scheduleRender() {
 }
 document.addEventListener('focusout', () => setTimeout(() => { if (S.pending) { S.pending = false; scheduleRender(); } }, 50));
 
-const hostsOn = (ev = S.ev) => !ev.location && ev.allowHosts !== false;
+const isFixed = (ev = S.ev) => ev.type === 'fixed';
+const rsvpTarget = (ev = S.ev) => isFixed(ev) ? ev.date : ev.final?.date || null;
+const rsvpOf = p => { const t = rsvpTarget(); return t && p.rsvp && p.rsvp.d === t ? p.rsvp : null; };
+const rsvpLocked = () => { const t = rsvpTarget(); return !t || t < todayStr() || (isFixed() && !!S.ev.deadline && todayStr() > S.ev.deadline); };
+const voters = () => S.parts.filter(p => rsvpOf(p) || (!isFixed() && Object.keys(p.days || {}).length)).sort((a, b) => (a.joinedAt || 0) - (b.joinedAt || 0));
+const finalInfo = () => isFixed() ? {date: S.ev.date, start: S.ev.start, end: S.ev.end ?? null, place: S.ev.location || ''} : S.ev.final;
+const tabsFor = ev => isFixed(ev) ? [['rsvp','🎟️','Zusagen'],['bring','🧺','Mitbringen']] : [['cal','📅','Meine Tage'],['sum','✨','Auswertung'],['bring','🧺','Mitbringen']];
+const hostsOn = (ev = S.ev) => !isFixed(ev) && !ev.location && ev.allowHosts !== false;
 const isLocked = () => !!S.ev.final || (!!S.ev.deadline && todayStr() > S.ev.deadline);
 
 function candidateDays() {
@@ -637,7 +684,9 @@ function renderEvent() {
   }
   document.title = ev.title + ' · Treffpunkt';
   if (!S.me) return renderJoin();
-  const A = analyze();
+  const tabs = tabsFor(ev);
+  if (!tabs.some(x => x[0] === S.tab)) S.tab = tabs[0][0];
+  const A = isFixed() ? {map: {}, ranked: []} : analyze();
   const sheetOpen = S.tab === 'cal' && !!S.sel, sheetAnim = sheetOpen && S.sheetShown !== S.sel;
   const oldSheet = $('#sheet>div'), keepScroll = !sheetAnim && oldSheet ? oldSheet.scrollTop : 0;
   const pageY = scrollY;
@@ -648,11 +697,11 @@ function renderEvent() {
       ${demoBanner()}
       ${ev.final ? finalCard() : ''}
       ${header(A)}
-      <div id="tab">${S.tab === 'cal' ? calView(A) : S.tab === 'sum' ? sumView(A) : bringView()}</div>
+      <div id="tab">${S.tab === 'cal' ? calView(A) : S.tab === 'sum' ? sumView(A) : S.tab === 'rsvp' ? rsvpView() : bringView()}</div>
     </div></div>
     <div class="sheet" id="sheet">${sheetOpen ? sheetHtml(A).replace('<div role="dialog"', `<div class="${sheetAnim ? 'anim' : ''}" role="dialog"`) : ''}</div>
-    <nav class="nav" aria-label="Bereiche"><div>
-      ${[['cal','📅','Meine Tage'],['sum','✨','Auswertung'],['bring','🧺','Mitbringen']].map(([k, i, t]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-tab="${k}" aria-current="${S.tab === k ? 'page' : 'false'}"><b>${i}</b>${t}</button>`).join('')}
+    <nav class="nav" aria-label="Bereiche"><div style="grid-template-columns:repeat(${tabs.length},1fr)">
+      ${tabs.map(([k, i, t]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-tab="${k}" aria-current="${S.tab === k ? 'page' : 'false'}"><b>${i}</b>${t}</button>`).join('')}
     </div></nav>`;
   if (keepScroll) { const ns = $('#sheet>div'); if (ns) ns.scrollTop = keepScroll; }
   if (Math.abs(scrollY - pageY) > 1) scrollTo(0, pageY);
@@ -662,18 +711,19 @@ function header(A) {
   const ev = S.ev, n = S.parts.length;
   const dl = ev.deadline ? Math.round((parseYmd(ev.deadline) - parseYmd(todayStr())) / 864e5) : null;
   const place = ev.location ? esc(ev.location) : (ev.allowHosts !== false ? 'Noch offen: Gastgeber gesucht' : 'Noch offen');
-  return `<header class="card ev-head">${garland(n)}
+  return `<header class="card ev-head">${garland(voters())}
     <h1>${esc(ev.title)}</h1>
     ${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
     <ul class="facts">
-      <li><span>🕯️</span><span>Abends, ${fmtRange(ev.start, ev.end)}</span></li>
-      <li><span>${ev.location ? '📍' : '🏠'}</span><span>${place}</span></li>
-      <li><span>🗓️</span><span>Zwischen ${fmtDay(ev.rangeStart, {day:'numeric', month:'short'})} und ${fmtDay(ev.rangeEnd, {day:'numeric', month:'short'})}</span></li>
-      ${dl != null && !ev.final ? `<li><span>⏳</span><span>${dl > 1 ? `Noch ${dl} Tage abstimmen` : dl === 1 ? 'Nur noch bis morgen abstimmen' : dl === 0 ? 'Heute ist der letzte Abstimmungstag' : 'Abstimmung beendet'}</span></li>` : ''}
+      ${isFixed() ? `<li><span>🗓️</span><span>${fmtLong(ev.date)}</span></li>` : ''}
+      <li><span>🕯️</span><span>${isFixed() ? '' : 'Abends, '}${fmtRange(ev.start, ev.end)}</span></li>
+      <li><span>${ev.location ? '📍' : '🏠'}</span><span>${isFixed() && !ev.location ? 'Ort folgt' : place}</span></li>
+      ${isFixed() ? '' : `<li><span>🗓️</span><span>Zwischen ${fmtDay(ev.rangeStart, {day:'numeric', month:'short'})} und ${fmtDay(ev.rangeEnd, {day:'numeric', month:'short'})}</span></li>`}
+      ${dl != null && !ev.final ? `<li><span>⏳</span><span>${dl > 1 ? `Noch ${dl} Tage antworten` : dl === 1 ? 'Nur noch bis morgen antworten' : dl === 0 ? 'Heute ist der letzte Antworttag' : 'Antworten geschlossen'}</span></li>` : ''}
     </ul>
     <div class="people">
-      <div class="av-stack">${S.parts.slice(0, 9).map(p => avatar(p)).join('')}</div>
-      <span class="small muted grow">${n} ${n === 1 ? 'Person' : 'Personen'} dabei</span>
+      <div class="av-stack">${S.parts.slice(0, 5).map(p => avatar(p)).join('')}${n > 5 ? `<span class="av" style="--c:var(--faint);font-size:13px;font-weight:800">+${n - 5}</span>` : ''}</div>
+      <span class="small muted grow">${n} in der Runde</span>
       <button class="me-btn" data-act="profile" aria-label="Dein Profil bearbeiten">${avatar(S.me, 'sm')}${esc(S.me.name)}</button>
     </div>
   </header>`;
@@ -693,7 +743,10 @@ function finalCard() {
       <button class="btn sm" data-act="gcal">Google Kalender</button>
       <button class="btn sm" data-act="share-final">💬 Weitersagen</button>
       ${S.admin ? `<button class="btn sm ghost" data-act="reopen">Wieder öffnen</button>` : ''}
-    </div></section>`;
+    </div>
+    <h3 style="margin-top:18px">Bist du dabei?</h3>
+    ${S.me.days?.[f.date]?.s === 'yes' && !rsvpOf(S.me) ? '<p class="small muted" style="margin-top:4px">Du hattest an dem Abend Zeit. Sag kurz verbindlich zu.</p>' : ''}
+    ${rsvpBlock()}</section>`;
 }
 
 /* ----- Calendar ----- */
@@ -708,7 +761,7 @@ function calView(A) {
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
-      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Punkte: andere können (voll) oder vielleicht (Ring). Je mehr, desto heller leuchtet der Rand.</span>` :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer noch kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
       'Tippe einen Tag an, um zu sehen, wer kann.'}</p>`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
@@ -722,10 +775,11 @@ function calView(A) {
       const oth = e ? e.yes.filter(p => p.uid !== B.uid).length + e.maybe.filter(p => p.uid !== B.uid).length * .5 : 0;
       const heat = oth ? Math.round(Math.max(.35, Math.min(1, oth / Math.max(1, n - 1))) * 90) : 0;
       const others = e ? [...e.yes.map(p => [p, 'y']), ...e.maybe.map(p => [p, 'm'])].filter(([p]) => p.uid !== B.uid) : [];
-      const dots = others.slice(0, 6).map(([p, k]) => `<b class="${k}" style="--c:${esc(p.color)}"></b>`).join('');
+      const vis = others.length > 3 ? 2 : 3;
+      const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(p.color)}">${esc(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
       html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%;${heat ? '--bw:2.5px' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
-        <span class="num">${d}</span><span class="dots">${dots}</span>
+        <span class="num">${d}</span><span class="mini">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
         ${s === best ? CAT() : ''}
@@ -839,6 +893,35 @@ function sumView(A) {
   ${missing.length ? `<p class="small muted" style="margin:12px 4px">Noch ohne Eintrag: ${missing.map(p => esc(p.name)).join(', ')}</p>` : ''}`;
 }
 
+/* ----- RSVP ----- */
+const RSVP = {yes: {i: '🙌', t: 'Bin dabei'}, maybe: {i: '🤔', t: 'Vielleicht'}, no: {i: '🙅', t: 'Nicht dabei'}};
+function rsvpBlock() {
+  const mine = rsvpOf(S.me), locked = rsvpLocked();
+  const grp = s => S.parts.filter(p => rsvpOf(p)?.s === s);
+  const open = S.parts.filter(p => !rsvpOf(p));
+  const chip = p => { const r = rsvpOf(p); return `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}${p.uid === B.uid ? ' (du)' : ''}${r?.note ? ` <span class="note">„${esc(r.note)}“</span>` : ''}</span>`; };
+  return `${locked ? '<p class="small muted" style="margin-top:8px">Antworten sind geschlossen.</p>' : `<div class="rsvp3" role="group" aria-label="Deine Antwort">
+    ${Object.entries(RSVP).map(([k, v]) => `<button class="${k} ${mine?.s === k ? 'on' : ''}" data-act="rsvp" data-s="${k}" aria-pressed="${mine?.s === k}"><b>${v.i}</b>${v.t}</button>`).join('')}
+  </div>
+  ${mine ? `<input class="in" data-field="rsvpnote" maxlength="80" placeholder="Kommentar, z.B. komme etwas später" value="${esc(mine.note)}">` : ''}`}
+  ${['yes', 'maybe', 'no'].map(s => { const g = grp(s); return g.length ? `<div class="rgroup"><h4>${RSVP[s].i} ${RSVP[s].t} (${g.length})</h4><div class="pchips">${g.map(chip).join('')}</div></div>` : ''; }).join('')}
+  ${open.length ? `<div class="rgroup"><h4>Noch keine Antwort (${open.length})</h4><div class="pchips">${open.length > 8 ? open.map(p => avatar(p, 'sm')).join('') : open.map(chip).join('')}</div></div>` : ''}`;
+}
+function rsvpView() {
+  const ev = S.ev, yes = S.parts.filter(p => rsvpOf(p)?.s === 'yes').length, maybe = S.parts.filter(p => rsvpOf(p)?.s === 'maybe').length;
+  return `<section class="card final" style="margin-top:16px">
+    <p class="big">${fmtLong(ev.date)}</p>
+    <p class="muted" style="font-weight:700">${yes} dabei${maybe ? `, ${maybe} vielleicht` : ''}</p>
+    <div class="actions">
+      <button class="btn sm amber" data-act="ics">📅 In meinen Kalender</button>
+      <button class="btn sm" data-act="gcal">Google Kalender</button>
+      <button class="btn sm" data-act="share-final">💬 Weitersagen</button>
+    </div>
+    <h3 style="margin-top:18px">Bist du dabei?</h3>
+    ${rsvpBlock()}
+  </section>`;
+}
+
 /* ----- Bring list ----- */
 function bringView() {
   const wishes = S.ev.wishes || [];
@@ -857,7 +940,7 @@ function bringView() {
   <section class="card stack" style="margin-top:14px">
     <h2>Ich bringe mit</h2>
     ${(S.me.brings || []).length ? `<ul class="list">${S.me.brings.map((b, i) => `<li><span class="grow">${esc(b)}</span><button class="x" data-act="bring-del" data-i="${i}" aria-label="${esc(b)} entfernen">✕</button></li>`).join('')}</ul>` : ''}
-    <div class="row"><input class="in grow" id="bringIn" maxlength="60" placeholder="Brettspiel, Kuchen, Playlist"><button class="btn sm" data-act="bring-add">Hinzufügen</button></div>
+    <div class="row"><input class="in grow" id="bringIn" maxlength="60" placeholder="Brettspiel, Kuchen, Snacks"><button class="btn sm" data-act="bring-add">Hinzufügen</button></div>
   </section>
   ${others.length ? `<h2 class="section-title">Alle Mitbringsel</h2><ul class="list">${others.map(p => `<li>${avatar(p, 'sm')}<span class="grow"><b>${esc(p.name)}</b><br><span class="small">${p.brings.map(esc).join(', ')}</span></span></li>`).join('')}</ul>` : ''}`;
 }
@@ -888,13 +971,13 @@ function renderJoin() {
     <form class="card stack" id="joinForm" novalidate>
       <h2>Mach mit</h2>
       ${profileFields()}
-      <button class="btn amber block" type="submit">Weiter zu meinen Tagen</button>
+      <button class="btn amber block" type="submit">${isFixed() ? 'Weiter zur Zusage' : 'Weiter zu meinen Tagen'}</button>
     </form>
     ${S.parts.length ? `<p class="small muted" style="padding:0 4px">Schon dabei: ${S.parts.map(p => `${esc(p.emoji)} ${esc(p.name)}`).join(', ')}</p>` : ''}
   </div>`;
   function header0() {
-    return `<header class="card ev-head">${garland(S.parts.length)}<h1>${esc(ev.title)}</h1>${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
-    <ul class="facts"><li><span>🕯️</span><span>Abends, ${fmtRange(ev.start, ev.end)}</span></li><li><span>${ev.location ? '📍' : '🏠'}</span><span>${ev.location ? esc(ev.location) : 'Ort noch offen'}</span></li></ul></header>`;
+    return `<header class="card ev-head">${garland(voters())}<h1>${esc(ev.title)}</h1>${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
+    <ul class="facts">${isFixed() ? `<li><span>🗓️</span><span>${fmtLong(ev.date)}</span></li>` : ''}<li><span>🕯️</span><span>${fmtRange(ev.start, ev.end)}</span></li><li><span>${ev.location ? '📍' : '🏠'}</span><span>${ev.location ? esc(ev.location) : 'Ort noch offen'}</span></li></ul></header>`;
   }
 }
 
@@ -907,7 +990,7 @@ async function submitJoin(form) {
   }
   S.me = {...p, days: {}, brings: [], claims: [], joinedAt: Date.now()};
   S.parts.push({...S.me, uid: B.uid});
-  saveMe(); S.tab = 'cal'; S.mode = 'mark';
+  saveMe(); S.tab = isFixed() ? 'rsvp' : 'cal'; S.mode = 'mark';
   renderEvent(); confetti(60);
 }
 
@@ -962,14 +1045,14 @@ function openFinalize(d) {
 
 /* ----- Calendar export ----- */
 function finalDates() {
-  const f = S.ev.final, base = parseYmd(f.date); base.setHours(0, 0, 0, 0);
+  const f = finalInfo(), base = parseYmd(f.date); base.setHours(0, 0, 0, 0);
   const s = new Date(base.getTime() + f.start * 6e4), e = new Date(base.getTime() + (f.end ?? f.start + 180) * 6e4);
   const z = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   return {s: z(s), e: z(e)};
 }
 function icsText(t) { return String(t || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/[,;]/g, m => '\\' + m); }
 function downloadIcs() {
-  const f = S.ev.final, {s, e} = finalDates();
+  const f = finalInfo(), {s, e} = finalDates();
   const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Treffpunkt//DE','BEGIN:VEVENT',`UID:${S.eid}@treffpunkt`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}`,
     `DTSTART:${s}`,`DTEND:${e}`,`SUMMARY:${icsText(S.ev.title)}`, f.place ? `LOCATION:${icsText(f.place)}` : '', `DESCRIPTION:${icsText((S.ev.desc ? S.ev.desc + '\n\n' : '') + evLink(S.eid))}`,'END:VEVENT','END:VCALENDAR'].filter(Boolean).join('\r\n');
   const a = document.createElement('a');
@@ -978,7 +1061,7 @@ function downloadIcs() {
   document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
 }
 function gcalUrl() {
-  const f = S.ev.final, {s, e} = finalDates();
+  const f = finalInfo(), {s, e} = finalDates();
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(S.ev.title)}&dates=${s}/${e}&location=${encodeURIComponent(f.place || '')}&details=${encodeURIComponent((S.ev.desc || '') + '\n' + evLink(S.eid))}`;
 }
 
@@ -1020,9 +1103,17 @@ const ACT = {
   finalize(b) { openFinalize(b.dataset.d); },
   reopen() { if (confirm('Termin wieder öffnen? Alle können dann wieder abstimmen.')) updateEv({final: null}, 'Abstimmung ist wieder offen'); },
   ics() { downloadIcs(); },
+  type(b) { const w = b.closest('.evform'); w.dataset.type = b.dataset.t; w.querySelector('[name=type]').value = b.dataset.t; b.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); },
+  rsvp(b) {
+    if (rsvpLocked()) return;
+    const s = b.dataset.s, cur = rsvpOf(S.me);
+    S.me.rsvp = cur?.s === s ? null : {s, d: rsvpTarget(), note: cur?.note || ''};
+    syncMeAndRender();
+    if (S.me.rsvp?.s === 'yes') { const el = document.querySelector('[data-act=rsvp].yes'); el && pop(el, '♥'); confetti(50); }
+  },
   gcal() { open(gcalUrl(), '_blank', 'noopener'); },
   'share-final'() {
-    const f = S.ev.final, text = `${S.ev.title}: ${fmtLong(f.date)}, ${fmtRange(f.start, f.end)}${f.place ? ', ' + f.place : ''}.`;
+    const f = finalInfo(), text = `${S.ev.title}: ${fmtLong(f.date)}, ${fmtRange(f.start, f.end)}${f.place ? ', ' + f.place : ''}.`;
     if (navigator.share) navigator.share({title: S.ev.title, text, url: evLink(S.eid)}).catch(() => {});
     else open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + evLink(S.eid))}`, '_blank', 'noopener');
   },
@@ -1063,6 +1154,7 @@ document.addEventListener('change', e => {
     const idx = S.parts.findIndex(p => p.uid === B.uid); if (idx >= 0) S.parts[idx] = {...S.me, uid: B.uid};
     saveMe();
   }
+  if (e.target.dataset?.field === 'rsvpnote' && S.me?.rsvp) { S.me.rsvp.note = e.target.value.trim().slice(0, 80); const idx = S.parts.findIndex(p => p.uid === B.uid); if (idx >= 0) S.parts[idx] = {...S.me, uid: B.uid}; saveMe(); }
   if (e.target.name === 'placeSel') { const o = e.target.form.placeOther; o.hidden = e.target.value !== '__other'; if (!o.hidden) o.focus(); }
 });
 document.addEventListener('submit', async e => {
