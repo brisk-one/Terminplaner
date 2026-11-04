@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕯️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Shantell+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,500..800,0..100&display=swap" rel="stylesheet">
 <script src="firebase-config.js"></script>
 <style>
 :root{
@@ -20,7 +20,7 @@
   --glow:rgba(242,164,58,.55);
   --shadow:0 1px 2px rgba(46,37,64,.06),0 10px 30px -18px rgba(46,37,64,.45);
   --r-lg:22px; --r-md:14px; --r-sm:10px;
-  --display:"Shantell Sans","Comic Neue","Segoe Print",system-ui,sans-serif;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   color-scheme:light;
 }
@@ -47,7 +47,7 @@ button{cursor:pointer}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
 .wrap{max-width:540px;margin:0 auto;padding:12px 16px calc(110px + env(safe-area-inset-bottom))}
 .wrap.has-sheet{padding-bottom:calc(62vh + 70px)}
-h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+h1,h2,h3{font-family:var(--display);font-variation-settings:"SOFT" 100,"WONK" 0;line-height:1.15;margin:0}
 h1{font-size:clamp(28px,8vw,36px);font-weight:800;letter-spacing:-.01em}
 h2{font-size:22px;font-weight:700}
 h3{font-size:18px;font-weight:700}
@@ -83,6 +83,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;min-height:38px}
 .chip.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.switch[hidden]{display:none}
 .switch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--surface2);cursor:pointer}
 .switch input{appearance:none;width:46px;height:28px;border-radius:999px;background:var(--faint);position:relative;flex:none;transition:background .2s;margin:0}
 .switch input::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
@@ -138,29 +139,32 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .seg button{border:0;background:transparent;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--muted);min-height:38px}
 .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin:0 2px 12px;font-weight:600}
-.legend i{font-style:normal;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:11px;margin-right:4px;vertical-align:-3px;font-weight:800}
+.legend i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;font-size:11px;margin-right:4px;vertical-align:-4px;font-weight:800}
+.sw.yes{background:var(--moss);color:#fff}.sw.maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 40%,var(--surface)) 0 4px,var(--surface) 4px 8px);box-shadow:inset 0 0 0 2px var(--amber);color:var(--amber-ink)}.sw.no{background:var(--surface2);color:var(--muted)}
 .month{margin-bottom:18px}
 .month h3{margin:0 4px 10px}
 .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .dow span{text-align:center;font-size:12px;font-weight:700;color:var(--muted);padding-bottom:4px}
-.day{--heat:0%;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:color-mix(in srgb,var(--amber) var(--heat),var(--surface));box-shadow:0 0 0 1px var(--line) inset,0 0 calc(var(--heat) * .35) var(--glow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
+.day{--heat:0%;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:var(--surface);box-shadow:inset 0 0 0 var(--bw,1.5px) color-mix(in srgb,var(--amber) calc(var(--heat) * 1.1),var(--line)),0 0 calc(var(--heat) * .5) var(--glow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
 .day:active{transform:scale(.92)}
 .day.off{background:transparent;box-shadow:none;color:var(--faint);font-weight:500;cursor:default}
 .day.off:active{transform:none}
 .day.blank{visibility:hidden}
-.day.hot{color:#3A2205}
 .day.today .num{text-decoration:underline 2px var(--amber);text-underline-offset:3px}
-.day.sel{box-shadow:0 0 0 3px var(--ink) inset,0 0 calc(var(--heat) * .35) var(--glow)}
 .day .mark{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 0 2px var(--bg)}
-.day.s-yes .mark{background:var(--moss)}
+.day.s-yes{background:var(--moss);color:#fff;box-shadow:0 0 calc(var(--heat) * .35) var(--glow)}
+.day.s-yes .mark{background:#fff;color:var(--moss)}
+.day.s-maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);box-shadow:inset 0 0 0 2px var(--amber),0 0 calc(var(--heat) * .35) var(--glow)}
 .day.s-maybe .mark{background:var(--amber);color:#3A2205}
+.day.s-no{background:var(--surface2);box-shadow:none}
+.day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
-.day.s-yes{box-shadow:0 0 0 2.5px var(--moss) inset,0 0 calc(var(--heat) * .35) var(--glow)}
-.day.s-maybe{box-shadow:0 0 0 2.5px var(--amber) inset,0 0 calc(var(--heat) * .35) var(--glow)}
-.day.s-no .num{opacity:.45}
-.day.s-yes.sel,.day.s-maybe.sel,.day.s-no.sel{outline:3px solid var(--ink);outline-offset:1px}
+.day.sel{outline:3px solid var(--ink);outline-offset:2px}
 .day .dots{display:flex;gap:2px;height:6px;margin-top:3px}
-.day .dots b{width:6px;height:6px;border-radius:50%;background:var(--c)}
+.day.s-yes .dots b{box-shadow:0 0 0 1.4px #fff}
+.day.s-yes .dots b.m{box-shadow:inset 0 0 0 1.6px #fff}
+.day .dots b{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.day .dots b.m{background:transparent;box-shadow:inset 0 0 0 1.6px var(--c)}
 .day .house{position:absolute;bottom:1px;left:3px;font-size:10px}
 .day .cat{position:absolute;bottom:-4px;right:-3px;width:26px;color:var(--ink);pointer-events:none}
 .cat .z{font-family:var(--display);font-size:9px;fill:var(--muted);animation:zz 2.4s ease-in-out infinite}
@@ -168,7 +172,8 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 
 /* Sheet */
 .sheet{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:30;display:flex;justify-content:center;pointer-events:none}
-.sheet>div{pointer-events:auto;width:min(540px,100%);margin:0 8px;max-height:58vh;overflow:auto;background:var(--surface);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);box-shadow:0 -8px 40px -10px rgba(20,10,40,.45);padding:16px;animation:up .22s ease-out;overscroll-behavior:contain}
+.sheet>div{pointer-events:auto;width:min(540px,100%);margin:0 8px;max-height:58vh;overflow:auto;background:var(--surface);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);box-shadow:0 -8px 40px -10px rgba(20,10,40,.45);padding:16px;overscroll-behavior:contain}
+.sheet>div.anim{animation:up .22s ease-out}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
 .sheet .grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:-6px auto 10px}
 .status4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
@@ -463,8 +468,8 @@ function eventForm(ev) {
   return `
   <label class="f"><span>Wie heißt die Runde?</span><input class="in" name="title" maxlength="80" required placeholder="Raclette-Abend, Spieleabend, Filmnacht" value="${esc(e.title)}"></label>
   <label class="f"><span>Beschreibung <em>optional</em></span><textarea class="in" name="desc" maxlength="500" placeholder="Was habt ihr vor?">${esc(e.desc)}</textarea></label>
-  <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Leer lassen, wenn noch offen" value="${esc(e.location)}"></label>
-  <label class="switch"><input type="checkbox" name="allowHosts" ${e.allowHosts === false ? '' : 'checked'}><span class="grow"><b>Freunde dürfen Gastgeber sein</b><br><span class="small muted">Jeder kann pro Tag seine Wohnung anbieten.</span></span></label>
+  <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Club, Bar, Adresse" value="${esc(e.location)}"><p class="hint">Leer lassen, wenn ihr euch bei jemandem zuhause trefft.</p></label>
+  <label class="switch" id="hostWrap" ${e.location ? 'hidden' : ''}><input type="checkbox" name="allowHosts" ${e.allowHosts === false ? '' : 'checked'}><span class="grow"><b>Freunde dürfen Gastgeber sein</b><br><span class="small muted">Jeder kann pro Tag seine Wohnung anbieten.</span></span></label>
   <div><div class="two">
     <label class="f"><span>Beginn</span><select class="in" name="start">${timeOptions(600, 1410, start)}</select></label>
     <label class="f"><span>Ende</span><select class="in" name="end"><option value="" ${end === null ? 'selected' : ''}>Open End 🌙</option>${timeOptions(630, 1680, end)}</select></label>
@@ -563,6 +568,7 @@ function openEvent(eid) {
   S.loaded = {ev: false, parts: false}; S.tab = ls.get('tp:tab', 'cal');
   app.innerHTML = `<div class="wrap"><div class="skeleton"></div></div>`;
   S.unsub.push(B.subscribeEvent(eid, async ev => {
+    const sig = JSON.stringify(ev); if (S.loaded.ev && sig === S.evSig) return; S.evSig = sig;
     const first = !S.loaded.ev; S.loaded.ev = true;
     const wasFinal = S.ev?.final; S.ev = ev;
     if (ev) {
@@ -574,6 +580,8 @@ function openEvent(eid) {
     scheduleRender();
   }));
   S.unsub.push(B.subscribeParticipants(eid, parts => {
+    const sig = JSON.stringify(parts.map(p => p.uid === B.uid ? p.uid : p).sort((a, b) => JSON.stringify(a) < JSON.stringify(b) ? -1 : 1));
+    if (S.loaded.parts && S.me && sig === S.partsSig) return; S.partsSig = sig;
     S.loaded.parts = true;
     const mine = parts.find(p => p.uid === B.uid);
     if (!S.me && mine) S.me = {...mine, days: {...(mine.days || {})}, brings: mine.brings || [], claims: mine.claims || []};
@@ -591,6 +599,7 @@ function scheduleRender() {
 }
 document.addEventListener('focusout', () => setTimeout(() => { if (S.pending) { S.pending = false; scheduleRender(); } }, 50));
 
+const hostsOn = (ev = S.ev) => !ev.location && ev.allowHosts !== false;
 const isLocked = () => !!S.ev.final || (!!S.ev.deadline && todayStr() > S.ev.deadline);
 
 function candidateDays() {
@@ -604,7 +613,7 @@ function analyze() {
   for (const p of S.parts) for (const [d, v] of Object.entries(p.days || {})) {
     if (!allowed.has(d) || !STATUS[v?.s]) continue;
     const e = map[d] ??= {d, yes: [], maybe: [], no: [], hosts: []};
-    e[v.s].push(p); if (v.host && v.s !== 'no' && ev.allowHosts !== false) e.hosts.push(p);
+    e[v.s].push(p); if (v.host && v.s !== 'no' && hostsOn(ev)) e.hosts.push(p);
   }
   const ranked = Object.values(map).filter(e => e.d >= t && (e.yes.length || e.maybe.length));
   for (const e of ranked) {
@@ -629,6 +638,10 @@ function renderEvent() {
   document.title = ev.title + ' · Treffpunkt';
   if (!S.me) return renderJoin();
   const A = analyze();
+  const sheetOpen = S.tab === 'cal' && !!S.sel, sheetAnim = sheetOpen && S.sheetShown !== S.sel;
+  const oldSheet = $('#sheet>div'), keepScroll = !sheetAnim && oldSheet ? oldSheet.scrollTop : 0;
+  const pageY = scrollY;
+  S.sheetShown = sheetOpen ? S.sel : null;
   app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
     ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">⚙️</button>` : ''}`)}
     <div class="stack">
@@ -637,10 +650,12 @@ function renderEvent() {
       ${header(A)}
       <div id="tab">${S.tab === 'cal' ? calView(A) : S.tab === 'sum' ? sumView(A) : bringView()}</div>
     </div></div>
-    <div class="sheet" id="sheet">${S.tab === 'cal' && S.sel ? sheetHtml(A) : ''}</div>
+    <div class="sheet" id="sheet">${sheetOpen ? sheetHtml(A).replace('<div role="dialog"', `<div class="${sheetAnim ? 'anim' : ''}" role="dialog"`) : ''}</div>
     <nav class="nav" aria-label="Bereiche"><div>
       ${[['cal','📅','Meine Tage'],['sum','✨','Auswertung'],['bring','🧺','Mitbringen']].map(([k, i, t]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-tab="${k}" aria-current="${S.tab === k ? 'page' : 'false'}"><b>${i}</b>${t}</button>`).join('')}
     </div></nav>`;
+  if (keepScroll) { const ns = $('#sheet>div'); if (ns) ns.scrollTop = keepScroll; }
+  if (Math.abs(scrollY - pageY) > 1) scrollTo(0, pageY);
 }
 
 function header(A) {
@@ -693,7 +708,7 @@ function calView(A) {
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
-      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i style="background:var(--moss);color:#fff">✓</i>kann</span><span><i style="background:var(--amber);color:#3A2205">?</i>vielleicht</span><span><i style="background:var(--faint);color:#fff">✕</i>kann nicht</span>` :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Punkte: andere können (voll) oder vielleicht (Ring). Je mehr, desto heller leuchtet der Rand.</span>` :
       'Tippe einen Tag an, um zu sehen, wer kann.'}</p>`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
@@ -704,10 +719,12 @@ function calView(A) {
       const s = `${m.getFullYear()}-${pad(m.getMonth()+1)}-${pad(d)}`;
       if (!allowed.has(s) || s < t) { html += `<span class="day off" aria-hidden="true"><span class="num">${d}</span></span>`; continue; }
       const e = A.map[s], my = S.me.days[s]?.s;
-      const heat = e ? Math.round(Math.min(1, (e.yes.length + e.maybe.length * .5) / n) * 88) : 0;
-      const dots = e ? e.yes.slice(0, 5).map(p => `<b style="--c:${esc(p.color)}"></b>`).join('') : '';
+      const oth = e ? e.yes.filter(p => p.uid !== B.uid).length + e.maybe.filter(p => p.uid !== B.uid).length * .5 : 0;
+      const heat = oth ? Math.round(Math.max(.35, Math.min(1, oth / Math.max(1, n - 1))) * 90) : 0;
+      const others = e ? [...e.yes.map(p => [p, 'y']), ...e.maybe.map(p => [p, 'm'])].filter(([p]) => p.uid !== B.uid) : [];
+      const dots = others.slice(0, 6).map(([p, k]) => `<b class="${k}" style="--c:${esc(p.color)}"></b>`).join('');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
-      html += `<button class="day ${my ? 's-' + my : ''} ${heat > 50 ? 'hot' : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%" data-act="day" data-d="${s}" aria-label="${esc(label)}">
+      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%;${heat ? '--bw:2.5px' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="dots">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
@@ -724,7 +741,7 @@ function whoList(d) {
   if (!e) return `<p class="small muted" style="margin-top:10px">Für diesen Abend hat noch niemand etwas eingetragen.</p>`;
   const row = (p, s) => { const v = p.days[d];
     const time = v.from != null || v.to != null ? `<span class="tag">${v.from != null ? 'ab ' + fmtTime(v.from) : ''}${v.from != null && v.to != null ? ' ' : ''}${v.to != null ? 'bis ' + fmtTime(v.to) : ''}</span>` : '';
-    return `<li>${avatar(p, 'sm')}<span class="grow"><b>${esc(p.name)}${p.uid === B.uid ? ' (du)' : ''}</b><br>${v.host && s !== 'no' ? '<span class="tag host">🏠 bietet Wohnung an</span>' : ''}${time}${v.note ? `<span class="note">„${esc(v.note)}“</span>` : ''}</span><span class="st" style="color:${s === 'yes' ? 'var(--moss)' : s === 'maybe' ? 'var(--amber-ink)' : 'var(--faint)'}">${STATUS[s].i}</span></li>`; };
+    return `<li>${avatar(p, 'sm')}<span class="grow"><b>${esc(p.name)}${p.uid === B.uid ? ' (du)' : ''}</b><br>${v.host && s !== 'no' && hostsOn() ? '<span class="tag host">🏠 bietet Wohnung an</span>' : ''}${time}${v.note ? `<span class="note">„${esc(v.note)}“</span>` : ''}</span><span class="st" style="color:${s === 'yes' ? 'var(--moss)' : s === 'maybe' ? 'var(--amber-ink)' : 'var(--faint)'}">${STATUS[s].i}</span></li>`; };
   return `<ul class="who">${['yes','maybe','no'].flatMap(s => e[s].map(p => row(p, s))).join('')}</ul>`;
 }
 
@@ -739,7 +756,7 @@ function sheetHtml() {
       <button class="none ${!my ? 'on' : ''}" data-act="set" data-s="" aria-pressed="${!my}"><b>·</b>Offen</button>
     </div>
     ${my === 'yes' || my === 'maybe' ? `<div class="stack">
-      ${ev.allowHosts !== false ? `<label class="switch"><input type="checkbox" data-field="host" ${v.host ? 'checked' : ''}><span class="grow"><b>🏠 Ich kann Gastgeber sein</b><br><span class="small muted">Treffen an diesem Abend bei mir</span></span></label>` : ''}
+      ${hostsOn(ev) ? `<label class="switch"><input type="checkbox" data-field="host" ${v.host ? 'checked' : ''}><span class="grow"><b>🏠 Ich kann Gastgeber sein</b><br><span class="small muted">Treffen an diesem Abend bei mir</span></span></label>` : ''}
       <div class="two">
         <label class="f"><span>Ich kann ab <em>optional</em></span><select class="in" data-field="from"><option value="">egal</option>${timeOptions(720, 1410, v.from ?? -1)}</select></label>
         <label class="f"><span>bis <em>optional</em></span><select class="in" data-field="to"><option value="">egal</option>${timeOptions(1080, 1680, v.to ?? -1)}</select></label>
@@ -817,7 +834,7 @@ function sumView(A) {
   <h2 class="section-title">Wer kann wann</h2>
   <div class="matrix-wrap"><table class="matrix">
     <thead><tr><th scope="col">Abend</th>${S.parts.map(p => `<th scope="col" title="${esc(p.name)}">${avatar(p, 'sm')}</th>`).join('')}</tr></thead>
-    <tbody>${rows.map(e => `<tr class="${e.d === b.d ? 'top' : ''}"><td>${fmtDay(e.d)}</td>${S.parts.map(p => { const s = p.days?.[e.d]?.s; return `<td class="${s === 'yes' ? 'y' : s === 'maybe' ? 'm' : 'n'}">${s ? STATUS[s].i : '·'}${p.days?.[e.d]?.host && s !== 'no' ? '🏠' : ''}</td>`; }).join('')}</tr>`).join('')}</tbody>
+    <tbody>${rows.map(e => `<tr class="${e.d === b.d ? 'top' : ''}"><td>${fmtDay(e.d)}</td>${S.parts.map(p => { const s = p.days?.[e.d]?.s; return `<td class="${s === 'yes' ? 'y' : s === 'maybe' ? 'm' : 'n'}">${s ? STATUS[s].i : '·'}${p.days?.[e.d]?.host && s !== 'no' && hostsOn() ? '🏠' : ''}</td>`; }).join('')}</tr>`).join('')}</tbody>
   </table></div>
   ${missing.length ? `<p class="small muted" style="margin:12px 4px">Noch ohne Eintrag: ${missing.map(p => esc(p.name)).join(', ')}</p>` : ''}`;
 }
@@ -1031,6 +1048,9 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.id === 'wishIn') { e.preventDefault(); ACT['wish-form-add'](); }
   if (e.key === 'Enter' && e.target.id === 'bringIn') { e.preventDefault(); ACT['bring-add'](); }
   if (e.key === 'Enter' && e.target.id === 'wishAdd') { e.preventDefault(); ACT['wish-add'](); }
+});
+document.addEventListener('input', e => {
+  if (e.target.name === 'location') { const w = e.target.form?.querySelector('#hostWrap'); if (w) w.hidden = !!e.target.value.trim(); }
 });
 document.addEventListener('change', e => {
   const f = e.target.dataset?.field;
