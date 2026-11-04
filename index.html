@@ -297,7 +297,7 @@ const fmtDay = (s, o) => new Intl.DateTimeFormat('de-DE', o || {weekday:'short',
 const fmtLong = s => fmtDay(s, {weekday:'long', day:'numeric', month:'long'});
 const ls = { get(k, d=null){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
              set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
-const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐢','🐙','🦄','🐝','🍄','🌻','🍩','🍕','☕','🎲','🌙','🔥','🧁','🪴','🐯','🦁','🐮','🐷','🐵','🐧','🐳','🦋','🌈','⭐','🍓','🥨','🎸','🚀','🌵','🍀'];
+const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐭','🐿️','🐹','🦝','🦦','🦥','🐢','🐙','🐧','🐳','🐬','🦭','🐞','🦋','🐝','🐌','🐯','🦁','🐮','🐷','🐵','🐑','🦙','🐥','🦆','🦩','🐺','🦫','🐘','🦒','🦄','🐲','🦕','🦖','👻','🧚','🧜','🧞'];
 const COLORS = ['#E07A3E','#5E8A5C','#C95B78','#5B7FB8','#D9A22E','#8E6CB0','#3E9C9C','#B5794A'];
 const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLORS[i % COLORS.length] : (p?.color || COLORS[0]); };
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
