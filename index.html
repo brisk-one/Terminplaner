@@ -35,6 +35,8 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0}
+html{scroll-padding-top:calc(76px + env(safe-area-inset-top));scroll-padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+html:has(.wrap.has-sheet){scroll-padding-bottom:calc(52vh + 80px)}
 body{
   background:var(--bg);
   background-image:radial-gradient(120% 60% at 50% -10%,var(--bg2),transparent 70%);
@@ -122,7 +124,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .facts{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:6px}
 .facts li{display:flex;gap:10px;align-items:flex-start;font-weight:600}
 .facts li span:first-child{width:22px;text-align:center;flex:none}
-.topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.topbar{display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:35;margin:-12px -16px 12px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
 .back-pill{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:inherit;font-weight:800;font-size:14px;background:var(--surface);border-radius:999px;padding:9px 14px;box-shadow:inset 0 0 0 1.5px var(--line)}
 .brand{font-family:var(--display);font-weight:800;font-size:18px;display:flex;gap:6px;align-items:center;text-decoration:none;color:inherit}
 .cup{width:26px;height:26px;color:var(--muted)}
@@ -188,6 +190,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .best-bar .second-line{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
 .best-bar .second-line i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--sky) 70%,transparent),0 0 6px 1px color-mix(in srgb,var(--sky) 50%,transparent)}
 .day.sel{outline:3px solid var(--ink);outline-offset:2px;animation:none}
+.quick-chip{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:var(--r-md);padding:10px 12px;margin:0 0 14px;box-shadow:inset 0 0 0 1.5px var(--line)}
 .best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:0 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
 .best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
 .best-bar b{font-size:15px;display:block}
@@ -217,7 +220,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 
 /* Sheet */
 .sheet{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:30;display:flex;justify-content:center;pointer-events:none}
-.sheet>div{pointer-events:auto;width:min(540px,100%);margin:0 8px;max-height:58vh;overflow:auto;background:var(--surface);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);box-shadow:0 -8px 40px -10px rgba(20,10,40,.45);padding:16px;overscroll-behavior:contain}
+.sheet>div{pointer-events:auto;width:min(540px,100%);margin:0 8px;max-height:52vh;overflow:auto;background:var(--surface);border-radius:var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);box-shadow:0 -8px 40px -10px rgba(20,10,40,.45);padding:16px;overscroll-behavior:contain}
 .sheet>div.anim{animation:up .22s ease-out}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
 .sheet .grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:-6px auto 10px}
@@ -760,6 +763,8 @@ const voters = () => S.parts.filter(p => rsvpOf(p) || (!isFixed() && Object.keys
 const finalInfo = () => isFixed() ? {date: S.ev.date, start: S.ev.start, end: S.ev.end ?? null, place: S.ev.location || ''} : S.ev.final;
 const tabsFor = ev => isFixed(ev) ? [['rsvp','🎟️','Zusagen'],['bring','🧺','Mitbringen']] : [['cal','📅','Meine Tage'],['sum','✨','Auswertung'],['bring','🧺','Mitbringen']];
 const hostsOn = (ev = S.ev) => !isFixed(ev) && !ev.location && ev.allowHosts !== false;
+const quickDef = () => ls.get('tp:defaults:' + S.eid, null);
+const quickDesc = q => [hostsOn() && q.host ? '🏠 Gastgeber' : '', q.from != null ? 'ab ' + fmtTime(q.from) : '', q.to != null ? 'bis ' + fmtTime(q.to) : '', q.note ? `„${esc(q.note)}“` : ''].filter(Boolean).join(', ') || 'ohne Zusatzangaben';
 const isLocked = () => !!S.ev.final || (!!S.ev.deadline && todayStr() > S.ev.deadline);
 
 function candidateDays() {
@@ -873,6 +878,7 @@ function calView(A) {
         <button class="${S.mode === 'mark' && !locked ? 'on' : ''}" data-act="mode" data-m="mark" ${locked ? 'disabled' : ''}>✏️ Eintragen</button>
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
+    ${!locked && S.mode === 'mark' && quickDef() ? `<div class="quick-chip"><span class="grow"><b>⚡ Schnell-Eintragen an</b><br><span class="small muted">${quickDesc(quickDef())}. Einzelne Tage ändern: über 👀 Ansehen.</span></span><button class="btn sm ghost" data-act="quick-off">Aus</button></div>` : ''}
     ${locked ? `<p class="legend">${ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.'}</p>` : S.mode === 'view' ? '<p class="legend">Tippe einen Tag an, um zu sehen, wer kann.</p>' : ''}
     ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>${A.ranked[1] ? `<span class="second-line">Zweitbester: ${fmtLong(A.ranked[1].d)} (${A.ranked[1].yes.length} ${A.ranked[1].yes.length === 1 ? 'kann' : 'können'})</span>` : ''}</span></button>`; })() : ''}`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
@@ -928,6 +934,8 @@ function sheetHtml() {
         <label class="f"><span>bis <em>optional</em></span><select class="in" data-field="to"><option value="">egal</option>${timeOptions(1080, 1680, v.to ?? -1)}</select></label>
       </div>
       <label class="f"><span>Notiz <em>optional</em></span><input class="in" data-field="note" maxlength="80" placeholder="z.B. komme etwas später" value="${esc(v.note)}"></label>
+      ${S.mode === 'mark' ? `<div><button class="btn sm ghost block" data-act="save-default">⚡ Als Standard für weitere Tage speichern</button>
+      <p class="hint">Danach trägt ein Tipp im Kalender direkt mit diesen Einstellungen ein, ohne dass sich dieses Fenster öffnet.</p></div>` : ''}
     </div>` : ''}`}
     <h3 style="margin-top:16px;font-size:16px">Wer an diesem Abend kann</h3>
     ${whoList(d)}
@@ -1206,9 +1214,17 @@ const ACT = {
   day(b) {
     const d = b.dataset.d;
     if (S.mode === 'view' || isLocked()) { S.sel = S.sel === d ? null : d; renderEvent(); return; }
-    const cur = S.me.days[d]?.s, next = CYCLE[(CYCLE.indexOf(cur) + 1) % CYCLE.length];
-    S.sel = d; setDay(d, next, true);
+    const cur = S.me.days[d]?.s, next = CYCLE[(CYCLE.indexOf(cur) + 1) % CYCLE.length], q = quickDef();
+    if (next && !cur && q) S.me.days[d] = {s: next, host: hostsOn() && q.host ? true : undefined, from: q.from ?? undefined, to: q.to ?? undefined, note: q.note || undefined};
+    S.sel = next && !q ? d : null;
+    setDay(d, next, true);
   },
+  'save-default'() {
+    const v = S.me.days[S.sel] || {};
+    ls.set('tp:defaults:' + S.eid, {host: !!v.host, from: v.from ?? null, to: v.to ?? null, note: v.note || ''});
+    S.sel = null; renderEvent(); toast('Standard gespeichert. Ein Tipp trägt jetzt direkt so ein.');
+  },
+  'quick-off'() { ls.set('tp:defaults:' + S.eid, null); renderEvent(); toast('Schnell-Eintragen ist aus'); },
   set(b) { setDay(S.sel, b.dataset.s || undefined, b.dataset.s === 'yes'); },
   'sheet-close'() { S.sel = null; renderEvent(); },
   profile() { openProfile(); },

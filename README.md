@@ -23,6 +23,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 02:50: Bester Tag: Rahmen liegt direkt am Tag an und pulsiert nur im Leuchten (keine Ausdehnung mehr). Schlafende Katze animiert (atmet, drei z steigen auf), z wird nicht mehr abgeschnitten.
 - [x] 04.11.2026, 02:55: Kein mengenabhängiges Leuchten mehr. Nur der beste Abend leuchtet golden (weicher Glow, pulsiert), der zweitbeste hat einen kühlen Schimmer und ✨, auch in der Leiste genannt.
 - [x] 04.11.2026, 03:00: Standardzeitraum Terminsuche 3 Wochen, Legenden im Eintragemodus entfernt, zweitbester Abend nur mit kühlem Schimmer (ohne Sternchen)
+- [x] 04.11.2026, 03:10: Kein Tagesfenster beim Zurückstellen auf offen. Schnell-Eintragen: Einstellungen eines Tages (Gastgeber, Uhrzeiten, Notiz) als Standard pro Veranstaltung speicherbar, danach trägt ein Tipp direkt ein (abschaltbar, gespeichert pro Gerät). Kopfzeile bleibt beim Scrollen sichtbar.
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
