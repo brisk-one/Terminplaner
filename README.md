@@ -2,7 +2,20 @@
 
 Terminplaner für den Freundeskreis: Runde anlegen, Link verschicken, jeder tippt seine freien Abende an, der beste Abend wird automatisch ermittelt.
 
-Stand: 04.11.2026
+Stand: 04.11.2026, 01:45
+
+Live: https://brisk-one.github.io/Terminplaner/
+
+## Status
+
+- [x] App gebaut und auf Handy-Breite getestet (Testmodus, drei Teilnehmer)
+- [x] GitHub Pages aktiv (Branch `main`, Root)
+- [x] Firebase-Projekt `terminplaner-809c6`: anonyme Anmeldung an (ohne automatische Bereinigung), Firestore `europe-west3`, Regeln veröffentlicht, Domain `brisk-one.github.io` freigegeben
+- [x] Live-Test 04.11.2026: Runde anlegen, beitreten, Tage speichern, Reload, Live-Sync mit zweiter Identität
+- [x] Regeltest live: ohne Anmeldung alles 403; fremde Identität darf Runde lesen und eigenen Eintrag schreiben, aber nicht Runden auflisten, Schlüssel lesen, fremde Einträge ändern, Runde bearbeiten oder Organisator werden
+- [ ] Erste echte Runde mit Freunden
+
+Hinweis: In der Datenbank liegt eine Test-Runde „Testlauf (Claude)“ mit zwei Testteilnehmern. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
 
 ## Dateien
 
