@@ -136,7 +136,9 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .av-stack{display:flex}
 .av-stack .av{margin-left:-8px;border:2px solid var(--surface)}
 .av-stack .av:first-child{margin-left:0}
-.me-btn{border:0;background:var(--surface2);border-radius:999px;padding:4px 12px 4px 4px;display:flex;align-items:center;gap:8px;font-weight:700}
+.me-btn{border:0;background:var(--surface2);border-radius:999px;padding:4px 10px 4px 4px;display:flex;align-items:center;gap:8px;font-weight:700;box-shadow:inset 0 0 0 1.5px var(--line)}
+.me-btn .gear{font-size:15px;margin-left:2px;opacity:.85}
+.emoji-grid button.used{opacity:.32;filter:grayscale(.85);cursor:not-allowed}
 
 /* Banner */
 .banner{border-radius:var(--r-md);padding:12px 14px;font-weight:600;font-size:14px;background:var(--surface2)}
@@ -186,7 +188,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day .dots b{width:7px;height:7px;border-radius:50%;background:var(--c)}
 .day .dots b.m{background:transparent;box-shadow:inset 0 0 0 1.6px var(--c)}
 .day .house{position:absolute;bottom:1px;left:3px;font-size:10px}
-.day .cat{position:absolute;bottom:-4px;right:-3px;width:26px;color:var(--ink);pointer-events:none}
+.day .cat{position:absolute;top:-9px;left:-6px;width:24px;color:var(--ink);pointer-events:none}
 .cat .z{font-family:var(--display);font-size:9px;fill:var(--muted);animation:zz 2.4s ease-in-out infinite}
 @keyframes zz{0%{opacity:0;transform:translate(0,2px)}50%{opacity:1}100%{opacity:0;transform:translate(3px,-5px)}}
 
@@ -295,8 +297,9 @@ const fmtDay = (s, o) => new Intl.DateTimeFormat('de-DE', o || {weekday:'short',
 const fmtLong = s => fmtDay(s, {weekday:'long', day:'numeric', month:'long'});
 const ls = { get(k, d=null){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
              set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
-const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐢','🐙','🦄','🐝','🍄','🌻','🍩','🍕','☕','🎲','🌙','🔥','🧁','🪴'];
+const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐢','🐙','🦄','🐝','🍄','🌻','🍩','🍕','☕','🎲','🌙','🔥','🧁','🪴','🐯','🦁','🐮','🐷','🐵','🐧','🐳','🦋','🌈','⭐','🍓','🥨','🎸','🚀','🌵','🍀'];
 const COLORS = ['#E07A3E','#5E8A5C','#C95B78','#5B7FB8','#D9A22E','#8E6CB0','#3E9C9C','#B5794A'];
+const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLORS[i % COLORS.length] : (p?.color || COLORS[0]); };
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
 const CYCLE = [undefined, 'yes', 'maybe', 'no'];
 
@@ -312,7 +315,7 @@ function garland(people) {
     s += `<path class="wire" d="M-4 ${y0} Q ${W/2} ${yc} ${W+4} ${y0}"/>`;
     for (let i = 0; i < per && idx < total; i++, idx++) {
       const tt = (i + .5) / per, x = tt * W, y = (1-tt)*(1-tt)*y0 + 2*(1-tt)*tt*yc + tt*tt*y0, p = people[idx];
-      s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">${p ? `<title>${esc(p.name)}</title>` : ''}<rect class="cap" x="-2.2" y="-1" width="4.4" height="4" rx="1"/><ellipse class="bulb ${p ? 'on' : ''}" style="${p ? `fill:${esc(p.color || COLORS[0])};animation-delay:${(idx*0.37%3).toFixed(2)}s` : ''}" cx="0" cy="8" rx="3.6" ry="5.4"/></g>`;
+      s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">${p ? `<title>${esc(p.name)}</title>` : ''}<rect class="cap" x="-2.2" y="-1" width="4.4" height="4" rx="1"/><ellipse class="bulb ${p ? 'on' : ''}" style="${p ? `fill:${esc(colorOf(p))};animation-delay:${(idx*0.37%3).toFixed(2)}s` : ''}" cx="0" cy="8" rx="3.6" ry="5.4"/></g>`;
     }
   }
   return s + '</svg>';
@@ -434,7 +437,7 @@ function setSaving(state) {
 }
 
 /* ================= Routing ================= */
-function cleanup() { S.unsub.forEach(f => { try { f(); } catch {} }); S.unsub = []; closeModal(); }
+function cleanup() { doSave(); S.unsub.forEach(f => { try { f(); } catch {} }); S.unsub = []; closeModal(); }
 const evLink = eid => `${location.origin}${location.pathname}#/e/${eid}`;
 const adminLink = (eid, key) => `${location.origin}${location.pathname}#/e/${eid}/admin/${key}`;
 
@@ -674,7 +677,7 @@ function analyze() {
   return {map, ranked};
 }
 
-function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(p.color || COLORS[0])}" title="${esc(p.name)}">${esc(p.emoji || '🙂')}</span>`; }
+function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${esc(p.emoji || '🙂')}</span>`; }
 
 function renderEvent() {
   const ev = S.ev;
@@ -692,7 +695,7 @@ function renderEvent() {
   const pageY = scrollY;
   S.sheetShown = sheetOpen ? S.sel : null;
   app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
-    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">⚙️</button>` : ''}`)}
+    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">📝</button>` : ''}`)}
     <div class="stack">
       ${demoBanner()}
       ${ev.final ? finalCard() : ''}
@@ -724,7 +727,7 @@ function header(A) {
     <div class="people">
       <div class="av-stack">${S.parts.slice(0, 5).map(p => avatar(p)).join('')}${n > 5 ? `<span class="av" style="--c:var(--faint);font-size:13px;font-weight:800">+${n - 5}</span>` : ''}</div>
       <span class="small muted grow">${n} in der Runde</span>
-      <button class="me-btn" data-act="profile" aria-label="Dein Profil bearbeiten">${avatar(S.me, 'sm')}${esc(S.me.name)}</button>
+      <button class="me-btn" data-act="profile" aria-label="Deinen Namen und Avatar ändern" title="Name und Avatar ändern">${avatar(S.me, 'sm')}${esc(S.me.name)}<span class="gear" aria-hidden="true">⚙️</span></button>
     </div>
   </header>`;
 }
@@ -761,7 +764,7 @@ function calView(A) {
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
-      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer noch kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
       'Tippe einen Tag an, um zu sehen, wer kann.'}</p>`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
@@ -774,9 +777,9 @@ function calView(A) {
       const e = A.map[s], my = S.me.days[s]?.s;
       const oth = e ? e.yes.filter(p => p.uid !== B.uid).length + e.maybe.filter(p => p.uid !== B.uid).length * .5 : 0;
       const heat = oth ? Math.round(Math.max(.35, Math.min(1, oth / Math.max(1, n - 1))) * 90) : 0;
-      const others = e ? [...e.yes.map(p => [p, 'y']), ...e.maybe.map(p => [p, 'm'])].filter(([p]) => p.uid !== B.uid) : [];
+      const others = e ? [...e.yes.map(p => [p, 'y']), ...e.maybe.map(p => [p, 'm'])] : [];
       const vis = others.length > 3 ? 2 : 3;
-      const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(p.color)}">${esc(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
+      const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${esc(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
       html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%;${heat ? '--bw:2.5px' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="mini">${dots}</span>
@@ -837,15 +840,21 @@ function setDay(d, s, cell) {
   if (cell && s === 'yes') { const el = document.querySelector(`[data-d="${d}"]`); el && pop(el, '♥'); }
 }
 
+let savePending = false;
 function saveMe() {
   S.me.updatedAt = Date.now();
   setSaving('saving');
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(async () => {
-    try { await B.saveMe(S.eid, cleanMe()); setSaving('ok'); }
-    catch (e) { console.error(e); setSaving('err'); toast('Speichern hat nicht geklappt. Prüfe deine Verbindung.'); }
-  }, 450);
+  clearTimeout(saveTimer); savePending = true;
+  saveTimer = setTimeout(doSave, 450);
 }
+async function doSave() {
+  if (!savePending || !S.me || !S.eid) return;
+  clearTimeout(saveTimer); savePending = false;
+  try { await B.saveMe(S.eid, cleanMe()); setSaving('ok'); }
+  catch (e) { console.error(e); setSaving('err'); toast('Speichern hat nicht geklappt. Prüfe deine Verbindung.'); }
+}
+addEventListener('pagehide', doSave);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') doSave(); });
 function cleanMe() {
   const {uid, ...rest} = S.me;
   return JSON.parse(JSON.stringify(rest));
@@ -947,20 +956,23 @@ function bringView() {
 
 /* ----- Join / profile ----- */
 function profileFields(p = {}) {
-  const used = S.parts.filter(x => x.uid !== B.uid).map(x => x.emoji);
-  const emoji = p.emoji || EMOJIS.find(e => !used.includes(e)) || EMOJIS[0];
-  const color = p.color || COLORS[S.parts.length % COLORS.length];
+  const usedBy = new Map(S.parts.filter(x => x.uid !== B.uid).map(x => [x.emoji, x.name]));
+  const emoji = p.emoji && !usedBy.has(p.emoji) ? p.emoji : EMOJIS.find(e => !usedBy.has(e)) || EMOJIS[0];
   return `<label class="f"><span>Wie heißt du?</span><input class="in" id="pName" maxlength="30" autocomplete="given-name" placeholder="Dein Vorname" value="${esc(p.name)}"></label>
-    <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Dein Zeichen</span>
-      <div class="emoji-grid" role="radiogroup">${EMOJIS.map(e => `<button type="button" class="${e === emoji ? 'on' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}">${e}</button>`).join('')}</div></div>
-    <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Deine Farbe</span>
-      <div class="colors" role="radiogroup">${COLORS.map(c => `<button type="button" class="${c === color ? 'on' : ''}" style="background:${c}" data-act="pick-color" data-c="${c}" role="radio" aria-checked="${c === color}" aria-label="Farbe ${c}"></button>`).join('')}</div></div>
+    <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Dein Avatar</span>
+      <div class="emoji-grid" role="radiogroup">${EMOJIS.map(e => { const by = usedBy.get(e);
+        return `<button type="button" class="${e === emoji ? 'on' : ''} ${by ? 'used' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}" ${by ? `disabled title="schon vergeben an ${esc(by)}" aria-label="${e} schon vergeben an ${esc(by)}"` : ''}>${e}</button>`; }).join('')}</div>
+      ${usedBy.size ? '<p class="hint">Blasse Avatare sind schon vergeben.</p>' : ''}</div>
     <p class="err" id="pErr" role="alert"></p>`;
 }
 function readProfile(root) {
   const name = $('#pName', root).value.trim().replace(/\s+/g, ' ');
   if (!name) return {err: 'Bitte gib deinen Namen ein, damit die anderen wissen, wer du bist.'};
-  return {name, emoji: $('.emoji-grid .on', root).dataset.e, color: $('.colors .on', root).dataset.c};
+  const others = S.parts.filter(x => x.uid !== B.uid);
+  if (others.some(x => x.name.toLowerCase() === name.toLowerCase())) return {err: `„${name}“ ist schon dabei. Wenn du das auf einem anderen Gerät warst, nimm hier bitte einen leicht anderen Namen, z.B. mit Initial.`};
+  const emoji = $('.emoji-grid .on', root)?.dataset.e;
+  if (!emoji || others.some(x => x.emoji === emoji)) return {err: 'Dieser Avatar ist gerade vergeben worden. Bitte wähle einen anderen.'};
+  return {name, emoji, color: colorOf({emoji})};
 }
 
 function renderJoin() {
@@ -984,10 +996,6 @@ function renderJoin() {
 async function submitJoin(form) {
   const p = readProfile(form);
   if (p.err) { $('#pErr').textContent = p.err; return; }
-  if (S.parts.some(x => x.name.toLowerCase() === p.name.toLowerCase())) {
-    $('#pErr').textContent = `„${p.name}“ ist schon dabei. Wenn du das auf einem anderen Gerät warst, nimm hier bitte einen leicht anderen Namen, z.B. mit Initial.`;
-    return;
-  }
   S.me = {...p, days: {}, brings: [], claims: [], joinedAt: Date.now()};
   S.parts.push({...S.me, uid: B.uid});
   saveMe(); S.tab = isFixed() ? 'rsvp' : 'cal'; S.mode = 'mark';
@@ -1003,8 +1011,8 @@ function openModal(html) {
 function closeModal() { modalRoot.innerHTML = ''; document.body.style.overflow = ''; }
 
 function openProfile() {
-  openModal(`<form id="profileForm" class="stack" novalidate><div class="row"><h2 class="grow">Dein Profil</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
-    <div class="card stack">${profileFields(S.me)}</div><button class="btn amber block" type="submit">Profil speichern</button></form>`);
+  openModal(`<form id="profileForm" class="stack" novalidate><div class="row"><h2 class="grow">Name und Avatar</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
+    <div class="card stack">${profileFields(S.me)}</div><button class="btn amber block" type="submit">Speichern</button></form>`);
 }
 
 function openSettings() {
@@ -1099,7 +1107,6 @@ const ACT = {
   close() { closeModal(); },
   'modal-bg'(b, e) { if (e.target === b) closeModal(); },
   'pick-emoji'(b) { b.parentElement.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); },
-  'pick-color'(b) { b.parentElement.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); },
   finalize(b) { openFinalize(b.dataset.d); },
   reopen() { if (confirm('Termin wieder öffnen? Alle können dann wieder abstimmen.')) updateEv({final: null}, 'Abstimmung ist wieder offen'); },
   ics() { downloadIcs(); },
@@ -1164,7 +1171,7 @@ document.addEventListener('submit', async e => {
   if (f.id === 'joinForm') return submitJoin(f);
   if (f.id === 'profileForm') {
     const p = readProfile(f); if (p.err) { $('#pErr', f).textContent = p.err; return; }
-    Object.assign(S.me, p); closeModal(); syncMeAndRender(); toast('Profil gespeichert'); return;
+    Object.assign(S.me, p); closeModal(); syncMeAndRender(); toast('Name und Avatar gespeichert'); return;
   }
   if (f.id === 'settingsForm') {
     const r = readEventForm(f); if (r.err) { $('#formErr', f).textContent = r.err; return; }
