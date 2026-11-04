@@ -164,24 +164,30 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .month h3{margin:0 4px 10px}
 .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .dow span{text-align:center;font-size:12px;font-weight:700;color:var(--muted);padding-bottom:4px}
-.day{--h:0;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:var(--surface);box-shadow:inset 0 0 0 calc(1.5px + var(--h) * 1.5px) color-mix(in srgb,var(--amber) calc(var(--h) * 85%),var(--line)),0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
+.day{--h:0;position:relative;border:0;border-radius:var(--r-sm);aspect-ratio:1/1.08;padding:0;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:16px;transition:transform .12s,box-shadow .2s,background .3s;-webkit-tap-highlight-color:transparent}
 .day:active{transform:scale(.92)}
 .day.off{background:transparent;box-shadow:none;color:var(--faint);font-weight:500;cursor:default}
 .day.off:active{transform:none}
 .day.blank{visibility:hidden}
 .day.today .num{text-decoration:underline 2px var(--amber);text-underline-offset:3px}
 .day .mark{z-index:4;position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 0 2px var(--bg)}
-.day.s-yes{background:var(--moss);color:#fff;box-shadow:0 0 0 calc(var(--h) * 2px) color-mix(in srgb,var(--amber) calc(var(--h) * 90%),transparent),0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent)}
+.day.s-yes{background:var(--moss);color:#fff;box-shadow:none}
 .day.s-yes .mark{background:#fff;color:var(--moss)}
-.day.s-maybe{background:var(--amber);color:#3A2205;box-shadow:0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent)}
+.day.s-maybe{background:var(--amber);color:#3A2205;box-shadow:none}
 .day.s-maybe .mark{background:#fff;color:var(--amber-ink)}
 .day.s-maybe .mini i{box-shadow:0 0 0 1.5px #fff}
 .day.s-maybe .mini em{color:#3A2205}
 .day.s-no{background:var(--surface2);box-shadow:none}
 .day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
-.day.topday::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 2.5px var(--amber),0 0 8px 1px color-mix(in srgb,var(--amber) 70%,transparent);animation:bestpulse 3s ease-in-out infinite}
-@keyframes bestpulse{50%{box-shadow:inset 0 0 0 2.5px color-mix(in srgb,var(--amber) 55%,transparent),0 0 3px 0 color-mix(in srgb,var(--amber) 25%,transparent)}}
+.day.topday,.day.second{z-index:1}
+.day.topday::before,.day.second::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none}
+.day.topday::before{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--amber) 75%,transparent),0 0 16px 3px color-mix(in srgb,var(--amber) 60%,transparent);animation:bestpulse 3.2s ease-in-out infinite}
+@keyframes bestpulse{50%{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--amber) 45%,transparent),0 0 7px 0 color-mix(in srgb,var(--amber) 30%,transparent)}}
+.day.second::before{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--sky) 60%,transparent),0 0 10px 1px color-mix(in srgb,var(--sky) 35%,transparent)}
+.day.second .rank2{position:absolute;top:-6px;left:-5px;font-size:11px;line-height:1;z-index:4;filter:drop-shadow(0 0 1.5px var(--bg))}
+.best-bar .second-line{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+.best-bar .second-line i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--sky) 70%,transparent),0 0 6px 1px color-mix(in srgb,var(--sky) 50%,transparent)}
 .day.sel{outline:3px solid var(--ink);outline-offset:2px;animation:none}
 .best-bar{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-radius:var(--r-md);padding:10px 14px;margin:0 0 16px;background:color-mix(in srgb,var(--amber) 22%,var(--surface));box-shadow:inset 0 0 0 2px var(--amber)}
 .best-bar svg{width:42px;flex:none;color:var(--ink);margin-top:10px}
@@ -861,7 +867,7 @@ function finalCard() {
 function calView(A) {
   const ev = S.ev, locked = isLocked();
   const allowed = new Set(candidateDays()), t = todayStr(), n = Math.max(1, S.parts.length);
-  const best = A.ranked[0]?.d;
+  const best = A.ranked[0]?.d, second = A.ranked[1]?.d;
   const start = parseYmd(ev.rangeStart), end = parseYmd(ev.rangeEnd);
   let html = `<div class="cal-tools">
       <div class="seg" role="group" aria-label="Tippen bedeutet">
@@ -869,9 +875,9 @@ function calView(A) {
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
-      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span>dann wieder leer</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span>dann wieder leer</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Golden leuchtet der beste Abend, mit ✨ der zweitbeste.</span>` :
       'Tippe einen Tag an, um zu sehen, wer kann.'}</p>
-    ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span></span></button>`; })() : ''}`;
+    ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span>${A.ranked[1] ? `<span class="second-line">✨ Zweitbester: ${fmtLong(A.ranked[1].d)} (${A.ranked[1].yes.length} ${A.ranked[1].yes.length === 1 ? 'kann' : 'können'})</span>` : ''}</span></button>`; })() : ''}`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
     const first = dowMon(m), daysIn = new Date(m.getFullYear(), m.getMonth()+1, 0).getDate();
     html += `<section class="month"><h3>${new Intl.DateTimeFormat('de-DE', {month:'long', year:'numeric'}).format(m)}</h3>
@@ -887,11 +893,11 @@ function calView(A) {
       const vis = others.length > 3 ? 2 : 3;
       const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
-      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''} ${s === best ? 'topday' : ''}" style="--h:${(heat / 100).toFixed(2)}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
+      html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''} ${s === best ? 'topday' : s === second ? 'second' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="mini">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
-        ${s === best ? CAT() : ''}
+        ${s === best ? CAT() : s === second ? '<span class="rank2" aria-hidden="true">✨</span>' : ''}
       </button>`;
     }
     html += `</div></section>`;
