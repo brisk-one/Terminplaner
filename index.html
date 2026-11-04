@@ -61,7 +61,7 @@ p{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* Buttons */
-.btn{border:0;border-radius:999px;padding:13px 20px;font-weight:700;background:var(--surface2);display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;transition:transform .12s ease,background .2s}
+.btn{text-decoration:none;color:inherit;border:0;border-radius:999px;padding:13px 20px;font-weight:700;background:var(--surface2);display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;transition:transform .12s ease,background .2s}
 .btn:active{transform:scale(.97)}
 .btn.primary{background:var(--ink);color:var(--surface)}
 .btn.amber{background:var(--amber);color:#3A2205}
@@ -123,6 +123,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .facts li{display:flex;gap:10px;align-items:flex-start;font-weight:600}
 .facts li span:first-child{width:22px;text-align:center;flex:none}
 .topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.back-pill{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:inherit;font-weight:800;font-size:14px;background:var(--surface);border-radius:999px;padding:9px 14px;box-shadow:inset 0 0 0 1.5px var(--line)}
 .brand{font-family:var(--display);font-weight:800;font-size:18px;display:flex;gap:6px;align-items:center;text-decoration:none;color:inherit}
 .cup{width:26px;height:26px;color:var(--muted)}
 .cup .steam{stroke:var(--muted);stroke-width:1.6;fill:none;stroke-linecap:round;opacity:0}
@@ -265,6 +266,19 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:95}
 .hero p{font-size:18px;color:var(--muted);margin-top:10px;max-width:30ch}
 .window-art{display:block;width:100%;height:auto;margin:6px 0 4px}
 .recent{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.evlist{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.evcard{display:block;text-decoration:none;color:inherit;background:var(--surface);border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow);transition:transform .12s}
+.evcard:active{transform:scale(.98)}
+.evcard h3{font-size:22px;margin:6px 0 4px}
+.evcard .facts{margin-top:8px;gap:4px}
+.evcard .facts li{font-weight:600;font-size:14px}
+.evcard .kind{font-size:13px;font-weight:800;color:var(--muted)}
+.evcard .x{margin:-6px -8px -6px 0}
+.mystate{margin-top:10px;font-size:14px;font-weight:700;color:var(--moss)}
+.mystate.todo{color:var(--amber-ink)}
+.mystate.todo::before{content:"● ";color:var(--amber)}
+.evlist.past .evcard{opacity:.65}
+.evcard.gone{opacity:.7}
 .recent a{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;background:var(--surface);border-radius:var(--r-md);padding:12px 14px;box-shadow:var(--shadow);font-weight:700}
 .emoji-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
 .emoji-grid button{border:2px solid transparent;background:var(--surface2);border-radius:12px;aspect-ratio:1;font-size:20px;padding:0}
@@ -356,6 +370,8 @@ function localBackend() {
     async updateEvent(eid, patch) { write(K('ev', eid), {...ls.get(K('ev', eid)), ...patch}); },
     async claimAdmin(eid, key) { if (ls.get(K('secret', eid)) === key) { ls.set(K('adm', eid, uid), 1); return true; } return false; },
     async checkAdmin(eid, ev) { return ev?.ownerUid === uid || !!ls.get(K('adm', eid, uid)); },
+    async getEvent(eid) { return ls.get(K('ev', eid)); },
+    async getParticipants(eid) { const pre = K('p', eid) + ':', out = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith(pre)) out.push({...ls.get(k), uid: k.slice(pre.length)}); } return out; },
   };
 }
 
@@ -390,6 +406,8 @@ async function firebaseBackend(cfg) {
       if (ev?.ownerUid === uid) return true;
       try { return (await F.getDoc(F.doc(db, 'events', eid, 'admins', uid))).exists(); } catch { return false; }
     },
+    async getEvent(eid) { const s = await F.getDoc(evRef(eid)); return s.exists() ? s.data() : null; },
+    async getParticipants(eid) { return (await F.getDocs(F.collection(db, 'events', eid, 'participants'))).docs.map(d => ({...d.data(), uid: d.id})); },
   };
 }
 
@@ -473,8 +491,8 @@ async function onRoute() {
 }
 
 /* ================= Home & Create ================= */
-function topbar(extra = '') {
-  return `<div class="topbar"><a class="brand" href="#/">🕯️ Treffpunkt</a><div class="grow"></div>${extra}<button class="icon-btn" data-act="theme" aria-label="Farbmodus: ${themeLabel()}" title="${themeLabel()}">${themeIcon()}</button></div>`;
+function topbar(extra = '', back = false) {
+  return `<div class="topbar">${back ? `<a class="back-pill" href="#/" aria-label="Zur Übersicht aller Runden">🗂️ Meine Runden</a>` : `<a class="brand" href="#/">🕯️ Treffpunkt</a>`}<div class="grow"></div>${extra}<button class="icon-btn" data-act="theme" aria-label="Farbmodus: ${themeLabel()}" title="${themeLabel()}">${themeIcon()}</button></div>`;
 }
 const demoBanner = () => B.mode === 'local' ? `<div class="banner demo">Testmodus: Alles bleibt nur in diesem Browser.</div>` : '';
 
@@ -488,12 +506,69 @@ function windowArt() {
 function renderHome() {
   S.view = 'home';
   const recent = ls.get('tp:recent', []);
+  if (!recent.length) {
+    app.innerHTML = `<div class="wrap stack">${topbar()}
+      <section class="hero">${windowArt()}<h1>Wann habt ihr alle Zeit?</h1><p>Leg eine Runde an, schick den Link rum, und jeder tippt seine freien Abende an. Der beste Abend leuchtet von selbst.</p></section>
+      <a class="btn primary block" href="#/neu">Neue Runde planen</a>
+      ${demoBanner()}</div>`;
+    return;
+  }
   app.innerHTML = `<div class="wrap stack">${topbar()}
-    <section class="hero">${windowArt()}<h1>Wann habt ihr alle Zeit?</h1><p>Leg eine Runde an, schick den Link rum, und jeder tippt seine freien Abende an. Der beste Abend leuchtet von selbst.</p></section>
+    <div><h1>Meine Runden</h1><p class="muted" style="margin-top:6px">Alle Runden, die du auf diesem Gerät geöffnet hast.</p></div>
     <a class="btn primary block" href="#/neu">Neue Runde planen</a>
     ${demoBanner()}
-    ${recent.length ? `<h2 class="section-title">Deine Runden</h2><ul class="recent">${recent.map(r => `<li><a href="#/e/${esc(r.eid)}"><span>${r.final ? '🎉' : '🕯️'}</span><span class="grow">${esc(r.title)}</span>${r.admin ? '<span class="tag">Organisator</span>' : ''}</a></li>`).join('')}</ul>` : ''}
+    <ul class="evlist" id="evlist">${recent.map(() => '<li><div class="skeleton" style="height:150px"></div></li>').join('')}</ul>
   </div>`;
+  loadOverview(recent);
+}
+
+const rsvpFor = (ev, p) => { const d = ev.type === 'fixed' ? ev.date : ev.final?.date; return d && p?.rsvp && p.rsvp.d === d ? p.rsvp : null; };
+async function loadOverview(recent) {
+  const items = await Promise.all(recent.map(async r => {
+    try { const [ev, parts] = await Promise.all([B.getEvent(r.eid), B.getParticipants(r.eid)]); return {r, ev, parts}; }
+    catch (e) { console.error(e); return {r, ev: null, parts: [], err: true}; }
+  }));
+  if (S.view !== 'home' || !$('#evlist')) return;
+  const t = todayStr();
+  const keyDate = ({ev}) => !ev ? '9999' : ev.type === 'fixed' ? ev.date : ev.final ? ev.final.date : (ev.rangeEnd < t ? ev.rangeEnd : ev.rangeStart);
+  const isPast = it => !!it.ev && keyDate(it) < t;
+  const upcoming = items.filter(it => !isPast(it)).sort((a, b) => keyDate(a).localeCompare(keyDate(b)));
+  const past = items.filter(isPast).sort((a, b) => keyDate(b).localeCompare(keyDate(a)));
+  $('#evlist').outerHTML = `<ul class="evlist">${upcoming.map(evCard).join('')}</ul>
+    ${past.length ? `<h2 class="section-title">Vorbei</h2><ul class="evlist past">${past.map(evCard).join('')}</ul>` : ''}`;
+}
+
+function evCard({r, ev, parts, err}) {
+  const forget = `<button class="x" data-act="forget" data-eid="${esc(r.eid)}" aria-label="${esc(r.title)} aus der Liste entfernen" title="Aus der Liste entfernen">✕</button>`;
+  if (!ev) return `<li><div class="evcard gone"><div class="row"><b class="grow">${esc(r.title || 'Runde')}</b>${forget}</div><p class="small muted">${err ? 'Konnte nicht geladen werden. Prüfe deine Verbindung.' : 'Diese Runde gibt es nicht mehr.'}</p></div></li>`;
+  const fixed = ev.type === 'fixed', me = parts.find(p => p.uid === B.uid), n = parts.length;
+  let when, status, todo = false;
+  if (fixed) when = `${fmtLong(ev.date)}, ${fmtRange(ev.start, ev.end)}`;
+  else if (ev.final) when = `Steht: ${fmtLong(ev.final.date)}, ${fmtRange(ev.final.start, ev.final.end)}`;
+  else {
+    const sc = {};
+    for (const p of parts) for (const [d, v] of Object.entries(p.days || {})) if (d >= todayStr() && (v?.s === 'yes' || v?.s === 'maybe')) { sc[d] ??= {s: 0, y: 0}; sc[d].s += v.s === 'yes' ? 1 : .5; sc[d].y += v.s === 'yes' ? 1 : 0; }
+    const best = Object.entries(sc).sort((a, b) => b[1].s - a[1].s || a[0].localeCompare(b[0]))[0];
+    when = `Zwischen ${fmtDay(ev.rangeStart, {day: 'numeric', month: 'short'})} bis ${fmtDay(ev.rangeEnd, {day: 'numeric', month: 'short'})}${best ? `<br><span class="muted">Bester Abend bisher: ${fmtDay(best[0])} (${best[1].y} ${best[1].y === 1 ? 'kann' : 'können'})</span>` : ''}`;
+  }
+  const place = ev.final?.place || ev.location || (fixed ? 'Ort folgt' : 'Ort noch offen');
+  if (!me) { status = 'Du bist noch nicht beigetreten'; todo = true; }
+  else if (fixed || ev.final) { const rs = rsvpFor(ev, me); status = rs ? `Du: ${({yes: '🙌 Bin dabei', maybe: '🤔 Vielleicht', no: '🙅 Nicht dabei'})[rs.s]}` : 'Du hast noch nicht zu- oder abgesagt'; todo = !rs; }
+  else { const k = Object.keys(me.days || {}).length; status = k ? `Du hast ${k} ${k === 1 ? 'Abend' : 'Abende'} eingetragen` : 'Du hast noch keine Abende eingetragen'; todo = !k; }
+  const yes = (fixed || ev.final) ? parts.filter(p => rsvpFor(ev, p)?.s === 'yes').length : null;
+  const dl = ev.deadline && !ev.final ? Math.round((parseYmd(ev.deadline) - parseYmd(todayStr())) / 864e5) : null;
+  return `<li><a class="evcard" href="#/e/${esc(r.eid)}">
+    <div class="row"><span class="kind">${fixed ? '🎟️ Fester Termin' : ev.final ? '🎉 Termin steht' : '🗓️ Terminsuche'}</span>${r.admin ? '<span class="tag">Organisator</span>' : ''}<span class="grow"></span>${forget}</div>
+    <h3>${esc(ev.title)}</h3>
+    <ul class="facts small">
+      <li><span>🕯️</span><span>${when}</span></li>
+      <li><span>${ev.final?.place || ev.location ? '📍' : '🏠'}</span><span>${esc(place)}</span></li>
+      ${dl != null && dl >= 0 ? `<li><span>⏳</span><span>${dl === 0 ? 'Heute letzter Tag zum Antworten' : `Noch ${dl} ${dl === 1 ? 'Tag' : 'Tage'} zum Antworten`}</span></li>` : ''}
+    </ul>
+    <div class="row" style="margin-top:10px"><div class="av-stack">${parts.slice(0, 5).map(p => avatar(p, 'sm')).join('')}${n > 5 ? `<span class="av sm" style="--c:var(--faint);font-size:11px;font-weight:800">+${n - 5}</span>` : ''}</div>
+      <span class="small muted grow">${n} in der Runde${yes != null ? `, ${yes} dabei` : ''}</span></div>
+    <p class="mystate ${todo ? 'todo' : ''}">${status}</p>
+  </a></li>`;
 }
 
 function timeOptions(from, to, sel, extra = '') {
@@ -595,7 +670,7 @@ function addRecent(eid, title, admin, final) {
   const list = ls.get('tp:recent', []).filter(r => r.eid !== eid);
   const old = ls.get('tp:recent', []).find(r => r.eid === eid);
   list.unshift({eid, title, admin: admin || old?.admin || false, final: !!final});
-  ls.set('tp:recent', list.slice(0, 12));
+  ls.set('tp:recent', list.slice(0, 60));
 }
 
 function shareButtons(url, text) {
@@ -696,7 +771,7 @@ function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(
 function renderEvent() {
   const ev = S.ev;
   if (!ev) {
-    app.innerHTML = `<div class="wrap stack">${topbar()}<div class="card empty">${CAT()}<h2>Diese Runde gibt es nicht</h2><p class="muted" style="margin-top:8px">Prüfe, ob der Link vollständig kopiert wurde.</p><a class="btn block" style="margin-top:16px" href="#/">Zur Startseite</a></div></div>`;
+    app.innerHTML = `<div class="wrap stack">${topbar('', true)}<div class="card empty">${CAT()}<h2>Diese Runde gibt es nicht</h2><p class="muted" style="margin-top:8px">Prüfe, ob der Link vollständig kopiert wurde.</p><a class="btn block" style="margin-top:16px" href="#/">Zur Startseite</a></div></div>`;
     return;
   }
   document.title = ev.title + ' · Treffpunkt';
@@ -709,7 +784,7 @@ function renderEvent() {
   const pageY = scrollY;
   S.sheetShown = sheetOpen ? S.sel : null;
   app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
-    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">📝</button>` : ''}`)}
+    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">📝</button>` : ''}`, true)}
     <div class="stack">
       ${demoBanner()}
       ${ev.final ? finalCard() : ''}
@@ -991,7 +1066,7 @@ function readProfile(root) {
 
 function renderJoin() {
   const ev = S.ev;
-  app.innerHTML = `<div class="wrap stack">${topbar()}
+  app.innerHTML = `<div class="wrap stack">${topbar('', true)}
     ${demoBanner()}
     ${header0()}
     <form class="card stack" id="joinForm" novalidate>
@@ -1124,6 +1199,7 @@ const ACT = {
   finalize(b) { openFinalize(b.dataset.d); },
   reopen() { if (confirm('Termin wieder öffnen? Alle können dann wieder abstimmen.')) updateEv({final: null}, 'Abstimmung ist wieder offen'); },
   ics() { downloadIcs(); },
+  forget(b, e) { e.preventDefault(); e.stopPropagation(); ls.set('tp:recent', ls.get('tp:recent', []).filter(r => r.eid !== b.dataset.eid)); b.closest('li')?.remove(); toast('Aus deiner Liste entfernt'); if (!ls.get('tp:recent', []).length) renderHome(); },
   type(b) { const w = b.closest('.evform'); w.dataset.type = b.dataset.t; w.querySelector('[name=type]').value = b.dataset.t; b.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); },
   rsvp(b) {
     if (rsvpLocked()) return;
