@@ -45,7 +45,7 @@ Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
 - [ ] P1 Namensentscheid Nightyard / OMGForge (Empfehlung OMGForge), danach Domains .com und .de kaufen (Kauf nur durch dich)
 - [ ] P2 Plattform-Plan im frischen Chat: Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung
-- [ ] Optional, Hypothese: Turret Syndrome als privates GitHub-Repo sichern (liegt bisher nur lokal)
+- [ ] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal
 
 Weitere offene Punkte:
 
