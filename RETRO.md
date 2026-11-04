@@ -53,6 +53,7 @@ Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 
 - Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
 - Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
 - Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
+  - 04.11.2026, 14:35: Finale Kandidaten Nightyard und OMGForge geprüft (TMview, Companies House, North Data, Websuche). Nightyard: keine Marke, aber aktive UK-Firma „NIGHT YARD LTD“ (seit 10.05.2026, Software/Webportale/Werbung), NL-Firma „Nightyard“ (Graffiti), GitHub-Projekt „nightyard“ (KI-Coding-IDE), Eventlocation „The Night Yard“ (UK); .com/.app belegt. OMGForge: keine Marke, keine Firma, nur ein Minecraft-Dateiname; .com/.de/.app/.dev frei. Risiko OMGForge: viele ältere Marken „OMG“ und „FORGE“ einzeln (u.a. Object Management Group, Autodesk Forge, Forge of Empires). Keine anwaltliche Prüfung.
 - Wohnort für Gewerbe/Impressum: Hamburg.
 
 ## Offene Punkte
