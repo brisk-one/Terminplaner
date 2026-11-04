@@ -138,6 +138,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .av-stack .av:first-child{margin-left:0}
 .me-btn{border:0;background:var(--surface2);border-radius:999px;padding:4px 10px 4px 4px;display:flex;align-items:center;gap:8px;font-weight:700;box-shadow:inset 0 0 0 1.5px var(--line)}
 .me-btn .gear{font-size:15px;margin-left:2px;opacity:.85}
+.tint{display:inline-block}
 .emoji-grid button.used{opacity:.32;filter:grayscale(.85);cursor:not-allowed}
 
 /* Banner */
@@ -297,7 +298,20 @@ const fmtDay = (s, o) => new Intl.DateTimeFormat('de-DE', o || {weekday:'short',
 const fmtLong = s => fmtDay(s, {weekday:'long', day:'numeric', month:'long'});
 const ls = { get(k, d=null){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
              set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
-const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐭','🐿️','🐹','🦝','🦦','🦥','🐢','🐙','🐧','🐳','🐬','🦭','🐞','🦋','🐝','🐌','🐯','🦁','🐮','🐷','🐵','🐑','🦙','🐥','🦆','🦩','🐺','🦫','🐘','🦒','🦄','🐲','🦕','🦖','👻','🧚','🧜','🧞'];
+const EMOJIS = ['🦊','🐻','🐼','🐨','🐸','🦉','🐱','🐶','🐰','🦔','🐭','🐿️','🐹','🦝','🦦','🦥','🐢','🐙','🐧','🐳','🐬','🦭','🐞','🦋','🐝','🐌','🐯','🦁','🐮','🐷','🐵','🐑','🦙','🐥','🦆','🦩','🐺','🦫','🐘','🦒','🪿','🪼','🦄','🐲','🐉','🦕','🦖','👻','🧚','🧜','🧞','🧝','🧙','🧌','👽','🤖','🧸','⛄','🐦‍🔥'];
+const TINT = {'🦕': 'hue-rotate(105deg)', '🦖': 'hue-rotate(-95deg) saturate(1.3)', '🐉': 'hue-rotate(-115deg) saturate(1.2)'};
+const emo = e => TINT[e] ? `<span class="tint" style="filter:${TINT[e]}">${esc(e)}</span>` : esc(e);
+const emojiOK = (() => {
+  let x, ref, tofu; const cache = {};
+  const sig = s => { x.clearRect(0, 0, 28, 28); x.fillText(s, 2, 2); return x.getImageData(0, 0, 28, 28).data.join(','); };
+  return e => {
+    if (e in cache) return cache[e];
+    try {
+      if (!x) { const c = document.createElement('canvas'); c.width = c.height = 28; x = c.getContext('2d', {willReadFrequently: true}); x.font = '20px sans-serif'; x.textBaseline = 'top'; ref = x.measureText('🐶').width; tofu = sig('\u{10FFFD}'); }
+      return cache[e] = sig(e) !== tofu && x.measureText(e).width <= ref * 1.3;
+    } catch { return cache[e] = true; }
+  };
+})();
 const COLORS = ['#E07A3E','#5E8A5C','#C95B78','#5B7FB8','#D9A22E','#8E6CB0','#3E9C9C','#B5794A'];
 const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLORS[i % COLORS.length] : (p?.color || COLORS[0]); };
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
@@ -677,7 +691,7 @@ function analyze() {
   return {map, ranked};
 }
 
-function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${esc(p.emoji || '🙂')}</span>`; }
+function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji || '🙂')}</span>`; }
 
 function renderEvent() {
   const ev = S.ev;
@@ -779,7 +793,7 @@ function calView(A) {
       const heat = oth ? Math.round(Math.max(.35, Math.min(1, oth / Math.max(1, n - 1))) * 90) : 0;
       const others = e ? [...e.yes.map(p => [p, 'y']), ...e.maybe.map(p => [p, 'm'])] : [];
       const vis = others.length > 3 ? 2 : 3;
-      const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${esc(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
+      const dots = others.slice(0, vis).map(([p, k]) => `<i class="${k}" style="--c:${esc(colorOf(p))}" title="${esc(p.name)}">${emo(p.emoji)}</i>`).join('') + (others.length > vis ? `<em>+${others.length - vis}</em>` : '');
       const label = `${fmtLong(s)}${my ? ', du: ' + STATUS[my].t : ''}${e ? `, ${e.yes.length} können, ${e.maybe.length} vielleicht` : ''}`;
       html += `<button class="day ${my ? 's-' + my : ''} ${s === t ? 'today' : ''} ${S.sel === s ? 'sel' : ''}" style="--heat:${heat}%;${heat ? '--bw:2.5px' : ''}" data-act="day" data-d="${s}" aria-label="${esc(label)}">
         <span class="num">${d}</span><span class="mini">${dots}</span>
@@ -957,11 +971,11 @@ function bringView() {
 /* ----- Join / profile ----- */
 function profileFields(p = {}) {
   const usedBy = new Map(S.parts.filter(x => x.uid !== B.uid).map(x => [x.emoji, x.name]));
-  const emoji = p.emoji && !usedBy.has(p.emoji) ? p.emoji : EMOJIS.find(e => !usedBy.has(e)) || EMOJIS[0];
+  const emoji = p.emoji && !usedBy.has(p.emoji) ? p.emoji : EMOJIS.find(e => !usedBy.has(e) && emojiOK(e)) || EMOJIS[0];
   return `<label class="f"><span>Wie heißt du?</span><input class="in" id="pName" maxlength="30" autocomplete="given-name" placeholder="Dein Vorname" value="${esc(p.name)}"></label>
     <div><span style="display:block;font-weight:700;font-size:15px;margin-bottom:6px">Dein Avatar</span>
-      <div class="emoji-grid" role="radiogroup">${EMOJIS.map(e => { const by = usedBy.get(e);
-        return `<button type="button" class="${e === emoji ? 'on' : ''} ${by ? 'used' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}" ${by ? `disabled title="schon vergeben an ${esc(by)}" aria-label="${e} schon vergeben an ${esc(by)}"` : ''}>${e}</button>`; }).join('')}</div>
+      <div class="emoji-grid" role="radiogroup">${EMOJIS.filter(e => e === p.emoji || emojiOK(e)).map(e => { const by = usedBy.get(e);
+        return `<button type="button" class="${e === emoji ? 'on' : ''} ${by ? 'used' : ''}" data-act="pick-emoji" data-e="${e}" role="radio" aria-checked="${e === emoji}" ${by ? `disabled title="schon vergeben an ${esc(by)}" aria-label="${e} schon vergeben an ${esc(by)}"` : ''}>${emo(e)}</button>`; }).join('')}</div>
       ${usedBy.size ? '<p class="hint">Ausgeblendete Avatare sind schon vergeben.</p>' : ''}</div>
     <p class="err" id="pErr" role="alert"></p>`;
 }
@@ -985,7 +999,7 @@ function renderJoin() {
       ${profileFields()}
       <button class="btn amber block" type="submit">${isFixed() ? 'Weiter zur Zusage' : 'Weiter zu meinen Tagen'}</button>
     </form>
-    ${S.parts.length ? `<p class="small muted" style="padding:0 4px">Schon dabei: ${S.parts.map(p => `${esc(p.emoji)} ${esc(p.name)}`).join(', ')}</p>` : ''}
+    ${S.parts.length ? `<p class="small muted" style="padding:0 4px">Schon dabei: ${S.parts.map(p => `${emo(p.emoji)} ${esc(p.name)}`).join(', ')}</p>` : ''}
   </div>`;
   function header0() {
     return `<header class="card ev-head">${garland(voters())}<h1>${esc(ev.title)}</h1>${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
