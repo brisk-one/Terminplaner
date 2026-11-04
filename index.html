@@ -761,6 +761,7 @@ function scheduleRender() {
 }
 document.addEventListener('focusout', () => setTimeout(() => { if (S.pending) { S.pending = false; scheduleRender(); } }, 50));
 
+const CAT_MIN = 5;
 const weitere = n => n === 1 ? 'ein weiterer' : `${n} weitere`;
 const isFixed = (ev = S.ev) => ev.type === 'fixed';
 const rsvpTarget = (ev = S.ev) => isFixed(ev) ? ev.date : ev.final?.date || null;
@@ -911,7 +912,7 @@ function calView(A) {
         <span class="num">${d}</span><span class="mini">${dots}</span>
         ${my ? `<span class="mark">${STATUS[my].i}</span>` : ''}
         ${e?.hosts.length ? `<span class="house" aria-hidden="true">🏠</span>` : ''}
-        ${bestSet.has(s) ? CAT() : ''}
+        ${bestSet.has(s) && T[0][0].yes.length >= CAT_MIN ? CAT() : ''}
       </button>`;
     }
     html += `</div></section>`;
@@ -1001,7 +1002,7 @@ function bestBar(A) {
     : `<button class="best-row single" data-act="goto-best" data-d="${top[0].d}"><b>Bester Abend bisher: ${fmtLong(top[0].d)}</b></button><span class="small muted">${cnt(top[0])}</span>${!S.ev.location && top[0].hosts.length ? `<span class="small" style="display:block;font-weight:700;margin-top:4px">🏠 ${placeText(top[0])}</span>` : ''}${chips(top[0])}`;
   const s2 = T[1];
   const sec = s2 ? `<span class="second-line">${s2.length > 1 ? 'Zweitbeste' : 'Zweitbester'}: ${s2.slice(0, 3).map(e => fmtDay(e.d)).join(', ')}${s2.length > 3 ? ` und ${weitere(s2.length - 3)}` : ''} (${s2.length > 1 ? 'je ' : ''}${cnt(s2[0])})</span>` : '';
-  return `<div class="best-bar">${CAT('')}<span>${body}${sec}</span></div>`;
+  return `<div class="best-bar">${top[0].yes.length >= CAT_MIN ? CAT('') : ''}<span>${body}${sec}</span></div>`;
 }
 
 /* ----- Overview ----- */
@@ -1022,7 +1023,7 @@ function sumView(A) {
   const canFix = S.admin && !S.ev.final;
   const hero = top.length === 1 ? `
   <section class="card best" style="margin-top:16px">
-    ${CAT('cat-big')}
+    ${b.yes.length >= CAT_MIN ? CAT('cat-big') : ''}
     <h2>${S.ev.final ? 'Bester Abend laut Abstimmung' : 'Bester Abend bisher'}</h2>
     <p class="date">${fmtLong(b.d)}</p>
     <p class="muted" style="font-weight:600">${b.yes.length} von ${n} können${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</p>
@@ -1035,7 +1036,7 @@ function sumView(A) {
     ${canFix ? `<button class="btn amber block" style="margin-top:16px" data-act="finalize" data-d="${b.d}">Diesen Abend festlegen</button>` : ''}
   </section>` : `
   <section class="card best" style="margin-top:16px">
-    ${CAT('cat-big')}
+    ${b.yes.length >= CAT_MIN ? CAT('cat-big') : ''}
     <h2>${top.length} gleich gute Abende</h2>
     <p class="muted" style="font-weight:600;margin-top:6px">Je ${b.yes.length} von ${n} können${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</p>
     <ul class="tie-list">${top.map(e => `<li>

@@ -27,6 +27,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 03:20: Speicheranzeige (Tasse) entfernt. Katze im Kalender weiter rechts, Ohren sitzen sauber am Kopf. Leiste „Bester Abend“ steht unter dem Kalender.
 - [x] 04.11.2026, 03:35: Bester/zweitbester Abend nach Zusagen, dann Vielleicht. Gleichstand: alle gleich guten Abende werden gemeinsam gezeigt (Kalender, Leiste, Auswertung, Übersicht). Umrandung und Katze erst ab 3 Zusagen.
 - [x] 04.11.2026, 03:40: Bei gleicher Zahl an Zusagen und Vielleicht gewinnt der Abend mit angebotenem Gastgeber; Gastgeber wird in der Leiste angezeigt.
+- [x] 04.11.2026, 03:45: Katze erscheint erst ab 5 Zusagen (Kalender, Leiste, Auswertung); Umrandungen weiterhin ab 3.
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
