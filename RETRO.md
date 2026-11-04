@@ -44,9 +44,12 @@ Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 
 | 04.11. | Rangfolge: Zusagen, dann Vielleicht, dann Gastgeber; Gleichstände gemeinsam zeigen | Nachvollziehbar, keine Willkür | Interne Punktzahl mit verstecktem Tiebreak |
 | 04.11. | Hervorhebung ab 3 Zusagen, Katze ab 5, Stufen ab 7/9/11/13/15 | Hervorhebung soll etwas bedeuten | Leuchten proportional zur Personenzahl |
 | 04.11. | Avatare nur Tiere und Fabelwesen, ohne Farbwahl | Essen/Gegenstände wirken wie Thema der Veranstaltung | Farbwahl pro Person |
+| 04.11., 11:15 | Umzug auf privates Repo plus Firebase Hosting (10b), vor der ersten echten Veranstaltung | Codebasen künftig grundsätzlich privat (mögliche Monetarisierung); Firebase Hosting kostenlos und im bestehenden Projekt | GitHub Pro (kostet), öffentliches Repo behalten (10a) |
 | 04.11. | „Meine Veranstaltungen“ gerätebezogen | Ohne Konten weiß die App nicht, wer wohin eingeladen ist | Konten |
 
 ## Offene Punkte
+
+- [ ] Umzug: eigenen Seitennamen anlegen, Deploy einrichten, testen, danach Repo auf privat stellen (Reihenfolge wichtig, sonst Ausfall)
 
 - [ ] Erste echte Veranstaltung mit Freunden (bisher nur simulierte Personen)
 - [ ] Testveranstaltungen in Firestore löschen: „Testlauf (Claude)“, „Animationstest (Claude, löschbar)“, „Zusagetest (Claude, löschbar)“ (Löschen nur durch dich)
