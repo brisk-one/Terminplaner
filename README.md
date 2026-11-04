@@ -30,6 +30,7 @@ Live: https://brisk-one.github.io/Terminplaner/
 - [x] 04.11.2026, 03:45: Katze erscheint erst ab 5 Zusagen (Kalender, Leiste, Auswertung); Umrandungen weiterhin ab 3.
 - [x] 04.11.2026, 03:50: Katze entwickelt sich mit den Zusagen: ab 7 rosige Bäckchen, ab 9 Partyhütchen, ab 11 Herzchen statt z, ab 13 Schleife, ab 15 Krone und Funkeln (Accessoires sammeln sich an).
 - [x] 04.11.2026, 03:55: Katzenstufen neu: ab 7 Herzchen statt z, ab 9 Partyhütchen, ab 11 schläft ein rotgetigertes Kätzchen auf ihrem Rücken, ab 13 Krone und Funkeln.
+- [x] 04.11.2026, 03:50: Katzenstufen final: ab 5 schläft, ab 7 Herzchen, ab 9 Kätzchen auf dem Rücken, ab 11 Partyhütchen, ab 13 zusätzlich Sternchen und kleine Diskokugel (keine Krone).
 - [ ] Erste echte Veranstaltung mit Freunden
 
 Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
