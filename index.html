@@ -810,7 +810,7 @@ function renderEvent() {
   const pageY = scrollY;
   S.sheetShown = sheetOpen ? S.sel : null;
   app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
-    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Veranstaltung bearbeiten" title="Veranstaltung bearbeiten">📝</button>` : ''}`, true)}
+    ${topbar(`${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Veranstaltung bearbeiten" title="Veranstaltung bearbeiten">📝</button>` : ''}`, true)}
     <div class="stack">
       ${demoBanner()}
       ${ev.final ? finalCard() : ''}
