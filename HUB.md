@@ -1,31 +1,13 @@
-# Retrospektive und Entscheidungen
+# Hub: Entscheidungen, Plattform und offene Punkte
 
-## Session 04.11.2026, 01:04 bis 04:05
+Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 Commits, `index.html` mit 1410 Zeilen, Firebase-Backend mit live geprüften Zugriffsregeln.
+Stand: 04.11.2026, 14:55
 
-### Was gut lief
+## Retrospektiven
 
-- **Schnell echt statt Attrappe:** Rund 40 Minuten nach Start war die App mit echter Datenbank live und gegen die Regeln getestet (Fremde ohne Link: alles 403).
-- **Verifikation vor „fertig“:** Jede Änderung lief durch einen Handy-Test (390 px, mehrere simulierte Personen), dazu Screenshots. Mehrere Fehler wurden so vor dir gefunden (z.B. Speicherverlust beim schnellen Schließen, Vielleicht-Avatare im Gleichstand).
-- **Optionen als Bild:** Schriftvergleich und Katzenstufen als Bildtafel haben Entscheidungen in einer Runde ermöglicht statt in mehreren.
-
-### Was nicht gut lief (eigene Fehler)
-
-| Fehler | Ursache | Lehre |
-|---|---|---|
-| Leuchtrand hat nie funktioniert | Prozentwert in `box-shadow`, Browser verwirft die ganze Angabe still | Visuelle Effekte gezielt im vergrößerten Screenshot prüfen, nicht nur „keine Fehler in der Konsole“ |
-| Katze und Haken abgeschnitten | Klassenname `.best` doppelt vergeben, eine Variante mit `overflow:hidden` | Eindeutige Klassennamen pro Bereich |
-| Panel blendete doppelt ein | Firestore meldet eigene Änderungen zweimal zurück, das war absehbar | Bekanntes Verhalten der Bibliothek vorab einplanen |
-| Ohrkorrektur erzeugte neue Kerbe | Abrundung per Kontur rundete auch die Ansatzstelle | Nach jeder Grafikänderung stark vergrößert prüfen, bevor „behoben“ gemeldet wird |
-| Eigener Avatar fehlte im Kalender | Stille Designannahme (eigene Zusage ist ja grün) | Annahmen, die sichtbares Verhalten ändern, kurz ansagen |
-| Leuchten nach Personenzahl | Überdesign, hat die Hervorhebung des besten Tages verwässert | Erst die einfachste Variante, Steigerung nur auf Wunsch |
-| Testserver starb mehrfach | Hintergrundprozesse werden beendet | Server im Testskript selbst starten (umgesetzt) |
-
-### Prozess
-
-- Viele kleine Feedbackrunden zu Optik (Katze rund acht Runden). Bei reinen Geschmacksfragen früher eine Bildtafel mit 3 Varianten zeigen.
-- Sehr lange Session bis 4 Uhr. Für weitere Arbeit lieber frisch starten, dieses Dokument und die README reichen als Einstieg.
+- [v1.0: Treffpunkt live (Spanne 01:04 bis 04:05)](RETROSPEKTIVE_2026-11-04_v1.0.md)
+- [v1.1: Von der App zur Plattform (Spanne 04:05 bis 14:50)](RETROSPEKTIVE_2026-11-04_v1.1.md)
 
 ## Entscheidungen (Decision-Log)
 
@@ -58,10 +40,18 @@ Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 
 
 ## Offene Punkte
 
+Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
+
+- [ ] P1 Namensentscheid Nightyard / OMGForge (Empfehlung OMGForge), danach Domains .com und .de kaufen (Kauf nur durch dich)
+- [ ] P2 Plattform-Plan im frischen Chat: Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
+- [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung
+- [ ] Optional, Hypothese: Turret Syndrome als privates GitHub-Repo sichern (liegt bisher nur lokal)
+
+Weitere offene Punkte:
+
 - [ ] Umzug: eigenen Seitennamen anlegen, Deploy einrichten, testen, danach Repo auf privat stellen (Reihenfolge wichtig, sonst Ausfall)
   - 04.11.2026, 11:40: Pausiert, bis Domain und Struktur der geplanten App-Plattform (Einstiegsseite für alle Apps) feststehen. Grund: Jeder Adresswechsel trennt Geräte von ihren Einträgen, ein Doppelumzug soll vermieden werden.
 
-- [ ] Erste echte Veranstaltung mit Freunden (bisher nur simulierte Personen)
 - [ ] Testveranstaltungen in Firestore löschen: „Testlauf (Claude)“, „Animationstest (Claude, löschbar)“, „Zusagetest (Claude, löschbar)“ (Löschen nur durch dich)
 - [ ] GitHub verlangt Zwei-Faktor-Anmeldung bis 13.12.2026 (Hinweis auf der Pages-Einstellungsseite gesehen), sonst eingeschränkter Zugriff
 - [ ] Optional: Organisator kann einzelne Teilnehmer noch nicht entfernen (Regeln erlauben es bereits, Oberfläche fehlt)

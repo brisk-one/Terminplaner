@@ -6,7 +6,9 @@ Stand: 04.11.2026, 01:45
 
 Live: https://brisk-one.github.io/Terminplaner/
 
-Retrospektive, Entscheidungen und offene Punkte: [RETRO.md](RETRO.md)
+Entscheidungen und offene Punkte: [HUB.md](HUB.md) · Retrospektiven: [v1.0](RETROSPEKTIVE_2026-11-04_v1.0.md), [v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md)
+
+Hinweis 04.11.2026, 14:55: Umzug auf privates Repo plus Firebase Hosting ist entschieden, aber pausiert, bis die Domain der geplanten App-Plattform feststeht (Details im Hub). Bis dahin bleibt die Adresse oben gültig.
 
 ## Status
 
@@ -37,7 +39,7 @@ Retrospektive, Entscheidungen und offene Punkte: [RETRO.md](RETRO.md)
 - [x] 04.11.2026, 04:00: Leiste „Bester Abend“ kompakt (Datum in einer Zeile, „1 Person“ / „4 Personen“).
 - [ ] Erste echte Veranstaltung mit Freunden
 
-Hinweis: In der Datenbank liegen Test-Runden „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
+Hinweis: In der Datenbank liegen Test-Runden „Testlauf (Claude)“, „Animationstest (Claude, löschbar)“ und „Zusagetest (Claude, löschbar)“. Nur per Link erreichbar, kann in der Firebase Console unter Firestore gelöscht werden.
 
 ## Dateien
 
