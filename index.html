@@ -91,8 +91,8 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .rsvp3 button:active{transform:scale(.95)}
 .rsvp3 button b{font-size:24px;line-height:1}
 .rsvp3 button.on.yes{background:var(--moss);border-color:var(--moss);color:#fff}
-.rsvp3 button.on.maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);border-color:var(--amber)}
-.rsvp3 button.on.no{background:var(--surface2);border-color:var(--faint)}
+.rsvp3 button.on.maybe{background:var(--amber);border-color:var(--amber);color:#3A2205}
+.rsvp3 button.on.no{background:var(--rose);border-color:var(--rose);color:#fff}
 .rgroup{margin-top:14px}
 .rgroup h4{margin:0 0 8px;font-size:15px;font-weight:800}
 .pchips{display:flex;flex-wrap:wrap;gap:6px}
@@ -159,7 +159,7 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin:0 2px 12px;font-weight:600}
 .legend i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;font-size:11px;margin-right:4px;vertical-align:-4px;font-weight:800}
-.sw.yes{background:var(--moss);color:#fff}.sw.maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 40%,var(--surface)) 0 4px,var(--surface) 4px 8px);box-shadow:inset 0 0 0 2px var(--amber);color:var(--amber-ink)}.sw.no{background:var(--surface2);color:var(--muted)}
+.sw.yes{background:var(--moss);color:#fff}.sw.maybe{background:var(--amber);color:#3A2205}.sw.no{background:var(--surface2);color:var(--muted)}
 .month{margin-bottom:18px}
 .month h3{margin:0 4px 10px}
 .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
@@ -173,8 +173,10 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .day .mark{z-index:4;position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff;box-shadow:0 0 0 2px var(--bg)}
 .day.s-yes{background:var(--moss);color:#fff;box-shadow:0 0 0 calc(var(--h) * 2px) color-mix(in srgb,var(--amber) calc(var(--h) * 90%),transparent),0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent)}
 .day.s-yes .mark{background:#fff;color:var(--moss)}
-.day.s-maybe{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--amber) 32%,var(--surface)) 0 6px,var(--surface) 6px 12px);box-shadow:inset 0 0 0 2px var(--amber),0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent)}
-.day.s-maybe .mark{background:var(--amber);color:#3A2205}
+.day.s-maybe{background:var(--amber);color:#3A2205;box-shadow:0 0 calc(var(--h) * 14px) 0 color-mix(in srgb,var(--glow) calc(var(--h) * 100%),transparent)}
+.day.s-maybe .mark{background:#fff;color:var(--amber-ink)}
+.day.s-maybe .mini i{box-shadow:0 0 0 1.5px #fff}
+.day.s-maybe .mini em{color:#3A2205}
 .day.s-no{background:var(--surface2);box-shadow:none}
 .day.s-no .num{opacity:.4;text-decoration:line-through 2px}
 .day.s-no .mark{background:var(--faint)}
@@ -210,11 +212,11 @@ select.in{appearance:none;background-image:linear-gradient(45deg,transparent 50%
 .sheet>div.anim{animation:up .22s ease-out}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
 .sheet .grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:-6px auto 10px}
-.status4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.status4{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}
 .status4 button{border:2px solid var(--line);background:var(--surface);border-radius:var(--r-md);padding:8px 4px;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:58px}
 .status4 button b{font-size:18px}
 .status4 button.on.yes{border-color:var(--moss);background:var(--moss-soft)}
-.status4 button.on.maybe{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 20%,var(--surface))}
+.status4 button.on.maybe{border-color:var(--amber);background:var(--amber);color:#3A2205}
 .status4 button.on.no{border-color:var(--faint);background:var(--surface2)}
 .status4 button.on.none{border-color:var(--ink)}
 .who{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
@@ -339,7 +341,7 @@ const emojiOK = (() => {
 const COLORS = ['#E07A3E','#5E8A5C','#C95B78','#5B7FB8','#D9A22E','#8E6CB0','#3E9C9C','#B5794A'];
 const colorOf = p => { const i = EMOJIS.indexOf(p?.emoji); return i >= 0 ? COLORS[i % COLORS.length] : (p?.color || COLORS[0]); };
 const STATUS = { yes:{t:'Kann', i:'✓'}, maybe:{t:'Vielleicht', i:'?'}, no:{t:'Kann nicht', i:'✕'} };
-const CYCLE = [undefined, 'yes', 'maybe', 'no'];
+const CYCLE = [undefined, 'yes', 'maybe'];
 
 const CAT = (cls='cat') => `<svg class="${cls}" viewBox="0 0 44 32" aria-hidden="true"><text class="z" x="33" y="7">z</text><path d="M5 27c-1-8 6-14 15-14 4 0 7 1 9 2l1-1c2-3 6-3 8 0 2 3 2 7 0 10-1 2-3 3-5 3H7c-1 0-2 0-2 0z" fill="currentColor"/><path d="M29 15l1-6 4 4zM36 13l3-5 1 7z" fill="currentColor"/><path d="M8 27c-4 1-6-1-5-4" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M31 21q1.5 1.2 3 0M36 21q1.2 1 2.4 0" stroke="var(--bg)" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`;
 const CUP = `<svg class="cup" viewBox="0 0 26 26" aria-hidden="true"><path class="steam" d="M10 7c-1.5-1.5 1.5-2.5 0-4"/><path class="steam" d="M15 7c-1.5-1.5 1.5-2.5 0-4"/><path d="M5 10h15v6a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M20 12h1.5a2.5 2.5 0 0 1 0 5H20" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>`;
@@ -490,7 +492,7 @@ async function onRoute() {
   if ((m = h.match(/^\/e\/([A-Za-z0-9]{12,40})\/admin\/([A-Za-z0-9]{12,60})$/))) {
     const [, eid, key] = m;
     const ok = await B.claimAdmin(eid, key);
-    if (ok) { ls.set('tp:key:'+eid, key); toast('Du bist jetzt Organisator dieser Runde'); }
+    if (ok) { ls.set('tp:key:'+eid, key); toast('Du bist jetzt Organisator dieser Veranstaltung'); }
     else toast('Der Organisator-Link passt nicht');
     location.replace('#/e/' + eid); return;
   }
@@ -518,14 +520,14 @@ function renderHome() {
   const recent = ls.get('tp:recent', []);
   if (!recent.length) {
     app.innerHTML = `<div class="wrap stack">${topbar()}
-      <section class="hero">${windowArt()}<h1>Wann habt ihr alle Zeit?</h1><p>Leg eine Runde an, schick den Link rum, und jeder tippt seine freien Abende an. Der beste Abend leuchtet von selbst.</p></section>
-      <a class="btn primary block" href="#/neu">Neue Runde planen</a>
+      <section class="hero">${windowArt()}<h1>Wann habt ihr alle Zeit?</h1><p>Leg eine Veranstaltung an, schick den Link rum, und jeder tippt seine freien Abende an. Der beste Abend leuchtet von selbst.</p></section>
+      <a class="btn primary block" href="#/neu">Neue Veranstaltung planen</a>
       ${demoBanner()}</div>`;
     return;
   }
   app.innerHTML = `<div class="wrap stack">${topbar()}
     <div><h1>Meine Veranstaltungen</h1><p class="muted" style="margin-top:6px">Alle Veranstaltungen, die du auf diesem Gerät geöffnet hast.</p></div>
-    <a class="btn primary block" href="#/neu">Neue Runde planen</a>
+    <a class="btn primary block" href="#/neu">Neue Veranstaltung planen</a>
     ${demoBanner()}
     <ul class="evlist" id="evlist">${recent.map(() => '<li><div class="skeleton" style="height:150px"></div></li>').join('')}</ul>
   </div>`;
@@ -550,7 +552,7 @@ async function loadOverview(recent) {
 
 function evCard({r, ev, parts, err}) {
   const forget = `<button class="x" data-act="forget" data-eid="${esc(r.eid)}" aria-label="${esc(r.title)} aus der Liste entfernen" title="Aus der Liste entfernen">✕</button>`;
-  if (!ev) return `<li><div class="evcard gone"><div class="row"><b class="grow">${esc(r.title || 'Runde')}</b>${forget}</div><p class="small muted">${err ? 'Konnte nicht geladen werden. Prüfe deine Verbindung.' : 'Diese Runde gibt es nicht mehr.'}</p></div></li>`;
+  if (!ev) return `<li><div class="evcard gone"><div class="row"><b class="grow">${esc(r.title || 'Veranstaltung')}</b>${forget}</div><p class="small muted">${err ? 'Konnte nicht geladen werden. Prüfe deine Verbindung.' : 'Diese Veranstaltung gibt es nicht mehr.'}</p></div></li>`;
   const fixed = ev.type === 'fixed', me = parts.find(p => p.uid === B.uid), n = parts.length;
   let when, status, todo = false;
   if (fixed) when = `${fmtLong(ev.date)}, ${fmtRange(ev.start, ev.end)}`;
@@ -576,7 +578,7 @@ function evCard({r, ev, parts, err}) {
       ${dl != null && dl >= 0 ? `<li><span>⏳</span><span>${dl === 0 ? 'Heute letzter Tag zum Antworten' : `Noch ${dl} ${dl === 1 ? 'Tag' : 'Tage'} zum Antworten`}</span></li>` : ''}
     </ul>
     <div class="row" style="margin-top:10px"><div class="av-stack">${parts.slice(0, 5).map(p => avatar(p, 'sm')).join('')}${n > 5 ? `<span class="av sm" style="--c:var(--faint);font-size:11px;font-weight:800">+${n - 5}</span>` : ''}</div>
-      <span class="small muted grow">${n} in der Runde${yes != null ? `, ${yes} dabei` : ''}</span></div>
+      <span class="small muted grow">${n} ${n === 1 ? 'Person' : 'Personen'}${yes != null ? `, ${yes} dabei` : ''}</span></div>
     <p class="mystate ${todo ? 'todo' : ''}">${status}</p>
   </a></li>`;
 }
@@ -593,13 +595,13 @@ function eventForm(ev) {
   const hide = e.hideDow || [], type = e.type || 'find';
   return `<div class="evform stack" data-type="${type}">
   <input type="hidden" name="type" value="${type}">
-  ${ev ? '' : `<div class="seg typesel" role="group" aria-label="Art der Runde">
+  ${ev ? '' : `<div class="seg typesel" role="group" aria-label="Art der Veranstaltung">
     <button type="button" class="on" data-act="type" data-t="find">🗓️ Termin finden</button>
     <button type="button" data-act="type" data-t="fixed">🎟️ Fester Termin</button>
   </div>
   <p class="hint only-find" style="margin-top:-4px">Alle tragen ein, wann sie können. Der beste Abend wird ermittelt.</p>
   <p class="hint only-fixed" style="margin-top:-4px">Datum steht schon, z.B. Clubabend. Alle sagen zu oder ab.</p>`}
-  <label class="f"><span>Wie heißt die Runde?</span><input class="in" name="title" maxlength="80" required placeholder="Raclette-Abend, Spieleabend, Filmnacht" value="${esc(e.title)}"></label>
+  <label class="f"><span>Wie heißt die Veranstaltung?</span><input class="in" name="title" maxlength="80" required placeholder="Raclette-Abend, Spieleabend, Filmnacht" value="${esc(e.title)}"></label>
   <label class="f"><span>Beschreibung <em>optional</em></span><textarea class="in" name="desc" maxlength="500" placeholder="Was habt ihr vor?">${esc(e.desc)}</textarea></label>
   <label class="f"><span>Ort <em>optional</em></span><input class="in" name="location" maxlength="120" placeholder="Club, Bar, Adresse" value="${esc(e.location)}"><p class="hint only-find">Leer lassen, wenn ihr euch bei jemandem zuhause trefft.</p></label>
   <label class="f only-fixed"><span>Datum</span><input class="in" type="date" name="date" value="${e.date || ''}" ${ev ? '' : `min="${t}"`}></label>
@@ -623,7 +625,7 @@ function eventForm(ev) {
 function readEventForm(root) {
   const g = n => root.querySelector(`[name=${n}]`);
   const title = g('title').value.trim();
-  if (!title) return {err: 'Gib der Runde einen Namen.'};
+  if (!title) return {err: 'Gib der Veranstaltung einen Namen.'};
   const start = +g('start').value, endV = g('end').value, end = endV === '' ? null : +endV;
   if (end !== null && end <= start) return {err: 'Das Ende muss nach dem Beginn liegen.'};
   if (g('type').value === 'fixed') {
@@ -642,9 +644,9 @@ function readEventForm(root) {
 
 function renderCreate() {
   S.view = 'create'; S.form = {wishes: []};
-  app.innerHTML = `<div class="wrap">${topbar()}
+  app.innerHTML = `<div class="wrap">${topbar('', true)}
     <form id="createForm" class="stack" novalidate>
-      <h1>Neue Runde</h1>
+      <h1>Neue Veranstaltung</h1>
       <div class="card stack">${eventForm()}</div>
       <div class="card stack">
         <div><h3>Mitbring-Wünsche <span class="small muted" style="font-family:var(--body);font-weight:500">optional</span></h3><p class="small muted" style="margin-top:4px">Freunde können sich einen Punkt schnappen.</p></div>
@@ -652,7 +654,7 @@ function renderCreate() {
         <div class="chips" id="wishChips"></div>
       </div>
       <p class="err" id="formErr" role="alert"></p>
-      <button class="btn amber block" type="submit">Runde erstellen</button>
+      <button class="btn amber block" type="submit">Veranstaltung erstellen</button>
     </form></div>`;
 }
 
@@ -671,8 +673,8 @@ async function submitCreate(form) {
     addRecent(eid, r.data.title, true);
     location.hash = '#/fertig/' + eid;
   } catch (e) {
-    console.error(e); btn.disabled = false; btn.textContent = 'Runde erstellen';
-    $('#formErr').textContent = 'Die Runde konnte nicht gespeichert werden. Prüfe die Verbindung und die Firebase-Einrichtung.';
+    console.error(e); btn.disabled = false; btn.textContent = 'Veranstaltung erstellen';
+    $('#formErr').textContent = 'Die Veranstaltung konnte nicht gespeichert werden. Prüfe die Verbindung und die Firebase-Einrichtung.';
   }
 }
 
@@ -693,13 +695,13 @@ function shareButtons(url, text) {
 
 function renderCreated(eid) {
   S.view = 'created';
-  const key = ls.get('tp:key:'+eid), title = ls.get('tp:recent', []).find(r => r.eid === eid)?.title || 'Unsere Runde';
+  const key = ls.get('tp:key:'+eid), title = ls.get('tp:recent', []).find(r => r.eid === eid)?.title || 'Unsere Veranstaltung';
   const url = evLink(eid);
-  app.innerHTML = `<div class="wrap stack">${topbar()}
-    <div class="card stack" style="text-align:center">${garland(COLORS.slice(0, 6).map(c => ({name: '', color: c})))}<h1>Die Runde steht bereit</h1><p class="muted">Schick diesen Link an alle, die mitmachen sollen. Nur wer ihn hat, kann die Runde sehen.</p></div>
+  app.innerHTML = `<div class="wrap stack">${topbar('', true)}
+    <div class="card stack" style="text-align:center">${garland(COLORS.slice(0, 6).map(c => ({name: '', color: c})))}<h1>Die Veranstaltung steht bereit</h1><p class="muted">Schick diesen Link an alle, die mitmachen sollen. Nur wer ihn hat, kann die Veranstaltung sehen.</p></div>
     <div class="card stack"><h3>Link für deine Freunde</h3><div class="linkbox"><span class="grow">${esc(url)}</span></div>${shareButtons(url, `Wann hast du Zeit für „${title}“? Trag dich hier ein:`)}</div>
-    ${key ? `<div class="card stack"><h3>Dein Organisator-Link</h3><p class="small muted">Nur für dich. Damit kannst du die Runde auch auf einem anderen Gerät bearbeiten und den Termin festlegen. Gut aufheben, nicht weitergeben.</p><div class="linkbox"><span class="grow">${esc(adminLink(eid, key))}</span></div><button class="btn sm" data-act="copy" data-url="${esc(adminLink(eid, key))}">📋 Organisator-Link kopieren</button></div>` : ''}
-    <a class="btn primary block" href="#/e/${eid}">Zur Runde und eigene Tage eintragen</a>
+    ${key ? `<div class="card stack"><h3>Dein Organisator-Link</h3><p class="small muted">Nur für dich. Damit kannst du die Veranstaltung auch auf einem anderen Gerät bearbeiten und den Termin festlegen. Gut aufheben, nicht weitergeben.</p><div class="linkbox"><span class="grow">${esc(adminLink(eid, key))}</span></div><button class="btn sm" data-act="copy" data-url="${esc(adminLink(eid, key))}">📋 Organisator-Link kopieren</button></div>` : ''}
+    <a class="btn primary block" href="#/e/${eid}">Zur Veranstaltung</a>
   </div>`;
   confetti(90);
 }
@@ -781,7 +783,7 @@ function avatar(p, cls = '') { return `<span class="av ${cls}" style="--c:${esc(
 function renderEvent() {
   const ev = S.ev;
   if (!ev) {
-    app.innerHTML = `<div class="wrap stack">${topbar('', true)}<div class="card empty">${CAT()}<h2>Diese Runde gibt es nicht</h2><p class="muted" style="margin-top:8px">Prüfe, ob der Link vollständig kopiert wurde.</p><a class="btn block" style="margin-top:16px" href="#/">Zur Startseite</a></div></div>`;
+    app.innerHTML = `<div class="wrap stack">${topbar('', true)}<div class="card empty">${CAT()}<h2>Diese Veranstaltung gibt es nicht</h2><p class="muted" style="margin-top:8px">Prüfe, ob der Link vollständig kopiert wurde.</p><a class="btn block" style="margin-top:16px" href="#/">Zur Startseite</a></div></div>`;
     return;
   }
   document.title = ev.title + ' · Treffpunkt';
@@ -794,7 +796,7 @@ function renderEvent() {
   const pageY = scrollY;
   S.sheetShown = sheetOpen ? S.sel : null;
   app.innerHTML = `<div class="wrap ${S.tab === 'cal' && S.sel ? 'has-sheet' : ''}">
-    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Runde bearbeiten" title="Runde bearbeiten">📝</button>` : ''}`, true)}
+    ${topbar(`<span id="savestate" class="row" style="gap:4px">${CUP}<span class="save-txt"></span></span>${S.admin ? `<button class="icon-btn" data-act="settings" aria-label="Veranstaltung bearbeiten" title="Veranstaltung bearbeiten">📝</button>` : ''}`, true)}
     <div class="stack">
       ${demoBanner()}
       ${ev.final ? finalCard() : ''}
@@ -825,7 +827,7 @@ function header(A) {
     </ul>
     <div class="people">
       <div class="av-stack">${S.parts.slice(0, 5).map(p => avatar(p)).join('')}${n > 5 ? `<span class="av" style="--c:var(--faint);font-size:13px;font-weight:800">+${n - 5}</span>` : ''}</div>
-      <span class="small muted grow">${n} in der Runde</span>
+      <span class="small muted grow">${n} ${n === 1 ? 'Person' : 'Personen'}</span>
       <button class="me-btn" data-act="profile" aria-label="Deinen Namen und Avatar ändern" title="Name und Avatar ändern">${avatar(S.me, 'sm')}${esc(S.me.name)}<span class="gear" aria-hidden="true">⚙️</span></button>
     </div>
   </header>`;
@@ -863,7 +865,7 @@ function calView(A) {
         <button class="${S.mode === 'view' || locked ? 'on' : ''}" data-act="mode" data-m="view">👀 Ansehen</button>
       </div></div>
     <p class="legend">${locked ? (ev.final ? 'Der Termin steht, Änderungen sind geschlossen.' : 'Die Abstimmung ist beendet.') :
-      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span><i class="sw no">✕</i>kann nicht</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
+      S.mode === 'mark' ? `<span>Tippen wechselt:</span><span><i class="sw yes">✓</i>kann</span><span><i class="sw maybe">?</i>vielleicht</span><span>dann wieder leer</span></p><p class="legend" style="margin-top:-6px"><span>Kleine Avatare: wer kann (blass: vielleicht). Je mehr, desto heller leuchtet der Rand.</span>` :
       'Tippe einen Tag an, um zu sehen, wer kann.'}</p>
     ${best ? (() => { const b = A.ranked[0]; return `<button class="best-bar" data-act="goto-best" data-d="${best}">${CAT('')}<span><b>Bester Abend bisher: ${fmtLong(best)}</b><span class="small muted">${b.yes.length} ${b.yes.length === 1 ? 'kann' : 'können'}${b.maybe.length ? `, ${b.maybe.length} vielleicht` : ''}</span><span class="pchips best-who">${b.yes.map(p => `<span class="pchip">${avatar(p, 'sm')}${esc(p.name)}</span>`).join('')}${b.maybe.map(p => `<span class="pchip maybe">${avatar(p, 'sm')}${esc(p.name)}?</span>`).join('')}</span></span></button>`; })() : ''}`;
   for (let m = new Date(start.getFullYear(), start.getMonth(), 1, 12); m <= end; m = new Date(m.getFullYear(), m.getMonth()+1, 1, 12)) {
@@ -909,7 +911,7 @@ function sheetHtml() {
     <div class="grab"></div>
     <div class="row"><h3 class="grow">${fmtLong(d)}</h3><button class="icon-btn" data-act="sheet-close" aria-label="Schließen">✕</button></div>
     ${locked ? '' : `<div class="status4" role="group" aria-label="Deine Antwort">
-      ${['yes','maybe','no'].map(s => `<button class="${s} ${my === s ? 'on' : ''}" data-act="set" data-s="${s}" aria-pressed="${my === s}"><b>${STATUS[s].i}</b>${STATUS[s].t}</button>`).join('')}
+      ${['yes','maybe'].map(s => `<button class="${s} ${my === s ? 'on' : ''}" data-act="set" data-s="${s}" aria-pressed="${my === s}"><b>${STATUS[s].i}</b>${STATUS[s].t}</button>`).join('')}
       <button class="none ${!my ? 'on' : ''}" data-act="set" data-s="" aria-pressed="${!my}"><b>·</b>Offen</button>
     </div>
     ${my === 'yes' || my === 'maybe' ? `<div class="stack">
@@ -1118,7 +1120,7 @@ function openProfile() {
 function openSettings() {
   const key = ls.get('tp:key:' + S.eid);
   openModal(`<form id="settingsForm" class="stack" novalidate>
-    <div class="row"><h2 class="grow">Runde bearbeiten</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
+    <div class="row"><h2 class="grow">Veranstaltung bearbeiten</h2><button type="button" class="icon-btn" data-act="close" aria-label="Schließen">✕</button></div>
     <div class="card stack">${eventForm(S.ev)}</div>
     <p class="err" id="formErr" role="alert"></p>
     <button class="btn amber block" type="submit">Änderungen speichern</button>
