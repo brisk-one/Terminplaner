@@ -47,6 +47,14 @@ Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 
 | 04.11., 11:15 | Umzug auf privates Repo plus Firebase Hosting (10b), vor der ersten echten Veranstaltung | Codebasen künftig grundsätzlich privat (mögliche Monetarisierung); Firebase Hosting kostenlos und im bestehenden Projekt | GitHub Pro (kostet), öffentliches Repo behalten (10a) |
 | 04.11. | „Meine Veranstaltungen“ gerätebezogen | Ohne Konten weiß die App nicht, wer wohin eingeladen ist | Konten |
 
+## Plattform (Stand 04.11.2026, 12:20)
+
+- Ziel: alle Web-Apps öffentlich hosten, visuelle Einstiegsseite, Werbung/Affiliate vorbereitet aber ausgeschaltet, bis etwas Traffic bekommt (14a). Laufende Kosten minimal.
+- Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
+- Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
+- Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
+- Wohnort für Gewerbe/Impressum: Hamburg.
+
 ## Offene Punkte
 
 - [ ] Umzug: eigenen Seitennamen anlegen, Deploy einrichten, testen, danach Repo auf privat stellen (Reihenfolge wichtig, sonst Ausfall)
