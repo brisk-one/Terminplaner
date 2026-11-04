@@ -50,6 +50,7 @@ Ergebnis: Treffpunkt von der Idee bis zur live genutzten App in einer Nacht. 34 
 ## Offene Punkte
 
 - [ ] Umzug: eigenen Seitennamen anlegen, Deploy einrichten, testen, danach Repo auf privat stellen (Reihenfolge wichtig, sonst Ausfall)
+  - 04.11.2026, 11:40: Pausiert, bis Domain und Struktur der geplanten App-Plattform (Einstiegsseite für alle Apps) feststehen. Grund: Jeder Adresswechsel trennt Geräte von ihren Einträgen, ein Doppelumzug soll vermieden werden.
 
 - [ ] Erste echte Veranstaltung mit Freunden (bisher nur simulierte Personen)
 - [ ] Testveranstaltungen in Firestore löschen: „Testlauf (Claude)“, „Animationstest (Claude, löschbar)“, „Zusagetest (Claude, löschbar)“ (Löschen nur durch dich)
