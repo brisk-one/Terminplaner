@@ -2,7 +2,32 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 03:09
+Stand: 05.11.2026, 03:25
+
+## Runde 7: erfundene Fantasy-Namen (05.11.2026, 03:20 bis 03:25)
+
+Auftrag Dennis: ein paar völlig ausgedachte, freie Fantasy-Namen, die schön klingen. Kriterien von Claude gesetzt: 7 bis 10 Buchstaben, auf Deutsch und Englisch aussprechbar, angelehnt an Nacht, Glut und Licht (Wortwurzeln wie lumen, nox, ignis, vesper, sol), keine bekannten Namen aus Fantasy-Werken. Methode und Kontrollen wie in Runde 3.
+
+- **Vorfilter .com:** 123 erfundene Namen, 43 frei, 14 weitere bei Marktplätzen zum Verkauf (u. a. Noxelle, Sylvaris, Aurelune).
+- **Alle 43 mit freier .com:** auch .de, .app und .dev frei, keine Marke in exakter Schreibweise (TMview).
+- **Engere Wahl (12):** zusätzlich Companies House, North Data, App Store, Google Play: keine Firma, keine App mit dem Namen. GitHub: Konten „Maeloria“, „Caelvoria“ und „Vesperelle“ ohne Bedeutung; zu Aethelyn gibt es ein Konto „aethelynsoftware“, deshalb nachrangig.
+
+| Name | Buchstaben | Wurzel, Bild |
+|---|---|---|
+| Lumivael | 8 | lumen (Licht), weich und hell |
+| Miravael | 8 | mira (Wunder, staunen) |
+| Nocturell | 9 | nox (Nacht), wie Nocturne |
+| Solenwyn | 8 | sol (Sonne) mit walisisch klingendem Ende |
+| Vesperell | 9 | vesper (Abend) |
+| Embrialis | 9 | ember (Glut) |
+| Ignivael | 8 | ignis (Feuer) |
+| Maeloria | 8 | melodisch, ohne Wortwurzel |
+| Caelvoria | 9 | caelum (Himmel) |
+| Wyndaria | 8 | wind |
+| Eldrinor | 8 | episch, ohne Wortwurzel |
+| Aethelyn | 8 | altenglisch aethel (edel) |
+
+Alle 43 freien Namen: Nocturell, Embrialis, Lumivael, Solenwyn, Ignivael, Elmyria, Eldrinor, Maerlith, Maeloria, Caelvoria, Nymeriel, Arventh, Ysmerion, Miravael, Valemyr, Finaveth, Quenvael, Rhovanel, Taryndel, Umbreth, Wyndaria, Astervel, Draevane, Galvoren, Jorvael, Kestrelyn, Nerivael, Pyrelith, Pyrevane, Tirnavel, Vesperell, Wistarel, Yllanor, Zandarel, Aethelyn, Dawnvael, Glimmerel, Hearthvael, Ignelune, Lanternel, Moonvael, Starvael, Ambrevael.
 
 ## Runde 6: Ziffer vorne (05.11.2026, 03:01 bis 03:09)
 
