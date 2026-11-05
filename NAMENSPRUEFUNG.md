@@ -2,7 +2,14 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 03:25
+Stand: 05.11.2026, 03:38
+
+## Runde 8: kurze Kunstnamen und drei Buchstaben (05.11.2026, 03:32 bis 03:38)
+
+Auftrag Dennis: deutlich kürzere Namen; Idee: drei Konsonanten, die buchstabiert gut klingen (wtb, rsx, mcp, mvp, rng), ohne Slang-Abkürzungen.
+
+- **Drei Buchstaben:** .com bei 40 von 40 vergeben (wtb, rsx, mcp, mvp, rng und 35 zufällige Konsonanten-Kombinationen), .de bei 20 von 20, .app bei 12 von 12. Frei war nur vereinzelt .dev. Ohne Kauf nicht machbar; dazu sind die genannten Kürzel stark belegt (MCP, MVP, RNG als feste Begriffe).
+- **Kurze Kunstnamen (5 bis 6 Buchstaben):** 995 aus Fantasy-Silben gebaut, bei 904 geprüft, davon 146 auf .com frei. Engere Wahl von 12: Vylune (.de vergeben, DE-Marke Kl. 3/25/35) und Caeria (.de vergeben) raus. Die übrigen 10 haben .com, .de, .app und .dev frei, keine Marke (TMview), keine Firma (Companies House, North Data; einzig eine französische Immobilien-SCI „Syvael“): Cawyn, Lumwen, Nyvael, Syvael, Naewyn, Noxwyn, Embael, Vyriel, Iravyn, Ylaria.
 
 ## Runde 7: erfundene Fantasy-Namen (05.11.2026, 03:20 bis 03:25)
 
