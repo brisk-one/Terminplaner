@@ -6,7 +6,7 @@ Stand: 04.11.2026, 01:45
 
 Live: https://brisk-one.github.io/Terminplaner/
 
-Entscheidungen und offene Punkte: [HUB.md](HUB.md) · Retrospektiven: [v1.0](RETROSPEKTIVE_2026-11-04_v1.0.md), [v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md)
+Entscheidungen und offene Punkte: [HUB.md](HUB.md) · Retrospektiven: [v1.0](RETROSPEKTIVE_2026-11-04_v1.0.md), [v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md), [v1.2](RETROSPEKTIVE_2026-11-05_v1.2.md)
 
 Hinweis 04.11.2026, 14:55: Umzug auf privates Repo plus Firebase Hosting ist entschieden, aber pausiert, bis die Domain der geplanten App-Plattform feststeht (Details im Hub). Bis dahin bleibt die Adresse oben gültig.
 
