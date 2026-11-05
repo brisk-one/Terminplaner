@@ -2,7 +2,41 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 02:34
+Stand: 05.11.2026, 02:43
+
+## Runde 4: neue Wörter plus Zahl (05.11.2026, 02:38 bis 02:43)
+
+Auftrag Dennis: weitere Runde mit anderen Wörtern oder Zahlen (Option 1d), dazu Sun360 und Night360 prüfen. Methode und Kontrollen wie in Runde 3, alle Kontrollen der vier Registries bestanden.
+
+### Sun360 und Night360
+
+- **Night360:** .com seit 2005 vergeben, steht bei Afternic zum Sofortkauf für 9.850 US-Dollar (Verkäufer „CodingQT“, Gebot möglich). .de, .app und .dev frei. Keine Marke (TMview: nur zwei beendete US-Marken mit „night 360“ als Bestandteil), keine gleichnamige Firma (Companies House, North Data). Klanglich nah an vielen „Knight 360“- und „Insight 360“-Firmen.
+- **Sun360:** raus. .com bei Afternic für 30.000 US-Dollar, .de vergeben. Marken: BR „SUN360“ Kl. 9 (Software, 2021), CA-Anmeldung „SUN360“ von Sun Pharma (2025), „ORIFLAME SUN360°“ Kl. 3 in EU und UK.
+
+### Vorfilter .com
+
+267 neue Namen: 26 Wörter (Anvil, Kiln, Ember, Spark, Lantern, Owl, Raven, Comet, Nova, Lumen, Sol, Dawn, Cog, Bolt, Gear, Kit, Craft, Foundry, Smith, Glow, Flare, Halo, Orbit, Pixel, Lunar, Atlas) mal 7 Zahlen (Seven, Nine, Zero, One, Ten, Twelve, 42), dazu Zahl plus Plural (Seven, Nine, Three, Twelve, Eleven mal Anvils, Embers, Sparks, Lanterns, Owls, Ravens, Comets, Forges, Kilns, Moons, Suns, Nights, Tools, Gears, Cogs, Foxes, Lamps). Auf .com frei: 81 von 267. Mit Seven, Nine, Zero oder One frei sind vor allem Paare mit Anvil, Kiln, Lantern, Owl, Raven, Flare und Smith.
+
+### Engere Wahl (21 Namen, voll geprüft)
+
+OwlSeven, RavenNine, AnvilSeven, FlareSeven, FlareNine, KilnSeven, KilnNine, KilnZero, KilnOne, LanternSeven, LanternNine, SmithNine, SmithZero, SevenAnvils, SevenForges, NineForges, NineEmbers, NineComets, SevenKilns, KitNine, NineAnvils.
+
+- **Domains:** bei allen 21 sind .com, .de, .app und .dev frei.
+- **Marken (TMview):** bei keinem ein Treffer in exakter Schreibweise oder mit Leerzeichen.
+- **Firmen:** einzig „Lantern Seven Ltd“ (UK, aufgelöst 2021). North Data hat mehrfach gedrosselt; diese Abfragen sind mit Pause wiederholt und ohne Treffer.
+- **Apps:** App Store (DE) und Google Play (DE) ohne gleichnamige App.
+- **GitHub:** Konten „OwlSeven“, „RavenNine“ und „AnvilSeven“ existieren, jeweils ohne öffentliche Repos.
+- **Werktitel:** „Seven Forges“ ist der Titel einer Fantasy-Buchreihe (James A. Moore). Andere Branche, aber bei SevenForges zu bedenken.
+- **Bestandteile (Hypothese):** Owl, Raven, Anvil und Flare sind als Einzelwörter in Software-Klassen mehrfach eingetragen, wie Nox und Dusk in Runde 3. Die Kombinationen sind frei.
+
+| Name | Buchstaben | Bild |
+|---|---|---|
+| OwlSeven | 8 | Eule, Nachttier: nah an NightSeven, kurz, leicht auszusprechen |
+| RavenNine | 9 | Rabe, dunkel und markant |
+| AnvilSeven | 10 | Amboss: Schmiede-Linie (Werkstatt-Richtung aus Runde 1) |
+| KilnNine | 8 | Brennofen: Werkstatt, für deutsche Sprecher weniger geläufig |
+| SevenAnvils | 11 | „Sieben Ambosse“, klingt nach Märchen oder Sage |
+| NineEmbers | 10 | „Neun Glutstücke“, warm, Feuer und Nacht zugleich |
 
 ## Runde 3: Muster Wort plus Zahl (05.11.2026, 02:20 bis 02:34)
 
