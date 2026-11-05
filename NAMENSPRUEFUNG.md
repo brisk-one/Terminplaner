@@ -2,7 +2,21 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 03:51
+Stand: 05.11.2026, 04:14
+
+## Runde 11: Kürzel plus ausgeschriebener Name (05.11.2026, 04:09 bis 04:14)
+
+Auftrag Dennis: weitere Kombinationen; bei Kürzeln wie 9FRG auch prüfen, ob der ausgeschriebene Name (Nine Forge) als Marke und Firmenname frei ist.
+
+- **Vorfilter:** 37 Konsonanten-Gerüste mit Ziffer 1 bis 9 (333 Namen) auf .com. Gerüste mit 4 Konsonanten (FRGS, MBRS) bei allen Ziffern frei; MBR, SPK, CRF, STD, MNT, LBS, GMS bei allen Ziffern vergeben.
+- **17 Kürzel, alle vier Adressen frei (.com, .de, .app, .dev):** 9FRG, 9MBRS, 7NGT, 9NGT, 9KLN, 9GLW, 9LNT, 9NVL, 9PPS, 9HVN, 7FBL, 9RVN, 7SPRK, 9QST, 7LGT, 9CMT, 9WRK.
+- **Ausgeschriebener Name, Firmen (Companies House, North Data):**
+  - ohne Treffer: Nine Forge, Nine Embers, Nine Kilns, Nine Glow, Nine Lanterns, Nine Anvils, Nine Apps, Nine Havens, Nine Ravens, Nine Comets
+  - mit aktiver Firma: Seven Nights (UK Ltd 2024, NL B.V.), Nine Nights (UK Ltd 2024), Seven Fables (UK Ltd 2020), Seven Sparks (UK Ltd 2026, BG), Seven Lights (FR Sàrl), Nine Works (UK Ltd 09/2026, NL)
+  - nur erloschen: Nine Quest
+- **Ausgeschriebener Name, .com:** frei bei nineembers, nineforges, ninekilns, nineanvils, ninecomets; vergeben bei nineforge (seit 2024, Cloudflare, vermutlich in Benutzung) und den übrigen.
+- **Marken:** TMview hat den Zugriff nach den vielen automatischen Abfragen gesperrt („Problem detected“), auch für die Oberfläche. Die Markenprüfung dieser Runde ist deshalb ungeprüft. Aus früheren Runden geprüft und ohne Treffer: Nine Embers, Nine Forges, Nine Comets, Nine Anvils (Runde 4) sowie 9FRG, 9KLN, 9GLW, 9WRK, 9LNT, 9PPS (Runde 10). Aus Runde 3 bekannt: „SEVEN NIGHTS“ ist u. a. in Italien (Kl. 41) und China eingetragen.
+- **Lehre:** Massenabfragen bei TMview drosseln (weniger parallel, Pausen), sonst sperrt die EUIPO den Rechner.
 
 ## Runde 10: 2 bis 5 Zeichen, Ziffern und Konsonanten (05.11.2026, 03:46 bis 03:51)
 
