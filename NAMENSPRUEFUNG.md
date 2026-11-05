@@ -2,7 +2,9 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 04:14
+Stand: 05.11.2026, 04:18
+
+**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). Offen: Markenprüfung für 9MBRS (TMview gesperrt), Domainkauf durch Dennis.
 
 ## Runde 11: Kürzel plus ausgeschriebener Name (05.11.2026, 04:09 bis 04:14)
 

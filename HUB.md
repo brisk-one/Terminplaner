@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 04:14
+Stand: 05.11.2026, 04:18
 
 ## Retrospektiven
 
@@ -28,6 +28,7 @@ Stand: 05.11.2026, 04:14
 | 04.11. | Avatare nur Tiere und Fabelwesen, ohne Farbwahl | Essen/Gegenstände wirken wie Thema der Veranstaltung | Farbwahl pro Person |
 | 04.11., 11:15 | Umzug auf privates Repo plus Firebase Hosting (10b), vor der ersten echten Veranstaltung | Codebasen künftig grundsätzlich privat (mögliche Monetarisierung); Firebase Hosting kostenlos und im bestehenden Projekt | GitHub Pro (kostet), öffentliches Repo behalten (10a) |
 | 04.11. | „Meine Veranstaltungen“ gerätebezogen | Ohne Konten weiß die App nicht, wer wohin eingeladen ist | Konten |
+| 05.11., 04:18 | Plattform-Name **Nine Embers**, Kurzform **9MBRS** (Dennis); beide Namen als Domains sichern | Gefiel Dennis von Anfang an; Kurzform löst die Länge als Subdomain-Suffix. Als einziges geprüftes Paar sind Kurz- und Langform auf .com, .de, .app und .dev frei, ohne Firma, Marke „Nine Embers“ ohne Treffer (Runde 4). Markenprüfung für 9MBRS noch offen (TMview gesperrt). Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md) | OMGForge (Bestandteile OMG und FORGE stark belegt), Nightyard (aktive UK-Firma im selben Feld), NightSeven und Night7 (.com vergeben bzw. 3.999 US-Dollar), OwlSeven und NoxSeven (Dennis bevorzugt Nine Embers), 9FRG/Nine Forge (nineforge.com vergeben), erfundene Fantasy-Namen (Schreibweise beim Hören unklar), 2 bis 3 Zeichen (alle Domains vergeben) |
 
 ## Plattform (Stand 04.11.2026, 12:20)
 
@@ -35,6 +36,7 @@ Stand: 05.11.2026, 04:14
 - Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
 - Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
 - Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
+  - 05.11.2026, 04:18: Entschieden: **Nine Embers**, Kurzform **9MBRS** (siehe Entscheidungen).
   - 04.11.2026, 14:35: Finale Kandidaten Nightyard und OMGForge geprüft (TMview, Companies House, North Data, Websuche). Nightyard: keine Marke, aber aktive UK-Firma „NIGHT YARD LTD“ (seit 10.05.2026, Software/Webportale/Werbung), NL-Firma „Nightyard“ (Graffiti), GitHub-Projekt „nightyard“ (KI-Coding-IDE), Eventlocation „The Night Yard“ (UK); .com/.app belegt. OMGForge: keine Marke, keine Firma, nur ein Minecraft-Dateiname; .com/.de/.app/.dev frei. Risiko OMGForge: viele ältere Marken „OMG“ und „FORGE“ einzeln (u.a. Object Management Group, Autodesk Forge, Forge of Empires). Keine anwaltliche Prüfung.
 - Wohnort für Gewerbe/Impressum: Hamburg.
 
@@ -42,7 +44,9 @@ Stand: 05.11.2026, 04:14
 
 Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
 
-- [ ] P1 Namensentscheid Nightyard / OMGForge (Empfehlung OMGForge), danach Domains .com und .de kaufen (Kauf nur durch dich)
+- [ ] P1 Domains für Nine Embers / 9MBRS kaufen (Kauf nur durch dich): nineembers.com, 9mbrs.com, nineembers.de, 9mbrs.de; optional .app und .dev. Vorher beim Registrar prüfen, dass kein Premium-Preis gilt. Danach: .web-Vorrangphase für .com-Inhaber (ab Mitte Januar 2027) nutzen.
+- [ ] P1 Markenprüfung für „9MBRS“ und erneut „Nine Embers“ in TMview nachholen (TMview hat den Rechner am 05.11.2026 gegen 04:13 nach vielen automatischen Abfragen gesperrt; später langsam prüfen)
+- [x] P1 Namensentscheid (05.11.2026, 04:18: Nine Embers / 9MBRS, siehe Entscheidungen). Verlauf:
   - 05.11.2026, 02:34: Runde 3 nach Muster Wort plus Zahl (78 Namen geprüft, Bericht in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md)). Dennis' sieben Kandidaten haben alle keine freie .com; nur NightSeven ist sonst sauber. Engere Wahl mit allen vier Domains frei und ohne Marke oder Firma: NoxSeven, DuskSeven, NightEleven, SunTwelve. Empfehlung NoxSeven. .web ist erst ab Mitte Dezember 2026 registrierbar, Inhaber der .com haben danach Vorrang. Entscheidung offen.
   - 05.11.2026, 02:43: Dennis wählt weitere Runde (1d). Runde 4: 267 neue Namen, 81 mit freier .com, 21 voll geprüft und alle sauber (vier Domains frei, keine Marke, keine aktive Firma, keine App). Night360: .com bei Afternic für 9.850 US-Dollar, sonst sauber; Sun360 raus. Empfehlung OwlSeven, Alternativen AnvilSeven und RavenNine. Entscheidung offen.
   - 05.11.2026, 02:53: Runde 5 mit Ziffern. Night7 (.com 3.999 US-Dollar) und Tools5 (.com 2.999 US-Dollar) bei Afternic käuflich, sonst sauber; Tools4 raus. Bei Sun, Tools, Forge, Owl, Moon, Star, Ember und Flare ist die .com mit jeder Ziffer vergeben. 20 Ziffern-Namen voll frei (u. a. Night0, Nox0, Raven0). Aus Runde 4 sind 80 von 81 Namen auf allen vier Endungen frei (Liste im Bericht). Entscheidung offen.
