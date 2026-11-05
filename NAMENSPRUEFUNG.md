@@ -2,7 +2,36 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 02:43
+Stand: 05.11.2026, 02:53
+
+## Runde 5: Wort plus Ziffer (05.11.2026, 02:46 bis 02:53)
+
+Auftrag Dennis: Night7, Tools5, Tools4 und ähnliche prüfen; außerdem alle Namen aus Runde 4 auflisten, bei denen alle Adressen frei sind. Methode und Kontrollen wie in Runde 3.
+
+### Night7, Tools5, Tools4
+
+- **Night7:** .com seit 2024 vergeben, bei Afternic für 3.999 US-Dollar (Gebot möglich). .de, .app und .dev frei. Keine Marke in exakter Schreibweise (umgekehrt „7NIGHT“ mehrfach, aber Kosmetik, Pharma, Tabak), keine Firma (Companies House, North Data).
+- **Tools5:** .com seit 2025 vergeben, bei Afternic für 2.999 US-Dollar (Gebot möglich). .de, .app und .dev frei. Keine Marke, keine Firma.
+- **Tools4:** raus. .com seit 2002 vergeben und in Benutzung (nicht zum Verkauf gelistet), .de und .dev vergeben. EU-Marke „TOOLS 4“ abgelaufen.
+
+### Alle Ziffern 0 bis 9 für 14 Wörter (140 Namen)
+
+- **.com bei allen zehn Ziffern vergeben:** Sun, Tools, Forge, Owl, Moon, Star, Ember, Flare.
+- **.com frei (20):** Night0, Nox0, Dusk0, Dusk2, Dusk4, Dusk6, Dusk9, Raven0, Anvil2, Anvil5, Anvil6, Kiln0 bis Kiln8. Bei allen 20 sind auch .de, .app und .dev frei.
+- **Marken:** keine in exakter Schreibweise, einzig „KILN 4“ (US, beendet).
+- **Firmen:** für Night0, Nox0, Dusk0 und Raven0 geprüft, keine. Für die übrigen ungeprüft.
+
+### Runde 4 vollständig: alle vier Adressen frei
+
+Für die 60 Namen aus Runde 4, die noch nicht voll geprüft waren, nachgeholt: .app und .dev bei allen frei, .de bei allen außer EmberTen. Damit sind **80 der 81** Namen mit freier .com auch auf .de, .app und .dev frei. Marken und Firmen sind nur für die 21 Namen der engeren Wahl geprüft, für die übrigen 59 nicht.
+
+- **Seven** (9): AnvilSeven, KilnSeven, LanternSeven, OwlSeven, FlareSeven, SevenAnvils, SevenForges, SevenKilns, SevenCogs
+- **Nine** (12): KilnNine, LanternNine, RavenNine, KitNine, SmithNine, FlareNine, NineAnvils, NineEmbers, NineComets, NineForges, NineKilns, NineCogs
+- **Zero/One** (3): KilnZero, KilnOne, SmithZero
+- **Ten** (7): AnvilTen, KilnTen, LanternTen, CometTen, CraftTen, FlareTen, LunarTen
+- **Twelve** (32): AnvilTwelve, KilnTwelve, EmberTwelve, SparkTwelve, LanternTwelve, OwlTwelve, RavenTwelve, CometTwelve, LumenTwelve, SolTwelve, DawnTwelve, CogTwelve, BoltTwelve, KitTwelve, CraftTwelve, FoundryTwelve, SmithTwelve, GlowTwelve, FlareTwelve, HaloTwelve, OrbitTwelve, LunarTwelve, AtlasTwelve, TwelveAnvils, TwelveEmbers, TwelveRavens, TwelveComets, TwelveForges, TwelveKilns, TwelveGears, TwelveCogs, TwelveLamps
+- **42** (7): Anvil42, Kiln42, Lantern42, Lumen42, Dawn42, Flare42, Lunar42
+- **Three/Eleven** (10): ThreeKilns, ThreeCogs, ElevenAnvils, ElevenLanterns, ElevenComets, ElevenForges, ElevenKilns, ElevenGears, ElevenCogs, ElevenLamps
 
 ## Runde 4: neue Wörter plus Zahl (05.11.2026, 02:38 bis 02:43)
 
