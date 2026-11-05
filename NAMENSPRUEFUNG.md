@@ -2,7 +2,17 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 03:38
+Stand: 05.11.2026, 03:43
+
+## Runde 9: gemütlich und seriös (05.11.2026, 03:39 bis 03:43)
+
+Auftrag Dennis: neue Varianten, weniger Fantasy, einerseits gemütlich (cozy), andererseits seriös; weiterhin eher kurz.
+
+- **Erzeugt:** 221 Namen in zwei Wellen, überwiegend Zusammensetzungen aus echten Wörtern (englisch und deutsch). Auf .com frei: 31. Englische Cozy-Zusammensetzungen (Nook, Hearth, Kettle, Den) und seriöse mit Mark, Works, Forge sind fast alle vergeben oder bei Marktplätzen.
+- **Voll frei (23):** .com, .de, .app, .dev frei, keine Marke (TMview). Für 14 davon auch Companies House und North Data ohne Treffer.
+  - Gemütlich: Funkennest, Nachtstube, Funkenstube, Glutstube, Stubenglut, Werkglut, Glutfunk, KilnNook, HoneyKiln, FernKiln, SnugForge, LanternKiln, CandleKiln, Mittenly.
+  - Seriös: SlateKiln, FlintKiln, ClearKiln, SteadKiln, GreyKiln, WestKiln, AshKiln, ElmKiln, BirchKiln.
+- **Hinweis:** „glut“ heißt auf Englisch Überangebot. Für ein internationales Publikum sind die Glut-Namen deshalb schwächer.
 
 ## Runde 8: kurze Kunstnamen und drei Buchstaben (05.11.2026, 03:32 bis 03:38)
 
