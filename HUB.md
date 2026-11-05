@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 04.11.2026, 14:55
+Stand: 05.11.2026, 02:34
 
 ## Retrospektiven
 
@@ -43,6 +43,7 @@ Stand: 04.11.2026, 14:55
 Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
 
 - [ ] P1 Namensentscheid Nightyard / OMGForge (Empfehlung OMGForge), danach Domains .com und .de kaufen (Kauf nur durch dich)
+  - 05.11.2026, 02:34: Runde 3 nach Muster Wort plus Zahl (78 Namen geprüft, Bericht in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md)). Dennis' sieben Kandidaten haben alle keine freie .com; nur NightSeven ist sonst sauber. Engere Wahl mit allen vier Domains frei und ohne Marke oder Firma: NoxSeven, DuskSeven, NightEleven, SunTwelve. Empfehlung NoxSeven. .web ist erst ab Mitte Dezember 2026 registrierbar, Inhaber der .com haben danach Vorrang. Entscheidung offen.
 - [ ] P2 Plattform-Plan im frischen Chat: Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung
