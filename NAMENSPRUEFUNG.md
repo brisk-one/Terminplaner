@@ -2,7 +2,7 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 16:28
+Stand: 05.11.2026, 16:41
 
 **Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). **Seit 14:06 vorläufig**, bis das Markenrisiko durch „EMBERS“ geklärt ist (Abschnitt unten). Offen: Domainkauf durch Dennis.
 
@@ -34,6 +34,11 @@ Anlass: Dennis' Einwand, dass der Name auch Marken- und Firmenname wird und ein 
   - Das Feld ist dicht belegt, und die Einträge bestehen nebeneinander (Amazon wurde neben Sonys älterer Marke ohne Widerspruch eingetragen). Gleichzeitig wird verteidigt (Ember Sword gegen Nexon).
 
 **Einschätzung (Hypothese), überarbeitet 16:28:** Das Risiko für „Nine Embers“ als Marke für Software, Online-Dienste und Spiele ist höher als um 14:06 angenommen. Nicht wegen Microsoft, sondern wegen Amazons frisch eingetragener, breit gefasster und prominent genutzter EU-Marke „EMBER“, die genau die Dienste abdeckt, die die Plattform anbieten würde. „Embers“ und „Ember“ unterscheiden sich nur durch das Plural-s. Ob „Nine“ genug Abstand schafft (Einheit „Nine Embers“) oder „Embers“ als Kern wahrgenommen wird (Thomson Life), ist offen; mit wachsender Bekanntheit von Amazon Ember könnte zusätzlich der erweiterte Schutz bekannter Marken greifen. 9MBRS liegt im Zeichen weiter weg, ist aber gedanklich mit Nine Embers verbunden.
+
+**Nachtrag 05.11.2026, 16:41: Nur 9MBRS verwenden, „Embers“ nie ausschreiben (Dennis' Frage)**
+- **TMview „mbrs“:** 91 Treffer weltweit. In EU, DE und international mit Kl. 9, 41, 42 nur ein Eintrag: **„Nmbrs“** (NMBRS International B.V., EU-Marke, Kl. 9, 35, 42; niederländische Lohn- und HR-Software, gelesen „Numbers“). 9MBRS und NMBRS stimmen in 4 von 5 Zeichen an gleicher Stelle überein; Bedeutung verschieden (Neun gegen Numbers). Bei kurzen Zeichen zählt das Schriftbild stark, das Risiko schätze ich als gering bis mittel ein (Hypothese). Sonst in der EU nur „MBRS Group“ (Kl. 2, 7, 14 u. a., andere Branche).
+- **Bezug zu Ember:** Ohne Auflösung liest man 9MBRS als Buchstabenfolge oder als „nine members“ („mbrs“ ist eine gängige Abkürzung für members). Der Bezug zu Embers entsteht, sobald die Langform öffentlich auftaucht: Über-uns-Text, Weiterleitung von nineembers.com, Aussprache in Videos, Bildsprache.
+- **Logo-Entwurf von Dennis (05.11.2026, 16:41):** neun glühende orange Rauten (acht im Kreis, eine in der Mitte) in einem glühenden Ring, darunter der Schriftzug „9 M B R S“ mit oranger 9. Das Logo zeigt wörtlich neun Glutstücke und löst das Kürzel damit selbst auf. Nach meinem Verständnis kann ein Bild, das genau den Begriff einer älteren Wortmarke darstellt, eine begriffliche Ähnlichkeit begründen (Hypothese, fachlich zu prüfen). Schriftbild und Klang bleiben von EMBER weit entfernt; ob die begriffliche Nähe allein reicht, ist Teil der Gesamtbetrachtung.
 
 **Ursprüngliche Einschätzung 14:06 (überholt):** Für „Nine Embers“ gibt es Argumente in beide Richtungen. Für eine Einheit spricht, dass „Nine Embers“ als Bild gelesen wird (neun Glutstücke). Dagegen spricht, dass Zahlen oft als schwach gelten und „Embers“ dann als Kern wahrgenommen werden könnte. Die Waren von Microsoft sind eng (Kauf virtueller Währung in Spielen), die Marke ist vermutlich seit 2020 unbenutzt. 9MBRS ist dem Zeichen nach weiter entfernt, gedanklich aber mit Nine Embers verbunden. Endgültige Klarheit vor einer Markenanmeldung nur durch eine fachliche Kollisionsprüfung.
 
