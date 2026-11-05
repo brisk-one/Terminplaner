@@ -2,7 +2,7 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 14:06
+Stand: 05.11.2026, 16:28
 
 **Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). **Seit 14:06 vorläufig**, bis das Markenrisiko durch „EMBERS“ geklärt ist (Abschnitt unten). Offen: Domainkauf durch Dennis.
 
@@ -24,7 +24,18 @@ Anlass: Dennis' Einwand, dass der Name auch Marken- und Firmenname wird und ein 
 - **Benutzungszwang:** Eine EU-Marke, die fünf Jahre nach Eintragung bzw. Schutzgewährung nicht ernsthaft benutzt wurde, ist auf Antrag löschbar; im Widerspruch kann der Benutzungsnachweis verlangt werden. Für Microsofts EMBERS lief diese Frist nach meinem Verständnis etwa im März 2025 ab.
 - **Microsoft und Marken:** Microsoft hat 2013 im UK gegen BSkyB verloren und SkyDrive 2014 in OneDrive umbenannt (Computerworld). Das zeigt, dass ältere Marken auch gegen sehr große Firmen durchgreifen, und wie teuer eine späte Umbenennung ist. Wie konsequent Microsoft gerade EMBERS überwacht, ist nicht belegt.
 
-**Einschätzung (Hypothese):** Für „Nine Embers“ gibt es Argumente in beide Richtungen. Für eine Einheit spricht, dass „Nine Embers“ als Bild gelesen wird (neun Glutstücke). Dagegen spricht, dass Zahlen oft als schwach gelten und „Embers“ dann als Kern wahrgenommen werden könnte. Die Waren von Microsoft sind eng (Kauf virtueller Währung in Spielen), die Marke ist vermutlich seit 2020 unbenutzt. 9MBRS ist dem Zeichen nach weiter entfernt, gedanklich aber mit Nine Embers verbunden. Endgültige Klarheit vor einer Markenanmeldung nur durch eine fachliche Kollisionsprüfung.
+**Nachtrag 05.11.2026, 16:28 (Option 1a: Microsoft-Nutzung und Nexon-Anmeldung geprüft):**
+- **Microsoft:** Seit dem Ende von Mixer (Juli 2020) keine Nutzung von „Embers“ gefunden (Websuche, nur Mixer-Berichte). Microsoft hat gegen Nexons EU-Anmeldung „EMBERS OF THE UNCROWNED“ keinen Widerspruch eingelegt. Die US-Basismarke steht auf „Beendet“. Microsoft ist damit vermutlich das kleinere Risiko.
+- **Nexon „EMBERS OF THE UNCROWNED“** (EU-Anmeldung 019298533, Kl. 9, 38, 41; MMORPG, angekündigt April 2026): Widerspruch am 09.06.2026 durch **Bright Star Studios ApS** aus der EU-Marke **„EMBER SWORD“** (018495144, Kl. 9, 41, 42), Grund Verwechslungsgefahr (Art. 8(1)(b)), Verfahren offen. Ember Sword (MMORPG) wurde im Mai 2025 eingestellt, die Marke wird trotzdem verteidigt. Der Ausgang wäre ein fast passender Präzedenzfall („X Embers“ gegen „Ember X“ im Spielebereich).
+- **Neu und wichtiger: „EMBER“ (Einzahl) in der EU.** Gefilterte TMview-Suche (EU, DE, international; Kl. 9, 41, 42; angemeldet oder eingetragen): 650 Treffer, davon 34 mit „Ember“/„Embers“ als Wort. Darunter:
+  - **Amazon Technologies „EMBER“**, EU-Marke 019335510, angemeldet 23.03.2026, eingetragen 10.10.2026, Kl. 9, 35, 38, 41, 42, weit gefasst (u. a. „providing online games“, „design and development of computer software“, „application service provider, hosting computer software applications“). Amazon hat 2026 seine Smart-TVs von „Fire TV“ in **„Amazon Ember“** umbenannt (Ember Artline auf der CES 2026, gesamte TV-Reihe laut AFTVnews vom 01.05.2026).
+  - **Sony Interactive Entertainment „Ember“**, EU-Marke seit 2014, Kl. 9, 28, 41.
+  - Spieletitel: EMBER WILDS (Gamomat), EMBER & BLADE (LINE Games), Ember Heat (SYNOT), Wings of Ember (Koei Tecmo, 2026), Ember Guardians, Ember's Mirage; dazu Logitech, Silicon Labs, Ember Technologies (Kl. 9).
+  - Das Feld ist dicht belegt, und die Einträge bestehen nebeneinander (Amazon wurde neben Sonys älterer Marke ohne Widerspruch eingetragen). Gleichzeitig wird verteidigt (Ember Sword gegen Nexon).
+
+**Einschätzung (Hypothese), überarbeitet 16:28:** Das Risiko für „Nine Embers“ als Marke für Software, Online-Dienste und Spiele ist höher als um 14:06 angenommen. Nicht wegen Microsoft, sondern wegen Amazons frisch eingetragener, breit gefasster und prominent genutzter EU-Marke „EMBER“, die genau die Dienste abdeckt, die die Plattform anbieten würde. „Embers“ und „Ember“ unterscheiden sich nur durch das Plural-s. Ob „Nine“ genug Abstand schafft (Einheit „Nine Embers“) oder „Embers“ als Kern wahrgenommen wird (Thomson Life), ist offen; mit wachsender Bekanntheit von Amazon Ember könnte zusätzlich der erweiterte Schutz bekannter Marken greifen. 9MBRS liegt im Zeichen weiter weg, ist aber gedanklich mit Nine Embers verbunden.
+
+**Ursprüngliche Einschätzung 14:06 (überholt):** Für „Nine Embers“ gibt es Argumente in beide Richtungen. Für eine Einheit spricht, dass „Nine Embers“ als Bild gelesen wird (neun Glutstücke). Dagegen spricht, dass Zahlen oft als schwach gelten und „Embers“ dann als Kern wahrgenommen werden könnte. Die Waren von Microsoft sind eng (Kauf virtueller Währung in Spielen), die Marke ist vermutlich seit 2020 unbenutzt. 9MBRS ist dem Zeichen nach weiter entfernt, gedanklich aber mit Nine Embers verbunden. Endgültige Klarheit vor einer Markenanmeldung nur durch eine fachliche Kollisionsprüfung.
 
 ## Markenprüfung Nine Embers / 9MBRS (05.11.2026, 13:31)
 
