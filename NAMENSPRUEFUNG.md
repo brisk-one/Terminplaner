@@ -2,9 +2,9 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 16:41
+Stand: 05.11.2026, 16:49
 
-**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). **Seit 14:06 vorläufig**, bis das Markenrisiko durch „EMBERS“ geklärt ist (Abschnitt unten). Offen: Domainkauf durch Dennis.
+**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). **Seit 14:06 vorläufig**, bis das Markenrisiko durch „EMBERS“ geklärt ist (Abschnitt unten). **Entscheidung 05.11.2026, 16:49:** Dennis bleibt bei **9MBRS** mit seinem Logo-Entwurf, die Langform wird öffentlich nicht ausgeschrieben, das Restrisiko ist bewusst akzeptiert; Neubewertung bei Monetarisierung oder Markenanmeldung (Entscheidungs-Log im Hub). Offen: Domainkauf durch Dennis.
 
 ## Markenrisiko EMBERS (05.11.2026, 14:06)
 
