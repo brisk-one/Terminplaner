@@ -2,7 +2,26 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 03:43
+Stand: 05.11.2026, 03:51
+
+## Runde 10: 2 bis 5 Zeichen, Ziffern und Konsonanten (05.11.2026, 03:46 bis 03:51)
+
+Auftrag Dennis: maximal 3 bis 5 Zeichen, je weniger desto besser, gern Ziffer plus 3 Buchstaben; Ziffern, Konsonanten und 2 Zeichen testen.
+
+| Länge | geprüft (.com) | frei |
+|---|---|---|
+| 2 Zeichen (alle Buchstaben und Ziffern, vollständig) | 1.296 | 0 |
+| 3 Zeichen (Stichprobe, alle Muster) | 498 | 0 |
+| 4 Konsonanten | 100 | 0 |
+| Ziffer + 3 Konsonanten (zufällig) | 296 | 137 |
+| 3 Konsonanten + Ziffer (zufällig) | 150 | 52 |
+| 7 + 3 Konsonanten aus K, R, X, V, N, M, L, T, S, F | 720 | 347 |
+| 9 + 3 Konsonanten aus denselben | 720 | 506 |
+| Ziffer + kurzes Wort (lab, kit, hub, fox, owl …) | 280 | 13, fast nur „nook“ |
+
+.de-Stichprobe: 2 Zeichen 0 von 25 frei, 3 Zeichen 0 von 35, Ziffer + 3 Konsonanten 40 von 40.
+
+Mit Bedeutung (Konsonanten-Gerüst eines Worts), auf .com, .de, .app und .dev frei, keine Marke in exakter Schreibweise: 9FRG (Forge), 9KLN und 7KLN (Kiln), 9GLW (Glow), 9WRK (Work), 9LNT (Lantern), 9PPS (Apps), 3TLS und 5TLS (Tools), 7LMN (Lumen). Ohne Bedeutung, gut buchstabierbar: 9KRX, 9NVX, 9FLX, 9MVX, 9KVX. Vergeben auf .com u. a.: 9RSX, 7RSX, 9MBR, 9LBS, 9GMS.
 
 ## Runde 9: gemütlich und seriös (05.11.2026, 03:39 bis 03:43)
 

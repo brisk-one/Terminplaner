@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 03:43
+Stand: 05.11.2026, 03:51
 
 ## Retrospektiven
 
@@ -51,6 +51,7 @@ Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
   - 05.11.2026, 03:25: Runde 7, erfundene Fantasy-Namen: 123 erzeugt, 43 auf allen vier Endungen frei und ohne Marke; engere Wahl von 12 auch ohne Firma und App. Favoriten Claude: Lumivael, Miravael, Nocturell. Entscheidung offen.
   - 05.11.2026, 03:38: Runde 8. Drei Buchstaben: .com, .de, .app praktisch alle vergeben, raus. Kurze Kunstnamen (5 bis 6 Buchstaben) voll frei und sauber: Cawyn, Lumwen, Nyvael, Syvael, Naewyn, Noxwyn, Embael, Vyriel, Iravyn, Ylaria. Entscheidung offen.
   - 05.11.2026, 03:43: Runde 9, gemütlich und seriös: 221 Namen, 23 voll frei und ohne Marke (u. a. Funkennest, Nachtstube, KilnNook, HoneyKiln, SlateKiln, FlintKiln, ClearKiln). Entscheidung offen.
+  - 05.11.2026, 03:51: Runde 10, 2 bis 5 Zeichen: 2 und 3 Zeichen auf .com und .de komplett vergeben. Ziffer + 3 Konsonanten oft frei; voll frei u. a. 9FRG, 9KLN, 9GLW, 9WRK, 9PPS, 9KRX, 9NVX. Entscheidung offen.
 - [ ] P2 Plattform-Plan im frischen Chat: Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung
