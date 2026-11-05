@@ -2,7 +2,34 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 02:59
+Stand: 05.11.2026, 03:09
+
+## Runde 6: Ziffer vorne (05.11.2026, 03:01 bis 03:09)
+
+Auftrag Dennis: NineEmbers gefällt, könnte aber als Suffix hinter jeder Subdomain zu lang sein. Deshalb Ziffer statt Zahlwort prüfen: 9forge, 9embers, 5nights, 3tools, 5tools und ähnliche. Methode und Kontrollen wie in Runde 3.
+
+### Dennis' Kandidaten
+
+- **9forge:** .com bei HugeDomains für 1.995 US-Dollar, .dev vergeben; .de und .app frei. Keine Marke.
+- **9embers:** .com seit 2020 vergeben und offenbar in Benutzung (Cloudflare, kein Verkaufsangebot erkennbar). .de, .app und .dev frei. Keine Marke.
+- **5nights:** .com seit 2008 vergeben; .de frei. Inhaltlich problematisch: „Five Nights at Freddy's“ (Scott Cawthon) ist eine der bekanntesten Horrorspiel-Reihen und als Marke u. a. in Kl. 9 und 41 eingetragen. Für ein Spielestudio mit App-Plattform naheliegende Verwechslung.
+- **3tools:** .com seit 2021 vergeben (Marktplatz Atom), .de vergeben.
+- **5tools:** .com seit 2014 vergeben (Marktplatz Efty), .de vergeben. Marken „5TOOLS“ in KR, „FIVETOOLS“ in CN Kl. 9.
+
+### Breite Prüfung: Ziffer 1 bis 9 plus Wort (252 Namen)
+
+28 Wörter: Forge(s), Ember(s), Night(s), Tools, Tool, Anvil(s), Owls, Ravens, Kilns, Lanterns, Sparks, Suns, Moons, Comets, Cogs, Gears, Lamps, Foxes, Stars, Works, Crafts, Flames, Lights, Hammers. Auf .com frei: 70 von 252. Mit jeder Ziffer vergeben: Forge, Night, Nights, Tool, Tools, Suns, Stars, Works, Lights (einige davon bei Marktplätzen zum Verkauf).
+
+Engere Wahl (12), .com, .de, .app und .dev bei allen frei: 9Ember, 9Forges, 7Embers, 8Embers, 9Anvils, 7Anvils, 9Comets, 9Lanterns, 7Flames, 9Kilns, 9Crafts, 9Lamps.
+
+- **Marken:** einzig „Seven Embers“ (AU, Anmeldung 2026, Kl. 41 und 42) betrifft 7Embers.
+- **Firmen:** 9Ember Srl, Mailand (mit LEI, Tätigkeit unbekannt) betrifft 9Ember; Seven Flames Ltd (UK, aufgelöst 2024). Sonst keine.
+
+### Kurzform zu NineEmbers
+
+- nineembers: .com, .de, .app, .dev frei (Runde 4), keine Marke, keine Firma.
+- 9embers: .com vergeben, .de, .app, .dev frei.
+- Länge: „nineembers“ 10 Zeichen, „9embers“ 7. Beispiel: `treffpunkt.nineembers.com` 25 Zeichen, `treffpunkt.9embers.de` 21.
 
 ## Einzelprüfung NoxOn und NoxOne (05.11.2026, 02:58)
 
