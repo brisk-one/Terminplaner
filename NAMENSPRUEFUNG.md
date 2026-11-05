@@ -2,9 +2,19 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 04:18
+Stand: 05.11.2026, 13:31
 
-**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). Offen: Markenprüfung für 9MBRS (TMview gesperrt), Domainkauf durch Dennis.
+**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). Offen: Domainkauf durch Dennis.
+
+## Markenprüfung Nine Embers / 9MBRS (05.11.2026, 13:31)
+
+TMview wieder erreichbar. Abfragen nacheinander mit 1,8 Sekunden Pause, Kontrollabfrage „google“ mit 2.904 Treffern, Antworttyp geprüft (JSON), bis 5 Seiten geblättert.
+
+- **9MBRS / 9 MBRS:** 0 Treffer.
+- **Nine Embers / NineEmbers:** 7 bzw. 0 Treffer, keiner exakt oder mit „Nine Embers“ als Bestandteil.
+- **9embers:** 67 Treffer, keiner exakt.
+- **Bestandteil „EMBERS“ (Hypothese zum Risiko):** 5.164 Treffer, die ersten 500 gesichtet. Als Einzelwort in Software-Klassen aktiv eingetragen u. a. Microsoft Corporation (international, UK, BR; Kl. 9, 36, 42; 2019), Embers SAS (FR; Kl. 9, 16, 28, 38, 41, 42; 2022), Harry Farmer-Hill (UK; Kl. 9, 41; 2024). Die Kombination „Nine Embers“ ist frei; ob ein Inhaber von „EMBERS“ eine Verwechslungsgefahr geltend machen könnte, hängt an Klang, Bedeutung und Waren. Vor einer eigenen Markenanmeldung fachlich prüfen lassen.
+- Domains um 13:29 erneut geprüft: nineembers und 9mbrs auf .com, .de, .app und .dev weiterhin frei.
 
 ## Runde 11: Kürzel plus ausgeschriebener Name (05.11.2026, 04:09 bis 04:14)
 

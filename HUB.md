@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 04:36
+Stand: 05.11.2026, 13:31
 
 ## Retrospektiven
 
@@ -46,7 +46,7 @@ Stand: 05.11.2026, 04:36
 Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vorher laut v1.1):
 
 - [ ] P1 Domains für Nine Embers / 9MBRS kaufen (Kauf nur durch dich): nineembers.com, 9mbrs.com, nineembers.de, 9mbrs.de; optional .app und .dev. Vorher beim Registrar prüfen, dass kein Premium-Preis gilt. Danach: .web-Vorrangphase für .com-Inhaber (ab Mitte Januar 2027) nutzen.
-- [ ] P1 Markenprüfung für „9MBRS“ und erneut „Nine Embers“ in TMview nachholen (TMview hat den Rechner am 05.11.2026 gegen 04:13 nach vielen automatischen Abfragen gesperrt; später langsam prüfen). Laut Retro v1.2: sequenziell, mit Kontrollabfrage (bekannter Treffer), bei mehr als 100 Treffern blättern; zusätzlich DPMAregister
+- [x] P1 Markenprüfung für „9MBRS“ und erneut „Nine Embers“ in TMview nachholen. Erledigt 05.11.2026, 13:31: keine Marke für 9MBRS, Nine Embers, NineEmbers oder 9embers. Bestandteil „EMBERS“ allein ist in Software-Klassen eingetragen (u. a. Microsoft, Embers SAS); vor einer eigenen Markenanmeldung fachlich prüfen lassen. Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md). Ursprünglich: (TMview hat den Rechner am 05.11.2026 gegen 04:13 nach vielen automatischen Abfragen gesperrt; später langsam prüfen). Laut Retro v1.2: sequenziell, mit Kontrollabfrage (bekannter Treffer), bei mehr als 100 Treffern blättern; zusätzlich DPMAregister
 - [x] P1 Namensentscheid (05.11.2026, 04:18: Nine Embers / 9MBRS, siehe Entscheidungen). Verlauf:
   - 05.11.2026, 02:34: Runde 3 nach Muster Wort plus Zahl (78 Namen geprüft, Bericht in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md)). Dennis' sieben Kandidaten haben alle keine freie .com; nur NightSeven ist sonst sauber. Engere Wahl mit allen vier Domains frei und ohne Marke oder Firma: NoxSeven, DuskSeven, NightEleven, SunTwelve. Empfehlung NoxSeven. .web ist erst ab Mitte Dezember 2026 registrierbar, Inhaber der .com haben danach Vorrang. Entscheidung offen.
   - 05.11.2026, 02:43: Dennis wählt weitere Runde (1d). Runde 4: 267 neue Namen, 81 mit freier .com, 21 voll geprüft und alle sauber (vier Domains frei, keine Marke, keine aktive Firma, keine App). Night360: .com bei Afternic für 9.850 US-Dollar, sonst sauber; Sun360 raus. Empfehlung OwlSeven, Alternativen AnvilSeven und RavenNine. Entscheidung offen.
