@@ -2,7 +2,12 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 02:53
+Stand: 05.11.2026, 02:59
+
+## Einzelprüfung NoxOn und NoxOne (05.11.2026, 02:58)
+
+- **NoxOn:** raus. .com (seit 2003), .de, .app und .dev vergeben. „NOXON“ ist als Marke vielfach eingetragen, darunter in den Software-Klassen 9/38/42 (Palotec AG, international und UK, früher TerraTec Electronic für Internetradios) und als deutsche Marke der NOXON GmbH (2026) mit Kl. 9 und 42.
+- **NoxOne:** raus. „NOX ONE“ ist für Nox Systems AG (Liechtenstein) in Kl. 9, 37, 41 und 42 eingetragen (international, LI, UK). .com seit 2014 vergeben (bei Afternic gelistet), .de seit 12/2025 vergeben, auch nox-one.com und nox-one.de. Nur .app und .dev frei.
 
 ## Runde 5: Wort plus Ziffer (05.11.2026, 02:46 bis 02:53)
 

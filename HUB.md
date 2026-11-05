@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 02:53
+Stand: 05.11.2026, 02:59
 
 ## Retrospektiven
 
@@ -46,6 +46,7 @@ Nächste Schritte laut Retro v1.1 (04.11.2026, 14:50), in dieser Reihenfolge:
   - 05.11.2026, 02:34: Runde 3 nach Muster Wort plus Zahl (78 Namen geprüft, Bericht in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md)). Dennis' sieben Kandidaten haben alle keine freie .com; nur NightSeven ist sonst sauber. Engere Wahl mit allen vier Domains frei und ohne Marke oder Firma: NoxSeven, DuskSeven, NightEleven, SunTwelve. Empfehlung NoxSeven. .web ist erst ab Mitte Dezember 2026 registrierbar, Inhaber der .com haben danach Vorrang. Entscheidung offen.
   - 05.11.2026, 02:43: Dennis wählt weitere Runde (1d). Runde 4: 267 neue Namen, 81 mit freier .com, 21 voll geprüft und alle sauber (vier Domains frei, keine Marke, keine aktive Firma, keine App). Night360: .com bei Afternic für 9.850 US-Dollar, sonst sauber; Sun360 raus. Empfehlung OwlSeven, Alternativen AnvilSeven und RavenNine. Entscheidung offen.
   - 05.11.2026, 02:53: Runde 5 mit Ziffern. Night7 (.com 3.999 US-Dollar) und Tools5 (.com 2.999 US-Dollar) bei Afternic käuflich, sonst sauber; Tools4 raus. Bei Sun, Tools, Forge, Owl, Moon, Star, Ember und Flare ist die .com mit jeder Ziffer vergeben. 20 Ziffern-Namen voll frei (u. a. Night0, Nox0, Raven0). Aus Runde 4 sind 80 von 81 Namen auf allen vier Endungen frei (Liste im Bericht). Entscheidung offen.
+  - 05.11.2026, 02:59: NoxOn und NoxOne geprüft, beide raus (eingetragene Marken in Software-Klassen: NOXON von Palotec AG und NOXON GmbH, NOX ONE von Nox Systems AG; Domains größtenteils vergeben).
 - [ ] P2 Plattform-Plan im frischen Chat: Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung
