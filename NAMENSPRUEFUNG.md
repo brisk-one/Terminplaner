@@ -2,9 +2,29 @@
 
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
-Stand: 05.11.2026, 13:31
+Stand: 05.11.2026, 14:06
 
-**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). Offen: Domainkauf durch Dennis.
+**Ergebnis (05.11.2026, 04:18):** Dennis entscheidet sich für **Nine Embers** mit Kurzform **9MBRS**. Begründung und verworfene Alternativen im Entscheidungs-Log des [Hubs](HUB.md). **Seit 14:06 vorläufig**, bis das Markenrisiko durch „EMBERS“ geklärt ist (Abschnitt unten). Offen: Domainkauf durch Dennis.
+
+## Markenrisiko EMBERS (05.11.2026, 14:06)
+
+Anlass: Dennis' Einwand, dass der Name auch Marken- und Firmenname wird und ein Konflikt mit einer älteren Marke „EMBERS“ deshalb sehr wohl zählt. Alles hier ist Information, keine Rechtsberatung.
+
+**Vollständige TMview-Durchsicht „embers“:** alle 5.164 Treffer (52 Seiten, gedrosselt, Kontrolle bestanden), gefiltert auf aktive Einträge in EU, DE, international, AT, CH, UK mit Klassen 9, 35, 38, 41, 42:
+- **Microsoft „EMBERS“:** internationale Registrierung 1487625, Schutz in der EU seit 12.03.2020 (außerdem UK, RU u. a.), gültig bis 05.03.2029. Waren eng: Software zum Kauf digitaler Artikel und virtueller Währung in Spielen (Kl. 9, 42), virtuelle Währung für Online-Communitys und Spiele (Kl. 36). Hintergrund: Embers war die virtuelle Währung von Microsofts Streaming-Dienst Mixer; Mixer wurde am 22./23.07.2020 eingestellt, Embers-Guthaben wurden in Xbox-Guthaben umgewandelt (PC Gamer). Hypothese: seither keine Benutzung der Marke in der EU.
+- **Deutschland national:** keine Marke „EMBERS“.
+- **EU sonst:** „Embers & Stones“ (Schmuck, Kleidung, Kl. 14, 25, 35), „EMBERS OF THE UNCROWNED“ (Anmeldung von Nexon Korea, 31.12.2025, Kl. 9, 38, 41).
+- **UK:** u. a. „Embers“ (Harry Farmer-Hill, Kl. 9, 41, 2024), „Isle of Embers“ (Studio Swanworth, Spiel, Kl. 9, 16, 25, 28, 41, 2025), „Embers the Dragon“ (Kl. 41). Mehrere Embers-Marken stehen dort nebeneinander im Register.
+- **Frankreich national:** „Embers“ (Embers SAS, Kl. 9, 16, 28, 38, 41, 42, 2022).
+
+**Rechtlicher Rahmen (Verständnis, nicht anwaltlich geprüft):**
+- Verwechslungsgefahr hängt an Ähnlichkeit der Zeichen und der Waren/Dienstleistungen und an der Kennzeichnungskraft der älteren Marke (Gesamtbetrachtung).
+- **EuGH Medion/Thomson Life (C-120/04, 2005):** Ältere Marke LIFE, jüngeres Zeichen THOMSON LIFE. Verwechslungsgefahr ist möglich, wenn die ältere Marke im Kombinationszeichen eine selbständig kennzeichnende Stellung behält, auch ohne den Gesamteindruck zu dominieren.
+- **EuGH Bimbo/Doughnuts (C-591/12 P, 2014):** Jüngeres Zeichen BIMBO DOUGHNUTS gegen ältere spanische Marke DOGHNUTS (Backwaren). Keine Automatik: Zuerst ist zu klären, ob die Bestandteile eine Einheit mit eigener Bedeutung bilden; nur wenn nicht, kann ein Bestandteil selbständig wirken. Dort bildeten sie keine Einheit.
+- **Benutzungszwang:** Eine EU-Marke, die fünf Jahre nach Eintragung bzw. Schutzgewährung nicht ernsthaft benutzt wurde, ist auf Antrag löschbar; im Widerspruch kann der Benutzungsnachweis verlangt werden. Für Microsofts EMBERS lief diese Frist nach meinem Verständnis etwa im März 2025 ab.
+- **Microsoft und Marken:** Microsoft hat 2013 im UK gegen BSkyB verloren und SkyDrive 2014 in OneDrive umbenannt (Computerworld). Das zeigt, dass ältere Marken auch gegen sehr große Firmen durchgreifen, und wie teuer eine späte Umbenennung ist. Wie konsequent Microsoft gerade EMBERS überwacht, ist nicht belegt.
+
+**Einschätzung (Hypothese):** Für „Nine Embers“ gibt es Argumente in beide Richtungen. Für eine Einheit spricht, dass „Nine Embers“ als Bild gelesen wird (neun Glutstücke). Dagegen spricht, dass Zahlen oft als schwach gelten und „Embers“ dann als Kern wahrgenommen werden könnte. Die Waren von Microsoft sind eng (Kauf virtueller Währung in Spielen), die Marke ist vermutlich seit 2020 unbenutzt. 9MBRS ist dem Zeichen nach weiter entfernt, gedanklich aber mit Nine Embers verbunden. Endgültige Klarheit vor einer Markenanmeldung nur durch eine fachliche Kollisionsprüfung.
 
 ## Markenprüfung Nine Embers / 9MBRS (05.11.2026, 13:31)
 

@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 13:31
+Stand: 05.11.2026, 14:06
 
 ## Retrospektiven
 
@@ -29,7 +29,7 @@ Stand: 05.11.2026, 13:31
 | 04.11. | Avatare nur Tiere und Fabelwesen, ohne Farbwahl | Essen/Gegenstände wirken wie Thema der Veranstaltung | Farbwahl pro Person |
 | 04.11., 11:15 | Umzug auf privates Repo plus Firebase Hosting (10b), vor der ersten echten Veranstaltung | Codebasen künftig grundsätzlich privat (mögliche Monetarisierung); Firebase Hosting kostenlos und im bestehenden Projekt | GitHub Pro (kostet), öffentliches Repo behalten (10a) |
 | 04.11. | „Meine Veranstaltungen“ gerätebezogen | Ohne Konten weiß die App nicht, wer wohin eingeladen ist | Konten |
-| 05.11., 04:18 | Plattform-Name **Nine Embers**, Kurzform **9MBRS** (Dennis); beide Namen als Domains sichern | Gefiel Dennis von Anfang an; Kurzform löst die Länge als Subdomain-Suffix. Als einziges geprüftes Paar sind Kurz- und Langform auf .com, .de, .app und .dev frei, ohne Firma, Marke „Nine Embers“ ohne Treffer (Runde 4). Markenprüfung für 9MBRS noch offen (TMview gesperrt). Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md) | OMGForge (Bestandteile OMG und FORGE stark belegt), Nightyard (aktive UK-Firma im selben Feld), NightSeven und Night7 (.com vergeben bzw. 3.999 US-Dollar), OwlSeven und NoxSeven (Dennis bevorzugt Nine Embers), 9FRG/Nine Forge (nineforge.com vergeben), erfundene Fantasy-Namen (Schreibweise beim Hören unklar), 2 bis 3 Zeichen (alle Domains vergeben) |
+| 05.11., 04:18 | Plattform-Name **Nine Embers**, Kurzform **9MBRS** (Dennis); beide Namen als Domains sichern. **Status ab 05.11.2026, 14:06: vorläufig**, bis das Markenrisiko durch „EMBERS“ (Microsoft u. a.) geklärt ist; Dennis gibt das Tempo vor, kein Zeitdruck | Gefiel Dennis von Anfang an; Kurzform löst die Länge als Subdomain-Suffix. Als einziges geprüftes Paar sind Kurz- und Langform auf .com, .de, .app und .dev frei, ohne Firma, Marke „Nine Embers“ ohne Treffer (Runde 4). Markenprüfung für 9MBRS noch offen (TMview gesperrt). Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md) | OMGForge (Bestandteile OMG und FORGE stark belegt), Nightyard (aktive UK-Firma im selben Feld), NightSeven und Night7 (.com vergeben bzw. 3.999 US-Dollar), OwlSeven und NoxSeven (Dennis bevorzugt Nine Embers), 9FRG/Nine Forge (nineforge.com vergeben), erfundene Fantasy-Namen (Schreibweise beim Hören unklar), 2 bis 3 Zeichen (alle Domains vergeben) |
 
 ## Plattform (Stand 04.11.2026, 12:20)
 
@@ -46,6 +46,7 @@ Stand: 05.11.2026, 13:31
 Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vorher laut v1.1):
 
 - [ ] P1 Domains für Nine Embers / 9MBRS kaufen (Kauf nur durch dich): nineembers.com, 9mbrs.com, nineembers.de, 9mbrs.de; optional .app und .dev. Vorher beim Registrar prüfen, dass kein Premium-Preis gilt. Danach: .web-Vorrangphase für .com-Inhaber (ab Mitte Januar 2027) nutzen.
+- [ ] P1 Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären, bevor der Name endgültig ist (Dennis, 05.11.2026, 14:06: Der Name ist auch Markenname, das muss bis ins Detail geprüft sein; kein Zeitdruck). Stand und Fakten in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md), Abschnitt „Markenrisiko EMBERS“.
 - [x] P1 Markenprüfung für „9MBRS“ und erneut „Nine Embers“ in TMview nachholen. Erledigt 05.11.2026, 13:31: keine Marke für 9MBRS, Nine Embers, NineEmbers oder 9embers. Bestandteil „EMBERS“ allein ist in Software-Klassen eingetragen (u. a. Microsoft, Embers SAS); vor einer eigenen Markenanmeldung fachlich prüfen lassen. Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md). Ursprünglich: (TMview hat den Rechner am 05.11.2026 gegen 04:13 nach vielen automatischen Abfragen gesperrt; später langsam prüfen). Laut Retro v1.2: sequenziell, mit Kontrollabfrage (bekannter Treffer), bei mehr als 100 Treffern blättern; zusätzlich DPMAregister
 - [x] P1 Namensentscheid (05.11.2026, 04:18: Nine Embers / 9MBRS, siehe Entscheidungen). Verlauf:
   - 05.11.2026, 02:34: Runde 3 nach Muster Wort plus Zahl (78 Namen geprüft, Bericht in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md)). Dennis' sieben Kandidaten haben alle keine freie .com; nur NightSeven ist sonst sauber. Engere Wahl mit allen vier Domains frei und ohne Marke oder Firma: NoxSeven, DuskSeven, NightEleven, SunTwelve. Empfehlung NoxSeven. .web ist erst ab Mitte Dezember 2026 registrierbar, Inhaber der .com haben danach Vorrang. Entscheidung offen.
