@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 15:00
+Stand: 06.11.2026, 15:05
 
 ## Retrospektiven
 
@@ -81,6 +81,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
   - 05.11.2026, 17:21: Anforderung „umzugsfähig“ in den Plan aufnehmen (Dennis und Claude): (1) Daten, die im Browser an der Adresse hängen (lokaler Speicher, anonyme Anmeldung), müssen auf eine neue Domain mitgenommen werden können, z. B. per Übergabeseite, die beim Umzug die Kennung im Link-Anker (#) an die neue Adresse übergibt; (2) Umleitung der alten Domain per 301, Pfade erhalten, alte Domain mindestens ein bis zwei Jahre behalten; (3) neue Domain vorab beim Anbieter freigeben (z. B. autorisierte Domains in Firebase). Erst die Übergabeseite, danach die reine Umleitung
   - 06.11.2026, 13:46: Inventur, erste Fassung (v1.0, 12 Einträge): [INVENTUR_APPS.md](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md) im Repo 9mbrs. Offen: 6 Rückfragen an Dennis (Abschnitt „Offene Punkte“ dort), Abgleich mit Dennis' Rechner und mit Chats in Claude-Projekten.
   - 06.11.2026, 15:00: Rückfragen beantwortet (Dennis, 14:55), Inventur v1.1, Entscheidungen oben im Log. Offen: Netzwerk-Tool (A13, unbekannt, Rückfrage gestellt) und die Dateiprüfung von A5 und A8 beim Umzug der jeweiligen App.
+  - 06.11.2026, 15:05: Netzwerk-Tool (A13) geklärt: gehört zum Die-Stämme-Projekt und bleibt damit separat (Dennis, 15:02). Inventur v1.2. Offen bleibt nur die Dateiprüfung von A5 und A8 beim Umzug der jeweiligen App.
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
 - [x] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal. Erledigt 05.11.2026, 00:12: privates Repo `brisk-one/turret-syndrome`, alle Zweige gepusht, `master` maßgeblich (Turret-Syndrome-Hub W11)
