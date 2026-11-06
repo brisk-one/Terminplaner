@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 13:46
+Stand: 06.11.2026, 15:00
 
 ## Retrospektiven
 
@@ -31,6 +31,11 @@ Stand: 06.11.2026, 13:46
 | 04.11. | „Meine Veranstaltungen“ gerätebezogen | Ohne Konten weiß die App nicht, wer wohin eingeladen ist | Konten |
 | 05.11., 04:18 | Plattform-Name **Nine Embers**, Kurzform **9MBRS** (Dennis); beide Namen als Domains sichern. **Status ab 05.11.2026, 14:06: vorläufig**, bis das Markenrisiko durch „EMBERS“ (Microsoft u. a.) geklärt ist; Dennis gibt das Tempo vor, kein Zeitdruck. **Ersetzt durch Eintrag 05.11., 16:49** | Gefiel Dennis von Anfang an; Kurzform löst die Länge als Subdomain-Suffix. Als einziges geprüftes Paar sind Kurz- und Langform auf .com, .de, .app und .dev frei, ohne Firma, Marke „Nine Embers“ ohne Treffer (Runde 4). Markenprüfung für 9MBRS noch offen (TMview gesperrt). Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md) | OMGForge (Bestandteile OMG und FORGE stark belegt), Nightyard (aktive UK-Firma im selben Feld), NightSeven und Night7 (.com vergeben bzw. 3.999 US-Dollar), OwlSeven und NoxSeven (Dennis bevorzugt Nine Embers), 9FRG/Nine Forge (nineforge.com vergeben), erfundene Fantasy-Namen (Schreibweise beim Hören unklar), 2 bis 3 Zeichen (alle Domains vergeben) |
 | 05.11., 16:49 | Plattform-Name **9MBRS**, mit Dennis' Logo-Entwurf (neun glühende Rauten im Ring); Langform „Nine Embers“ wird öffentlich nicht ausgeschrieben (Dennis' Frage 16:41, als Arbeitsannahme verbucht). Markenrisiko bewusst akzeptiert; Neubewertung, sobald monetarisiert oder eine Marke angemeldet wird; bei einer Beanstandung, etwa durch Amazon, Namenswechsel | Hobby ohne Monetarisierung, freie gute Namen sind kaum noch zu finden. 9MBRS ist auf .com, .de, .app und .dev frei, keine Marke und keine Firma 9MBRS; im Zeichen weit weg von EMBER. Restrisiko: Logo stellt begrifflich den Bezug zu „Embers“ her (Amazon EMBER, EU, eingetragen 10.10.2026), Schriftbild nahe „Nmbrs“ (EU, Lohnsoftware). Details [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md) | „Nine Embers“ ausgeschrieben (direkte Nähe zu Amazon EMBER und Microsoft EMBERS), Weitersuchen (kaum freie Namen), Markenanmeldung jetzt (macht sichtbar, verfrüht ohne Monetarisierung) |
+| 06.11., 14:55 | Das Die-Stämme-Projekt (Karte259 samt Tagesbeste-Auswertung) bleibt vorerst außerhalb von 9MBRS und läuft separat weiter (Dennis) | Dennis: kann separat bleiben | Aufnahme in 9MBRS mit eigenen Ordnern |
+| 06.11., 14:55 | Für Apps ohne lokale Fassung gelten die Chatstände; Abgleich und Prüfung auf private Daten beim Umzug der jeweiligen App (2c) | Lokal liefen laut Dennis nur Turret Syndrome und das Netzwerk-Tool | Ordner freigeben und sofort abgleichen (2a), Dateien jetzt hochladen (2b) |
+| 06.11., 14:55 | Tattoo-Kalender bleibt privat und kommt nicht auf die Plattform; sein Ordner in 9mbrs dient nur als Archiv (3b) | Für eine bestimmte Person gebaut (Dennis) | Als allgemeines Studio-Werkzeug veröffentlichen (3a), Eintrag streichen (3c) |
+| 06.11., 14:55 | Die Festivalliste im Urlaubsplaner darf bleiben (4b) | Dennis hat sie selbst zusammengestellt | Funktion bis zur Klärung abschalten (4a), Liste ersetzen (4c) |
+| 06.11., 14:55 | Treffpunkt-Code zieht erst beim Domain-Umzug in den Ordner `terminplaner/` von 9mbrs, in einem Schritt mit Deploy und Test (5a) | Eine einzige Code-Quelle, die Umzugs-Reihenfolge im Hub bleibt gewahrt (Empfehlung Claude, gewählt von Dennis) | Jetzt kopieren und altes Repo einfrieren (5b), jetzt komplett umziehen samt Hosting (5c) |
 
 ## Plattform (Stand 04.11.2026, 12:20)
 
@@ -38,7 +43,7 @@ Stand: 06.11.2026, 13:46
 - Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
   - 06.11.2026, 13:46: Zentrale angelegt: privates Repo `brisk-one/9mbrs` (Dennis), mit einem Ordner pro App. Dieser Hub liegt vorerst weiter hier. Hinweis: „Subdomain pro App“ ist laut Offene Punkte (04.11.2026, 14:58) wieder offen.
 - Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
-  - 06.11.2026, 13:46: Inventur aus Chatverlauf, Gedächtnis und Artefakten erstellt: [INVENTUR_APPS.md im Repo 9mbrs](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md). Der Abgleich mit dem Rechner steht noch aus (siehe P2 unten).
+  - 06.11.2026, 13:46: Inventur aus Chatverlauf, Gedächtnis und Artefakten erstellt: [INVENTUR_APPS.md im Repo 9mbrs](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md). Der Abgleich mit dem Rechner steht noch aus (siehe P2 unten). Erledigt 06.11.2026, 15:00: Lokal liefen laut Dennis nur Turret Syndrome und das Netzwerk-Tool, sonst gelten die Chatstände (siehe Entscheidungen).
 - Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
   - 05.11.2026, 16:49: Revidiert: Name **9MBRS** mit Logo, Langform „Nine Embers“ öffentlich nicht ausgeschrieben; Domains 9mbrs.com und 9mbrs.de seit 05.11.2026 registriert (siehe Entscheidungen).
   - 05.11.2026, 04:18: Entschieden (überholt): **Nine Embers**, Kurzform **9MBRS** (siehe Entscheidungen).
@@ -75,6 +80,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
 - [ ] P2 Plattform-Plan im frischen Chat, nach einer Pause (Retro v1.2): Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
   - 05.11.2026, 17:21: Anforderung „umzugsfähig“ in den Plan aufnehmen (Dennis und Claude): (1) Daten, die im Browser an der Adresse hängen (lokaler Speicher, anonyme Anmeldung), müssen auf eine neue Domain mitgenommen werden können, z. B. per Übergabeseite, die beim Umzug die Kennung im Link-Anker (#) an die neue Adresse übergibt; (2) Umleitung der alten Domain per 301, Pfade erhalten, alte Domain mindestens ein bis zwei Jahre behalten; (3) neue Domain vorab beim Anbieter freigeben (z. B. autorisierte Domains in Firebase). Erst die Übergabeseite, danach die reine Umleitung
   - 06.11.2026, 13:46: Inventur, erste Fassung (v1.0, 12 Einträge): [INVENTUR_APPS.md](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md) im Repo 9mbrs. Offen: 6 Rückfragen an Dennis (Abschnitt „Offene Punkte“ dort), Abgleich mit Dennis' Rechner und mit Chats in Claude-Projekten.
+  - 06.11.2026, 15:00: Rückfragen beantwortet (Dennis, 14:55), Inventur v1.1, Entscheidungen oben im Log. Offen: Netzwerk-Tool (A13, unbekannt, Rückfrage gestellt) und die Dateiprüfung von A5 und A8 beim Umzug der jeweiligen App.
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
 - [x] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal. Erledigt 05.11.2026, 00:12: privates Repo `brisk-one/turret-syndrome`, alle Zweige gepusht, `master` maßgeblich (Turret-Syndrome-Hub W11)
@@ -84,6 +90,7 @@ Weitere offene Punkte:
 
 - [ ] Umzug: eigenen Seitennamen anlegen, Deploy einrichten, testen, danach Repo auf privat stellen (Reihenfolge wichtig, sonst Ausfall)
   - 04.11.2026, 11:40: Pausiert, bis Domain und Struktur der geplanten App-Plattform (Einstiegsseite für alle Apps) feststehen. Grund: Jeder Adresswechsel trennt Geräte von ihren Einträgen, ein Doppelumzug soll vermieden werden.
+  - 06.11.2026, 15:00: Ziel für den Code ist der Ordner `terminplaner/` im privaten Repo `brisk-one/9mbrs`. Der Code zieht erst in diesem Schritt um, zusammen mit Deploy und Test (Entscheidung 06.11., 14:55).
 
 - [ ] Testveranstaltungen in Firestore löschen: „Testlauf (Claude)“, „Animationstest (Claude, löschbar)“, „Zusagetest (Claude, löschbar)“ (Löschen nur durch dich)
 - [ ] GitHub verlangt Zwei-Faktor-Anmeldung bis 13.12.2026 (Hinweis auf der Pages-Einstellungsseite gesehen), sonst eingeschränkter Zugriff
