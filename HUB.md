@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 13:24
+Stand: 06.11.2026, 13:46
 
 ## Retrospektiven
 
@@ -36,7 +36,9 @@ Stand: 06.11.2026, 13:24
 
 - Ziel: alle Web-Apps öffentlich hosten, visuelle Einstiegsseite, Werbung/Affiliate vorbereitet aber ausgeschaltet, bis etwas Traffic bekommt (14a). Laufende Kosten minimal.
 - Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
+  - 06.11.2026, 13:46: Zentrale angelegt: privates Repo `brisk-one/9mbrs` (Dennis), mit einem Ordner pro App. Dieser Hub liegt vorerst weiter hier. Hinweis: „Subdomain pro App“ ist laut Offene Punkte (04.11.2026, 14:58) wieder offen.
 - Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
+  - 06.11.2026, 13:46: Inventur aus Chatverlauf, Gedächtnis und Artefakten erstellt: [INVENTUR_APPS.md im Repo 9mbrs](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md). Der Abgleich mit dem Rechner steht noch aus (siehe P2 unten).
 - Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
   - 05.11.2026, 16:49: Revidiert: Name **9MBRS** mit Logo, Langform „Nine Embers“ öffentlich nicht ausgeschrieben; Domains 9mbrs.com und 9mbrs.de seit 05.11.2026 registriert (siehe Entscheidungen).
   - 05.11.2026, 04:18: Entschieden (überholt): **Nine Embers**, Kurzform **9MBRS** (siehe Entscheidungen).
@@ -52,6 +54,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
 - [ ] .web: ab Mitte Januar 2027 Vorrangphase für Inhaber der .com nutzen und 9mbrs.web registrieren (bei INWX nachsehen, sobald angeboten)
 - [ ] DNS für 9mbrs.com/.de erst im Plattform-Plan einrichten (Firebase Hosting, Subdomains), bis dahin ruhen lassen
 - [ ] Projekt-Anweisungen des claude.ai-Projekts „9MBRS“ anpassen, sobald die Plattform ein eigenes Repo hat (Text vom 06.11.2026 nennt noch brisk-one/Terminplaner)
+  - 06.11.2026, 13:46: Auslöser erreicht: Repo `brisk-one/9mbrs` existiert. Text noch anpassen, sinnvoll zusammen mit dem Umzug dieses Hubs nach 9mbrs.
 - [x] P1 Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären (05.11.2026, 16:49: Dennis entscheidet sich für 9MBRS mit Logo und akzeptiert das Restrisiko, siehe Entscheidungen)
   - Ursprünglicher Wortlaut des erledigten Punkts: Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären, bevor der Name endgültig ist (Dennis, 05.11.2026, 14:06: Der Name ist auch Markenname, das muss bis ins Detail geprüft sein; kein Zeitdruck). Stand und Fakten in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md), Abschnitt „Markenrisiko EMBERS“.
   - 05.11.2026, 16:28: Microsoft vermutlich kleines Risiko (keine Nutzung seit Mixer-Ende 2020, kein Widerspruch gegen Nexon). Größeres Risiko neu gefunden: Amazon „EMBER“, EU-Marke eingetragen 10.10.2026, Kl. 9, 35, 38, 41, 42, Amazons Smart-TV-Marke seit 2026. Außerdem verteidigt Bright Star („EMBER SWORD“) gegen Nexons „EMBERS OF THE UNCROWNED“ (Widerspruch offen). Entscheidung Dennis offen, kein Zeitdruck.
@@ -71,6 +74,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
   - 05.11.2026, 04:14: Runde 11, Kürzel plus ausgeschriebener Name. Am stärksten: 9MBRS / Nine Embers (alles frei, auch nineembers.com, Marke in Runde 4 ohne Treffer), 9FRG / Nine Forge (frei bis auf nineforge.com), 9KLN / Nine Kilns, 9NVL / Nine Anvils, 9CMT / Nine Comets. Seven-Varianten haben fast alle aktive Firmen. TMview hat den Rechner nach vielen Abfragen gesperrt; Markenprüfung dieser Runde offen, später nachholen. Entscheidung offen.
 - [ ] P2 Plattform-Plan im frischen Chat, nach einer Pause (Retro v1.2): Inventur aller Apps, Architektur, Akzeptanzkriterien, Pre-Mortem; erster Schnitt Einstiegsseite plus Treffpunkt
   - 05.11.2026, 17:21: Anforderung „umzugsfähig“ in den Plan aufnehmen (Dennis und Claude): (1) Daten, die im Browser an der Adresse hängen (lokaler Speicher, anonyme Anmeldung), müssen auf eine neue Domain mitgenommen werden können, z. B. per Übergabeseite, die beim Umzug die Kennung im Link-Anker (#) an die neue Adresse übergibt; (2) Umleitung der alten Domain per 301, Pfade erhalten, alte Domain mindestens ein bis zwei Jahre behalten; (3) neue Domain vorab beim Anbieter freigeben (z. B. autorisierte Domains in Firebase). Erst die Übergabeseite, danach die reine Umleitung
+  - 06.11.2026, 13:46: Inventur, erste Fassung (v1.0, 12 Einträge): [INVENTUR_APPS.md](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md) im Repo 9mbrs. Offen: 6 Rückfragen an Dennis (Abschnitt „Offene Punkte“ dort), Abgleich mit Dennis' Rechner und mit Chats in Claude-Projekten.
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
 - [x] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal. Erledigt 05.11.2026, 00:12: privates Repo `brisk-one/turret-syndrome`, alle Zweige gepusht, `master` maßgeblich (Turret-Syndrome-Hub W11)
