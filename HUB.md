@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 05.11.2026, 17:37
+Stand: 06.11.2026, 13:18
 
 ## Retrospektiven
 
@@ -46,7 +46,10 @@ Stand: 05.11.2026, 17:37
 
 Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vorher laut v1.1):
 
-- [ ] P1 Domains für 9MBRS kaufen (Kauf nur durch dich): 9mbrs.com, 9mbrs.de; optional .app und .dev. Keine nineembers-Domains (Dennis, 05.11.2026, 17:21). Registrar-Empfehlung (17:36): INWX für alles in einem Konto (.com, .de, .app, .dev; deutscher Anbieter, .de sehr günstig, .com ca. 13,50 $ im ersten Jahr und 18,50 $ Verlängerung laut domainoffer.net); Alternative Cloudflare für .com zum Selbstkostenpreis, kann aber kein .de. Kontoschutz mit Zwei-Faktor, automatische Verlängerung an, keine Zusatzpakete. Vorher beim Registrar prüfen, dass kein Premium-Preis gilt. Danach: .web-Vorrangphase für .com-Inhaber (ab Mitte Januar 2027) nutzen.
+- [x] P1 Domains für 9MBRS kaufen. Erledigt 06.11.2026, 13:18 geprüft (RDAP): **9mbrs.com** bei INWX, registriert 05.11.2026 21:55 CET, läuft bis 05.11.2027, Transfersperre aktiv, Nameserver INWX; **9mbrs.de** aktiv seit 05.11.2026 23:02 CET, Nameserver INWX. Inhaberdaten sind öffentlich nicht sichtbar, im INWX-Konto prüfen, dass Dennis Inhaber ist. Ursprünglich: 9mbrs.com, 9mbrs.de; optional .app und .dev. Keine nineembers-Domains (Dennis, 05.11.2026, 17:21). Registrar-Empfehlung (17:36): INWX für alles in einem Konto (.com, .de, .app, .dev; deutscher Anbieter, .de sehr günstig, .com ca. 13,50 $ im ersten Jahr und 18,50 $ Verlängerung laut domainoffer.net); Alternative Cloudflare für .com zum Selbstkostenpreis, kann aber kein .de. Kontoschutz mit Zwei-Faktor, automatische Verlängerung an, keine Zusatzpakete. Vorher beim Registrar prüfen, dass kein Premium-Preis gilt. Danach: .web-Vorrangphase für .com-Inhaber (ab Mitte Januar 2027) nutzen.
+- [ ] Domain-Nachsorge (Dennis, bei INWX): automatische Verlängerung für beide Domains an, Zwei-Faktor-Anmeldung im Konto an, Inhaber prüfen
+- [ ] .web: ab Mitte Januar 2027 Vorrangphase für Inhaber der .com nutzen und 9mbrs.web registrieren (bei INWX nachsehen, sobald angeboten)
+- [ ] DNS für 9mbrs.com/.de erst im Plattform-Plan einrichten (Firebase Hosting, Subdomains), bis dahin ruhen lassen
 - [x] P1 Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären (05.11.2026, 16:49: Dennis entscheidet sich für 9MBRS mit Logo und akzeptiert das Restrisiko, siehe Entscheidungen)
   - Ursprünglicher Wortlaut des erledigten Punkts: Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären, bevor der Name endgültig ist (Dennis, 05.11.2026, 14:06: Der Name ist auch Markenname, das muss bis ins Detail geprüft sein; kein Zeitdruck). Stand und Fakten in [NAMENSPRUEFUNG.md](NAMENSPRUEFUNG.md), Abschnitt „Markenrisiko EMBERS“.
   - 05.11.2026, 16:28: Microsoft vermutlich kleines Risiko (keine Nutzung seit Mixer-Ende 2020, kein Widerspruch gegen Nexon). Größeres Risiko neu gefunden: Amazon „EMBER“, EU-Marke eingetragen 10.10.2026, Kl. 9, 35, 38, 41, 42, Amazons Smart-TV-Marke seit 2026. Außerdem verteidigt Bright Star („EMBER SWORD“) gegen Nexons „EMBERS OF THE UNCROWNED“ (Widerspruch offen). Entscheidung Dennis offen, kein Zeitdruck.
