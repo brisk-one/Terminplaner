@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 16:22
+Stand: 06.11.2026, 17:36
 
 ## Retrospektiven
 
@@ -90,9 +90,11 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
   - 06.11.2026, 15:36: Plattform-Plan v0.1 als Entwurf zur Freigabe: [PLAN.md im Repo 9mbrs](https://github.com/brisk-one/9mbrs/blob/main/PLAN.md), mit Etappen 0 bis 4, Akzeptanzkriterien und Pre-Mortem. Offen: Dennis' Entscheidungen E1 (Hosting und DNS), E2 (Adressen, ersetzt den Punkt „Adress-Architektur“ unten) und E3 (Hauptdomain); E4 bis E7 in ihrer Phase; im Plan ein Marker `[OFFEN]` für die Subdomain-Namen je App.
   - 06.11.2026, 16:02: E1 bis E3 entschieden (Cloudflare, Subdomains, 9mbrs.de), Plan v0.2. Neu im Plan: E8 (was gilt, wenn 9MBRS später international wird), fällig erst dann. Nächster Schritt: Etappe 0 nach Freigabe des Arbeits-Prompts `prompts/01_etappe-0-fundament.md` im Repo 9mbrs; Peer-Review des Plans vor Etappe 1.
   - 06.11.2026, 16:22: Plan v0.3 mit Abschnitt „Betrieb im Alltag“: vier Konten mit je einer Aufgabe, Deploys automatisch, je neuer App einmal ein Cloudflare-Projekt nach Anleitung. Neu offen: E9 (Anmeldeart am Cloudflare-Konto), fällig in Etappe 0, Schritt 5. Neu im Risiko-Scan: Überwachungspfade je Projekt gegen das Build-Limit.
+  - 06.11.2026, 17:36: Dennis prüft E1 (Hosting und DNS) erneut. Vertiefte Prüfung im Plan v0.4: Befunde zu Bedingungen und Geschäftsmodellen, Kosten je Fall, Empfehlung bei Cloudflare zu bleiben. Korrektur: Firebase Hosting schaltet im Gratistarif bei Überschreitung alle Seiten des Projekts bis Monatsende ab, nicht nur bis zum Tagesreset.
 - [x] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform. Erledigt 06.11.2026, 16:02: Subdomains (E2), siehe Entscheidungen. Ursprünglicher Wortlaut: Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
   - 06.11.2026, 15:36: Im Plattform-Plan das größte Risiko des Pre-Mortems. Gegenmittel: Datum (E7) mit der Freigabe von Etappe 2 festlegen, Etappe 2 direkt nach Etappe 1, gestaltete Einstiegsseite erst danach.
+  - 06.11.2026, 17:36: Fund: Treffpunkt lädt seine Schriften von Google-Servern, in Deutschland ein Datenschutzrisiko. Beim Umzug selbst hosten (Plan, Etappe 2).
 - [x] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal. Erledigt 05.11.2026, 00:12: privates Repo `brisk-one/turret-syndrome`, alle Zweige gepusht, `master` maßgeblich (Turret-Syndrome-Hub W11)
 - [ ] Skill `naming-check` um die Lehren aus Retro v1.2 ergänzen (genannte Einschränkungen als feste Kriterien, Markenabfragen mit Kontrolle und Drosselung, Kürzel und Langform getrennt prüfen, Sprachfallen). Vorschlag an Dennis, Speichern durch ihn
 
