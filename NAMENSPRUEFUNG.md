@@ -1,5 +1,7 @@
 # Namensprüfung Plattform
 
+> **Umgezogen am 06.11.2026, 17:57:** Diese Datei liegt jetzt im privaten Repo `brisk-one/9mbrs` ([NAMENSPRUEFUNG.md](https://github.com/brisk-one/9mbrs/blob/main/NAMENSPRUEFUNG.md)) und wird hier nicht mehr gepflegt. Die Verweise auf den Hub unten führen zu einem Umzugshinweis.
+
 Prüfberichte zur Namenssuche für die App-Plattform. Kurzfassung und offene Entscheidung im [Hub](HUB.md). Frühere Runde (Nightyard, OMGForge): Hub und [Retro v1.1](RETROSPEKTIVE_2026-11-04_v1.1.md).
 
 Stand: 05.11.2026, 16:49
