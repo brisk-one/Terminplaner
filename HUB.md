@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 13:18
+Stand: 06.11.2026, 13:24
 
 ## Retrospektiven
 
@@ -38,7 +38,8 @@ Stand: 06.11.2026, 13:18
 - Entschieden: ein privates Repo als Zentrale (Hub-Datei darin), Subdomain pro App, Cloudflare Web Analytics ohne Cookies ab Tag eins, jede App vor Veröffentlichung auf private Daten prüfen.
 - Nächster Schritt: neuer Chat (16a) mit Namensprüfung, Inventur aller Apps (Rechner und Chatverlauf), Plan mit Akzeptanzkriterien und Pre-Mortem.
 - Name: Richtung „Werkstatt/Schmiede“ gefällt (Sunforge wäre Favorit, aber Forge-Namen sind stark belegt). Shortlist steht noch aus.
-  - 05.11.2026, 04:18: Entschieden: **Nine Embers**, Kurzform **9MBRS** (siehe Entscheidungen).
+  - 05.11.2026, 16:49: Revidiert: Name **9MBRS** mit Logo, Langform „Nine Embers“ öffentlich nicht ausgeschrieben; Domains 9mbrs.com und 9mbrs.de seit 05.11.2026 registriert (siehe Entscheidungen).
+  - 05.11.2026, 04:18: Entschieden (überholt): **Nine Embers**, Kurzform **9MBRS** (siehe Entscheidungen).
   - 04.11.2026, 14:35: Finale Kandidaten Nightyard und OMGForge geprüft (TMview, Companies House, North Data, Websuche). Nightyard: keine Marke, aber aktive UK-Firma „NIGHT YARD LTD“ (seit 10.05.2026, Software/Webportale/Werbung), NL-Firma „Nightyard“ (Graffiti), GitHub-Projekt „nightyard“ (KI-Coding-IDE), Eventlocation „The Night Yard“ (UK); .com/.app belegt. OMGForge: keine Marke, keine Firma, nur ein Minecraft-Dateiname; .com/.de/.app/.dev frei. Risiko OMGForge: viele ältere Marken „OMG“ und „FORGE“ einzeln (u.a. Object Management Group, Autodesk Forge, Forge of Empires). Keine anwaltliche Prüfung.
 - Wohnort für Gewerbe/Impressum: Hamburg.
 
