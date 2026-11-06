@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 15:05
+Stand: 06.11.2026, 15:36
 
 ## Retrospektiven
 
@@ -58,6 +58,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
 - [ ] Domain-Nachsorge (Dennis, bei INWX): automatische Verlängerung für beide Domains an, Zwei-Faktor-Anmeldung im Konto an, Inhaber prüfen
 - [ ] .web: ab Mitte Januar 2027 Vorrangphase für Inhaber der .com nutzen und 9mbrs.web registrieren (bei INWX nachsehen, sobald angeboten)
 - [ ] DNS für 9mbrs.com/.de erst im Plattform-Plan einrichten (Firebase Hosting, Subdomains), bis dahin ruhen lassen
+  - 06.11.2026, 15:36: Top-Risiko aus dem Plattform-Plan: Bei einem Nameserver-Wechsel DNSSEC vorher bei INWX ausschalten und danach beim neuen DNS-Anbieter wieder einschalten, sonst lösen die Domains nicht auf (Etappe 1).
 - [ ] Projekt-Anweisungen des claude.ai-Projekts „9MBRS“ anpassen, sobald die Plattform ein eigenes Repo hat (Text vom 06.11.2026 nennt noch brisk-one/Terminplaner)
   - 06.11.2026, 13:46: Auslöser erreicht: Repo `brisk-one/9mbrs` existiert. Text noch anpassen, sinnvoll zusammen mit dem Umzug dieses Hubs nach 9mbrs.
 - [x] P1 Markenrisiko „EMBERS“ für Nine Embers / 9MBRS klären (05.11.2026, 16:49: Dennis entscheidet sich für 9MBRS mit Logo und akzeptiert das Restrisiko, siehe Entscheidungen)
@@ -82,8 +83,10 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
   - 06.11.2026, 13:46: Inventur, erste Fassung (v1.0, 12 Einträge): [INVENTUR_APPS.md](https://github.com/brisk-one/9mbrs/blob/main/INVENTUR_APPS.md) im Repo 9mbrs. Offen: 6 Rückfragen an Dennis (Abschnitt „Offene Punkte“ dort), Abgleich mit Dennis' Rechner und mit Chats in Claude-Projekten.
   - 06.11.2026, 15:00: Rückfragen beantwortet (Dennis, 14:55), Inventur v1.1, Entscheidungen oben im Log. Offen: Netzwerk-Tool (A13, unbekannt, Rückfrage gestellt) und die Dateiprüfung von A5 und A8 beim Umzug der jeweiligen App.
   - 06.11.2026, 15:05: Netzwerk-Tool (A13) geklärt: gehört zum Die-Stämme-Projekt und bleibt damit separat (Dennis, 15:02). Inventur v1.2. Offen bleibt nur die Dateiprüfung von A5 und A8 beim Umzug der jeweiligen App.
+  - 06.11.2026, 15:36: Plattform-Plan v0.1 als Entwurf zur Freigabe: [PLAN.md im Repo 9mbrs](https://github.com/brisk-one/9mbrs/blob/main/PLAN.md), mit Etappen 0 bis 4, Akzeptanzkriterien und Pre-Mortem. Offen: Dennis' Entscheidungen E1 (Hosting und DNS), E2 (Adressen, ersetzt den Punkt „Adress-Architektur“ unten) und E3 (Hauptdomain); E4 bis E7 in ihrer Phase; im Plan ein Marker `[OFFEN]` für die Subdomain-Namen je App.
 - [ ] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
+  - 06.11.2026, 15:36: Im Plattform-Plan das größte Risiko des Pre-Mortems. Gegenmittel: Datum (E7) mit der Freigabe von Etappe 2 festlegen, Etappe 2 direkt nach Etappe 1, gestaltete Einstiegsseite erst danach.
 - [x] Turret Syndrome als privates GitHub-Repo sichern. 04.11.2026, 14:55 geprüft: lokales Git-Repo `D:\UnityProjects\TurretSyndrome` ohne Remote (kein `[remote]` in `.git/config`, keine `refs/remotes`), Commits 29.05. bis 01.07.2026 liegen nur lokal. Erledigt 05.11.2026, 00:12: privates Repo `brisk-one/turret-syndrome`, alle Zweige gepusht, `master` maßgeblich (Turret-Syndrome-Hub W11)
 - [ ] Skill `naming-check` um die Lehren aus Retro v1.2 ergänzen (genannte Einschränkungen als feste Kriterien, Markenabfragen mit Kontrolle und Drosselung, Kürzel und Langform getrennt prüfen, Sprachfallen). Vorschlag an Dennis, Speichern durch ihn
 
