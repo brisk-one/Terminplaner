@@ -2,7 +2,7 @@
 
 Zentrale Datei für offene Punkte und Entscheidungen. Retrospektiven liegen als eigene Dateien daneben.
 
-Stand: 06.11.2026, 17:36
+Stand: 06.11.2026, 17:51
 
 ## Retrospektiven
 
@@ -39,6 +39,8 @@ Stand: 06.11.2026, 17:36
 | 06.11., 15:58 | Hosting und DNS der Plattform bei Cloudflare (E1 = 1a); Firebase bleibt Datenbank und Anmeldung von Treffpunkt. Ersetzt den Hosting-Teil von 10b | Statischer Traffic im Gratistarif ohne genanntes Limit, ein Konto für DNS, Hosting und das beschlossene Analytics, automatisches Deploy aus dem privaten Repo | Firebase Hosting (1b, im Gratistarif 360 MB Transfer pro Tag), Mischform (1c, zwei Hosting-Anbieter) |
 | 06.11., 15:58 | Jede App bekommt eine eigene Subdomain, die sich nie ändert (E2 = 2a) | Eigener Browser-Speicher und eigene Anmeldung je App, jede App einzeln umziehbar | Pfade (2b, gemeinsamer Speicher), eigene Domain je App (2c, Kosten je Domain) |
 | 06.11., 15:58 | Hauptdomain 9mbrs.de, 9mbrs.com leitet weiter (E3 = 3b) | Dennis: Start im deutschen Raum, deutsche App-Namen wie „treffpunkt“ passen nicht zu .com | 9mbrs.com als Hauptdomain (3a), beide gleichrangig (3c) |
+| 06.11., 17:49 | E1 nach erneuter Prüfung bestätigt: Cloudflare liefert alle Seiten aus, Firebase bleibt Datenbank und Anmeldung von Treffpunkt | Seiten kosten in jedem Fall nichts, kein Zahlungsmittel nötig, eine App kann die anderen nicht abschalten (Kosten je Fall im Plan, Abschnitt Hosting und DNS) | Firebase für alles im Gratistarif (10 GB im Monat für alle Apps zusammen, danach alles aus bis Monatsende), Firebase für alles im Blaze-Tarif (kein Kostendeckel), Cloudflare für alles (Neubau von Treffpunkt) |
+| 06.11., 17:51 | Erst testen, dann live: neue Apps und größere Änderungen entstehen auf Entwurfszweigen, Cloudflare baut nur `main` | Freunde sehen keine halbfertigen Stände, Builds nur für fertige Fassungen (Vorschlag Dennis) | Jede Korrektur direkt auf `main` (viele Builds, Zwischenstände live) |
 
 ## Plattform (Stand 04.11.2026, 12:20)
 
@@ -91,6 +93,7 @@ Nächste Schritte laut Retro v1.2 (05.11.2026, 04:36), in dieser Reihenfolge (vo
   - 06.11.2026, 16:02: E1 bis E3 entschieden (Cloudflare, Subdomains, 9mbrs.de), Plan v0.2. Neu im Plan: E8 (was gilt, wenn 9MBRS später international wird), fällig erst dann. Nächster Schritt: Etappe 0 nach Freigabe des Arbeits-Prompts `prompts/01_etappe-0-fundament.md` im Repo 9mbrs; Peer-Review des Plans vor Etappe 1.
   - 06.11.2026, 16:22: Plan v0.3 mit Abschnitt „Betrieb im Alltag“: vier Konten mit je einer Aufgabe, Deploys automatisch, je neuer App einmal ein Cloudflare-Projekt nach Anleitung. Neu offen: E9 (Anmeldeart am Cloudflare-Konto), fällig in Etappe 0, Schritt 5. Neu im Risiko-Scan: Überwachungspfade je Projekt gegen das Build-Limit.
   - 06.11.2026, 17:36: Dennis prüft E1 (Hosting und DNS) erneut. Vertiefte Prüfung im Plan v0.4: Befunde zu Bedingungen und Geschäftsmodellen, Kosten je Fall, Empfehlung bei Cloudflare zu bleiben. Korrektur: Firebase Hosting schaltet im Gratistarif bei Überschreitung alle Seiten des Projekts bis Monatsende ab, nicht nur bis zum Tagesreset.
+  - 06.11.2026, 17:51: E1 bestätigt (Dennis, 17:49), Arbeitsweise „erst testen, dann live“ im Plan v0.5. Offen bleiben: Freigabe des Arbeits-Prompts für Etappe 0 und E9.
 - [x] Entscheidung offen (04.11.2026, 14:58): Adress-Architektur der Plattform. Erledigt 06.11.2026, 16:02: Subdomains (E2), siehe Entscheidungen. Ursprünglicher Wortlaut: Adress-Architektur der Plattform (Subdomains, Pfade oder eigene Domains pro App). Optionen und Empfehlung im Chat vom 04.11., Entscheidung im Plattform-Chat
 - [ ] P3 Treffpunkt einmalig auf die endgültige Domain umziehen, direkt danach erste echte Veranstaltung. Laut Retro v1.2 mit festem Datum, damit der Praxistest nicht erneut rutscht
   - 06.11.2026, 15:36: Im Plattform-Plan das größte Risiko des Pre-Mortems. Gegenmittel: Datum (E7) mit der Freigabe von Etappe 2 festlegen, Etappe 2 direkt nach Etappe 1, gestaltete Einstiegsseite erst danach.
